@@ -37,6 +37,7 @@
 		50703B411D7EE8D2001DAF45 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B401D7EE8D2001DAF45 /* Helpers.swift */; };
 		50703B431D7EF237001DAF45 /* ToDoListWindowControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B421D7EF237001DAF45 /* ToDoListWindowControllerTests.swift */; };
 		50703B451D7EF590001DAF45 /* ToDoTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B441D7EF590001DAF45 /* ToDoTableDataSource.swift */; };
+		50703B471D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B461D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift */; };
 		50703B491D7F0DE5001DAF45 /* ToDoTableDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B481D7F0DE5001DAF45 /* ToDoTableDataSourceTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +98,7 @@
 		50703B401D7EE8D2001DAF45 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		50703B421D7EF237001DAF45 /* ToDoListWindowControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListWindowControllerTests.swift; sourceTree = "<group>"; };
 		50703B441D7EF590001DAF45 /* ToDoTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableDataSource.swift; sourceTree = "<group>"; };
+		50703B461D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionType+ReSwiftTodo.swift"; sourceTree = "<group>"; };
 		50703B481D7F0DE5001DAF45 /* ToDoTableDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableDataSourceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +151,7 @@
 				50703B351D7EB83C001DAF45 /* Application */,
 				50703B201D7EAEC8001DAF45 /* User Interface */,
 				50703AF21D7EACB8001DAF45 /* Info.plist */,
+				50703B461D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift */,
 			);
 			path = "ReSwift-Todo";
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				50703B371D7EBC76001DAF45 /* ToDoCellView.swift in Sources */,
 				50703B0D1D7EAD09001DAF45 /* ToDoID.swift in Sources */,
 				50703B0C1D7EAD09001DAF45 /* ToDoActions.swift in Sources */,
+				50703B471D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift in Sources */,
 				50703B281D7EB001001DAF45 /* ToDoReducer.swift in Sources */,
 				50703B451D7EF590001DAF45 /* ToDoTableDataSource.swift in Sources */,
 				50703B2E1D7EB5B5001DAF45 /* ToDoListStore.swift in Sources */,

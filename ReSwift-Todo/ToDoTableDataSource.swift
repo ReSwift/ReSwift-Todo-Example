@@ -27,4 +27,15 @@ extension ToDoTableDataSource: ToDoTableDataSourceType {
 
         self.viewModel = viewModel
     }
+
+    func toDoCellView(tableView tableView: NSTableView, row: Int, owner: AnyObject) -> ToDoCellView? {
+
+        guard let cellViewModel = viewModel?.items[safe: row],
+            cellView = ToDoCellView.make(tableView: tableView, owner: owner)
+            else { return nil }
+
+        cellView.showToDo(toDoViewModel: cellViewModel)
+
+        return cellView
+    }
 }

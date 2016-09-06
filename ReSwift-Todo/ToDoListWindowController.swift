@@ -19,6 +19,7 @@ protocol ToDoTableDataSourceType {
     var tableDataSource: NSTableViewDataSource { get }
 
     func updateContents(toDoListViewModel viewModel: ToDoListViewModel)
+    func toDoCellView(tableView tableView: NSTableView, row: Int, owner: AnyObject) -> ToDoCellView?
 }
 
 extension ToDoTableDataSourceType where Self: NSTableViewDataSource {
@@ -44,7 +45,12 @@ class ToDoListWindowController: NSWindowController {
         }
     }
 
-    lazy var dataSource: ToDoTableDataSourceType = ToDoTableDataSource()
+    var dataSource: ToDoTableDataSourceType = ToDoTableDataSource() {
+
+        didSet {
+            tableView.setDataSource(dataSource.tableDataSource)
+        }
+    }
 
     convenience init() {
 
@@ -64,6 +70,7 @@ class ToDoListWindowController: NSWindowController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(windowWillClose(_:)), name: NSWindowWillCloseNotification, object: self.window)
 
         tableView.setDataSource(self.dataSource.tableDataSource)
+        tableView.setDelegate(self)
     }
 
     override func windowDidLoad() {
@@ -82,6 +89,8 @@ class ToDoListWindowController: NSWindowController {
         delegate?.toDoListWindowControllerWillClose(self)
     }
 }
+
+// MARK: Displaying Data 
 
 protocol DisplaysToDoList {
 
@@ -105,5 +114,13 @@ extension ToDoListWindowController: DisplaysToDoList {
 
         dataSource.updateContents(toDoListViewModel: viewModel)
         tableView.reloadData()
+    }
+}
+
+extension ToDoListWindowController: NSTableViewDelegate {
+
+    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+
+        return dataSource.toDoCellView(tableView: tableView, row: row, owner: self)
     }
 }

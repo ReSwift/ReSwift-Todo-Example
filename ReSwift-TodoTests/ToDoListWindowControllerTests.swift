@@ -37,6 +37,29 @@ class ToDoListWindowControllerTests: XCTestCase {
         XCTAssertNotNil(controller.dataSource)
     }
 
+    // MARK: Table View Delegate
+
+    func testCellView_DelegatesToDataSource() {
+
+        let dataSourceDouble = TestDataSource()
+        controller.dataSource = dataSourceDouble
+
+        let tableView = NSTableView()
+        let column = NSTableColumn(identifier: "irrelevant")
+        let row = 123
+
+        controller.tableView(tableView, viewForTableColumn: column, row: row)
+
+        XCTAssertNotNil(dataSourceDouble.didRequestCellViewWith)
+        if let values = dataSourceDouble.didRequestCellViewWith {
+            // Note: column is not used
+            XCTAssertEqual(values.row, row)
+            XCTAssert(values.tableView === tableView)
+            XCTAssert(values.owner === controller)
+        }
+    }
+
+
     // MARK: Displaying To Do List View Models
 
     func testDisplayList_ChangesTitleTextFieldContents() {
@@ -52,17 +75,6 @@ class ToDoListWindowControllerTests: XCTestCase {
     }
 
     func testDisplayList_DelegatesToTableDataSource() {
-
-        class TestDataSource: ToDoTableDataSourceType {
-
-            private var tableDataSource: NSTableViewDataSource { return NullTableViewDataSource() }
-
-            var didUpdateWith: ToDoListViewModel?
-            private func updateContents(toDoListViewModel viewModel: ToDoListViewModel) {
-
-                didUpdateWith = viewModel
-            }
-        }
 
         let dataSourceDouble = TestDataSource()
         let viewModel = ToDoListViewModel(title: "some title", items: [])
@@ -94,6 +106,29 @@ class ToDoListWindowControllerTests: XCTestCase {
         controller.displayToDoList(toDoListViewModel: viewModel)
 
         XCTAssert(tableViewDouble.didReloadData)
+    }
+
+
+    // MARK: - Collaborators
+
+    class TestDataSource: ToDoTableDataSourceType {
+
+        var tableDataSource: NSTableViewDataSource { return NullTableViewDataSource() }
+
+        var didUpdateWith: ToDoListViewModel?
+        func updateContents(toDoListViewModel viewModel: ToDoListViewModel) {
+
+            didUpdateWith = viewModel
+        }
+
+        var testToDoCellView: ToDoCellView?
+        var didRequestCellViewWith: (tableView: NSTableView, row: Int, owner: AnyObject)?
+        func toDoCellView(tableView tableView: NSTableView, row: Int, owner: AnyObject) -> ToDoCellView? {
+
+            didRequestCellViewWith = (tableView, row, owner)
+
+            return testToDoCellView
+        }
     }
 }
 
