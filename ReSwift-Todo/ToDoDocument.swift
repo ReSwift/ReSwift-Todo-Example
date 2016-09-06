@@ -13,7 +13,7 @@ class ToDoDocument: NSDocument {
     // MARK: - Initialization
 
     lazy var store: ToDoListStore = toDoListStore(undoManager: self.undoManager!)
-    
+
     var presenter: ToDoListPresenter!
 
     override func makeWindowControllers() {

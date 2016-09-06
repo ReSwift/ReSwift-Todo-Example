@@ -16,11 +16,49 @@ protocol ToDoListWindowControllerDelegate: class {
 
 class ToDoListWindowController: NSWindowController {
 
-    weak var delegate: ToDoListWindowControllerDelegate?
+    /// Changing the `delegate` while the window is displayed
+    /// calls the `toDoListWindowControllerDidLoad` callback
+    /// on the new `delegate`.
+    weak var delegate: ToDoListWindowControllerDelegate? {
+        didSet {
+            guard didLoad else { return }
+
+            delegate?.toDoListWindowControllerDidLoad(self)
+        }
+    }
 
     convenience init() {
 
         self.init(windowNibName: String(ToDoListWindowController))
+    }
+
+    private var didLoad = false {
+        didSet {
+            delegate?.toDoListWindowControllerDidLoad(self)
+        }
+    }
+
+    override func awakeFromNib() {
+
+        super.awakeFromNib()
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(windowWillClose(_:)), name: NSWindowWillCloseNotification, object: self.window)
+    }
+
+    override func windowDidLoad() {
+
+        super.windowDidLoad()
+
+        didLoad = true
+    }
+
+    func windowWillClose(notification: NSNotification) {
+
+        guard let sendingWindow = notification.object as? NSWindow
+            where sendingWindow == self.window
+            else { return }
+
+        delegate?.toDoListWindowControllerWillClose(self)
     }
 }
 
