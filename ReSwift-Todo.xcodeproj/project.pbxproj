@@ -13,6 +13,8 @@
 		50703AEE1D7EACB8001DAF45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50703AED1D7EACB8001DAF45 /* Assets.xcassets */; };
 		50703AF11D7EACB8001DAF45 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50703AEF1D7EACB8001DAF45 /* MainMenu.xib */; };
 		50703AFC1D7EACB8001DAF45 /* ReSwift_TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AFB1D7EACB8001DAF45 /* ReSwift_TodoTests.swift */; };
+		50703B131D7EADDA001DAF45 /* ReSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50703B111D7EADD2001DAF45 /* ReSwift.framework */; };
+		50703B141D7EADDA001DAF45 /* ReSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50703B111D7EADD2001DAF45 /* ReSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +27,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		50703B151D7EADDA001DAF45 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				50703B141D7EADDA001DAF45 /* ReSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		50703AE31D7EACB8001DAF45 /* ReSwift-Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReSwift-Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50703AE61D7EACB8001DAF45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +52,7 @@
 		50703AF71D7EACB8001DAF45 /* ReSwift-TodoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReSwift-TodoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50703AFB1D7EACB8001DAF45 /* ReSwift_TodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReSwift_TodoTests.swift; sourceTree = "<group>"; };
 		50703AFD1D7EACB8001DAF45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50703B111D7EADD2001DAF45 /* ReSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReSwift.framework; path = Carthage/Build/Mac/ReSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50703B131D7EADDA001DAF45 /* ReSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +80,7 @@
 				50703AE51D7EACB8001DAF45 /* ReSwift-Todo */,
 				50703AFA1D7EACB8001DAF45 /* ReSwift-TodoTests */,
 				50703AE41D7EACB8001DAF45 /* Products */,
+				50703B101D7EADC2001DAF45 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +115,14 @@
 			path = "ReSwift-TodoTests";
 			sourceTree = "<group>";
 		};
+		50703B101D7EADC2001DAF45 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				50703B111D7EADD2001DAF45 /* ReSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,6 +133,7 @@
 				50703ADF1D7EACB8001DAF45 /* Sources */,
 				50703AE01D7EACB8001DAF45 /* Frameworks */,
 				50703AE11D7EACB8001DAF45 /* Resources */,
+				50703B151D7EADDA001DAF45 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -327,6 +355,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "ReSwift-Todo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "reswift.github.io.ReSwift-Todo";
@@ -339,6 +371,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "ReSwift-Todo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "reswift.github.io.ReSwift-Todo";
