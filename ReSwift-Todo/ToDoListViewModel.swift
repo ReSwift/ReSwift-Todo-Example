@@ -12,3 +12,10 @@ struct ToDoListViewModel {
 
     let title: String
 }
+
+extension ToDoListViewModel: Equatable { }
+
+func ==(lhs: ToDoListViewModel, rhs: ToDoListViewModel) -> Bool {
+
+    return lhs.title == rhs.title
+}

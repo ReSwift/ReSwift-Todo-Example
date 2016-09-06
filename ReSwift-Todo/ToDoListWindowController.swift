@@ -14,6 +14,20 @@ protocol ToDoListWindowControllerDelegate: class {
     func toDoListWindowControllerWillClose(controller: ToDoListWindowController)
 }
 
+protocol ToDoTableDataSourceType {
+
+    var tableDataSource: NSTableViewDataSource { get }
+
+    func updateContents(toDoListViewModel viewModel: ToDoListViewModel)
+}
+
+extension ToDoTableDataSourceType where Self: NSTableViewDataSource {
+
+    var tableDataSource: NSTableViewDataSource {
+        return self
+    }
+}
+
 class ToDoListWindowController: NSWindowController {
 
     @IBOutlet var titleTextField: NSTextField!
@@ -29,6 +43,8 @@ class ToDoListWindowController: NSWindowController {
             delegate?.toDoListWindowControllerDidLoad(self)
         }
     }
+
+    lazy var dataSource: ToDoTableDataSourceType = ToDoTableDataSource()
 
     convenience init() {
 
@@ -46,6 +62,8 @@ class ToDoListWindowController: NSWindowController {
         super.awakeFromNib()
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(windowWillClose(_:)), name: NSWindowWillCloseNotification, object: self.window)
+
+        tableView.setDataSource(self.dataSource.tableDataSource)
     }
 
     override func windowDidLoad() {
@@ -75,10 +93,17 @@ extension ToDoListWindowController: DisplaysToDoList {
     func displayToDoList(toDoListViewModel viewModel: ToDoListViewModel) {
 
         displayToDoTitle(viewModel: viewModel)
+        updateTableDataSource(viewModel: viewModel)
     }
 
     private func displayToDoTitle(viewModel viewModel: ToDoListViewModel) {
 
         titleTextField.stringValue = viewModel.title
+    }
+
+    private func updateTableDataSource(viewModel viewModel: ToDoListViewModel) {
+
+        dataSource.updateContents(toDoListViewModel: viewModel)
+        tableView.reloadData()
     }
 }

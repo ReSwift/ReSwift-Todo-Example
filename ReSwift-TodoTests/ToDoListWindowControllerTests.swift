@@ -32,6 +32,11 @@ class ToDoListWindowControllerTests: XCTestCase {
         XCTAssertNotNil(controller.tableView)
     }
 
+    func testDataSource_IsConnected() {
+
+        XCTAssertNotNil(controller.dataSource)
+    }
+
     // MARK: Displaying To Do List View Models
 
     func testDisplayList_ChangesTitleTextFieldContents() {
@@ -45,4 +50,51 @@ class ToDoListWindowControllerTests: XCTestCase {
 
         XCTAssertEqual(textFieldDouble.stringValue, title)
     }
+
+    func testDisplayList_DelegatesToTableDataSource() {
+
+        class TestDataSource: ToDoTableDataSourceType {
+
+            private var tableDataSource: NSTableViewDataSource { return NullTableViewDataSource() }
+
+            var didUpdateWith: ToDoListViewModel?
+            private func updateContents(toDoListViewModel viewModel: ToDoListViewModel) {
+
+                didUpdateWith = viewModel
+            }
+        }
+
+        let dataSourceDouble = TestDataSource()
+        let viewModel = ToDoListViewModel(title: "some title")
+        controller.dataSource = dataSourceDouble
+
+        controller.displayToDoList(toDoListViewModel: viewModel)
+
+        XCTAssertNotNil(dataSourceDouble.didUpdateWith)
+        if let value = dataSourceDouble.didUpdateWith {
+            XCTAssertEqual(value, viewModel)
+        }
+    }
+
+    func testDisplayList_ReloadsTable() {
+
+        class TestTableView: NSTableView {
+
+            var didReloadData = false
+            private override func reloadData() {
+
+                didReloadData = true
+            }
+        }
+
+        let tableViewDouble = TestTableView()
+        let viewModel = ToDoListViewModel(title: "irrelevant")
+        controller.tableView = tableViewDouble
+
+        controller.displayToDoList(toDoListViewModel: viewModel)
+
+        XCTAssert(tableViewDouble.didReloadData)
+    }
 }
+
+class NullTableViewDataSource: NSObject, NSTableViewDataSource { }
