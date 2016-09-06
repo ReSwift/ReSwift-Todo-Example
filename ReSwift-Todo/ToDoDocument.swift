@@ -19,6 +19,8 @@ class ToDoDocument: NSDocument {
     override func makeWindowControllers() {
 
         let windowController = ToDoListWindowController()
+        windowController.delegate = self
+
         self.presenter = ToDoListPresenter(view: windowController)
 
         addWindowController(windowController)

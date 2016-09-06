@@ -69,6 +69,24 @@ extension ToDoListWindowController: DisplaysToDoList {
 
     func displayToDoList(toDoList: ToDoList) {
 
-        
+        displayToDoTitle(toDoList)
+
+        removeExistingNodes()
+        displayToDos(toDoList.items)
+    }
+
+    private func displayToDoTitle(toDoList: ToDoList) {
+
+        let title = toDoList.title
+        window?.title = title
+        titleTextField.stringValue = title
+    }
+
+    private func removeExistingNodes() {
+
+    }
+
+    private func displayToDos(items: [ToDo]) {
+
     }
 }
