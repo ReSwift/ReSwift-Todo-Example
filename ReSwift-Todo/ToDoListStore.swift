@@ -11,7 +11,7 @@ import ReSwift
 
 typealias ToDoListStore = Store<ToDoListState>
 
-func documentStore(undoManager undoManager: NSUndoManager) -> ToDoListStore {
+func toDoListStore(undoManager undoManager: NSUndoManager) -> ToDoListStore {
 
     return ToDoListStore(
         reducer: ToDoListReducer(),

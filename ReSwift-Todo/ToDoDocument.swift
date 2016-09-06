@@ -12,13 +12,19 @@ class ToDoDocument: NSDocument {
 
     // MARK: - Initialization
 
+    lazy var store: ToDoListStore = toDoListStore(undoManager: self.undoManager!)
+    
+    var presenter: ToDoListPresenter!
+
     override func makeWindowControllers() {
 
         let windowController = ToDoListWindowController()
+        self.presenter = ToDoListPresenter(view: windowController)
 
         addWindowController(windowController)
     }
 
+    
     // MARK: - Saving/Loading Data
 
     override class func autosavesInPlace() -> Bool {
@@ -40,3 +46,15 @@ class ToDoDocument: NSDocument {
 
 }
 
+extension ToDoDocument: ToDoListWindowControllerDelegate {
+
+    func toDoListWindowControllerDidLoad(controller: ToDoListWindowController) {
+
+        store.subscribe(presenter)
+    }
+
+    func toDoListWindowControllerWillClose(controller: ToDoListWindowController) {
+
+        store.unsubscribe(presenter)
+    }
+}
