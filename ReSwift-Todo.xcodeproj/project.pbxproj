@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE61D7EACB8001DAF45 /* AppDelegate.swift */; };
-		50703AE91D7EACB8001DAF45 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE81D7EACB8001DAF45 /* Document.swift */; };
-		50703AEC1D7EACB8001DAF45 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50703AEA1D7EACB8001DAF45 /* Document.xib */; };
+		50703AE91D7EACB8001DAF45 /* ToDoDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */; };
+		50703AEC1D7EACB8001DAF45 /* ToDoDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50703AEA1D7EACB8001DAF45 /* ToDoDocument.xib */; };
 		50703AEE1D7EACB8001DAF45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50703AED1D7EACB8001DAF45 /* Assets.xcassets */; };
 		50703AF11D7EACB8001DAF45 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50703AEF1D7EACB8001DAF45 /* MainMenu.xib */; };
 		50703B0A1D7EAD09001DAF45 /* ToDoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B061D7EAD09001DAF45 /* ToDoList.swift */; };
@@ -49,8 +49,8 @@
 /* Begin PBXFileReference section */
 		50703AE31D7EACB8001DAF45 /* ReSwift-Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReSwift-Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50703AE61D7EACB8001DAF45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		50703AE81D7EACB8001DAF45 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		50703AEB1D7EACB8001DAF45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
+		50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDocument.swift; sourceTree = "<group>"; };
+		50703AEB1D7EACB8001DAF45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ToDoDocument.xib; sourceTree = "<group>"; };
 		50703AED1D7EACB8001DAF45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50703AF01D7EACB8001DAF45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		50703AF21D7EACB8001DAF45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 			children = (
 				50703AE61D7EACB8001DAF45 /* AppDelegate.swift */,
 				50703B0F1D7EAD15001DAF45 /* Model */,
-				50703AE81D7EACB8001DAF45 /* Document.swift */,
+				50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */,
 				50703B201D7EAEC8001DAF45 /* User Interface */,
 				50703AF21D7EACB8001DAF45 /* Info.plist */,
 			);
@@ -155,7 +155,7 @@
 		50703B201D7EAEC8001DAF45 /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
-				50703AEA1D7EACB8001DAF45 /* Document.xib */,
+				50703AEA1D7EACB8001DAF45 /* ToDoDocument.xib */,
 				50703AED1D7EACB8001DAF45 /* Assets.xcassets */,
 				50703AEF1D7EACB8001DAF45 /* MainMenu.xib */,
 			);
@@ -245,7 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50703AEE1D7EACB8001DAF45 /* Assets.xcassets in Resources */,
-				50703AEC1D7EACB8001DAF45 /* Document.xib in Resources */,
+				50703AEC1D7EACB8001DAF45 /* ToDoDocument.xib in Resources */,
 				50703AF11D7EACB8001DAF45 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,7 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50703AE91D7EACB8001DAF45 /* Document.swift in Sources */,
+				50703AE91D7EACB8001DAF45 /* ToDoDocument.swift in Sources */,
 				50703B0A1D7EAD09001DAF45 /* ToDoList.swift in Sources */,
 				50703B0D1D7EAD09001DAF45 /* ToDoID.swift in Sources */,
 				50703B0C1D7EAD09001DAF45 /* ToDoActions.swift in Sources */,
@@ -293,12 +293,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		50703AEA1D7EACB8001DAF45 /* Document.xib */ = {
+		50703AEA1D7EACB8001DAF45 /* ToDoDocument.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				50703AEB1D7EACB8001DAF45 /* Base */,
 			);
-			name = Document.xib;
+			name = ToDoDocument.xib;
 			sourceTree = "<group>";
 		};
 		50703AEF1D7EACB8001DAF45 /* MainMenu.xib */ = {

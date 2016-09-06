@@ -1,5 +1,5 @@
 //
-//  Document.swift
+//  ToDoDocument.swift
 //  ReSwift-Todo
 //
 //  Created by Christian Tietze on 06/09/16.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class Document: NSDocument {
+class ToDoDocument: NSDocument {
 
     override init() {
         super.init()
@@ -22,7 +22,7 @@ class Document: NSDocument {
     override var windowNibName: String? {
         // Returns the nib file name of the document
         // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this property and override -makeWindowControllers instead.
-        return "Document"
+        return "ToDoDocument"
     }
 
     override func dataOfType(typeName: String) throws -> NSData {
