@@ -15,6 +15,10 @@ class ToDoTableDataSource: NSObject {
 
 extension ToDoTableDataSource: NSTableViewDataSource {
 
+    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+
+        return viewModel?.itemCount ?? 0
+    }
 }
 
 extension ToDoTableDataSource: ToDoTableDataSourceType {
