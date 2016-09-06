@@ -20,7 +20,7 @@ class ToDoCellView: NSTableCellView {
         set { textField = newValue }
     }
 
-    private(set) var viewModel: ToDoItemViewModel! {
+    private(set) var viewModel: ToDoViewModel! {
         didSet {
             titleTextField.stringValue = viewModel.title
             checkbox.state = viewModel.checked ? NSOnState : NSOffState
@@ -30,7 +30,7 @@ class ToDoCellView: NSTableCellView {
 
 extension ToDoCellView: DisplaysToDo {
 
-    func showToDo(toDoViewModel viewModel: ToDoItemViewModel) {
+    func showToDo(toDoViewModel viewModel: ToDoViewModel) {
 
         self.viewModel = viewModel
     }

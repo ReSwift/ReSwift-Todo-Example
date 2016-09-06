@@ -21,11 +21,13 @@ class ToDoListPresenter {
     }
 }
 
-extension ToDoListViewModel {
+extension ToDoViewModel {
 
-    init(toDoList: ToDoList) {
+    init(toDo: ToDo) {
 
-        self.title = toDoList.title
+        self.identifier = toDo.toDoID.identifier
+        self.title = toDo.title
+        self.checked = toDo.completed
     }
 }
 
@@ -33,7 +35,10 @@ extension ToDoListPresenter: StoreSubscriber {
 
     func newState(state: ToDoListState) {
 
-        let viewModel = ToDoListViewModel(toDoList: state.toDoList)
+        let itemViewModels = state.toDoList.items.map(ToDoViewModel.init)
+        let viewModel = ToDoListViewModel(
+            title: state.toDoList.title,
+            items: itemViewModels)
 
         view.displayToDoList(toDoListViewModel: viewModel)
     }

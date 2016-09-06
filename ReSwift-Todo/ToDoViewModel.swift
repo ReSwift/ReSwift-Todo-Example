@@ -1,5 +1,5 @@
 //
-//  ToDoItemViewModel.swift
+//  ToDoViewModel.swift
 //  ReSwift-Todo
 //
 //  Created by Christian Tietze on 06/09/16.
@@ -10,10 +10,10 @@ import Foundation
 
 protocol DisplaysToDo {
 
-    func showToDo(toDoViewModel viewModel: ToDoItemViewModel)
+    func showToDo(toDoViewModel viewModel: ToDoViewModel)
 }
 
-struct ToDoItemViewModel {
+struct ToDoViewModel {
 
     let identifier: String
 
