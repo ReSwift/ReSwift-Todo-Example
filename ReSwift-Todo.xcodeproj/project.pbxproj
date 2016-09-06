@@ -25,6 +25,9 @@
 		50703B271D7EB001001DAF45 /* ToDoListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B251D7EB001001DAF45 /* ToDoListReducer.swift */; };
 		50703B281D7EB001001DAF45 /* ToDoReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B261D7EB001001DAF45 /* ToDoReducer.swift */; };
 		50703B291D7EB048001DAF45 /* ReSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50703B111D7EADD2001DAF45 /* ReSwift.framework */; };
+		50703B2C1D7EB2E7001DAF45 /* LoggingMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B2B1D7EB2E7001DAF45 /* LoggingMiddleware.swift */; };
+		50703B2E1D7EB5B5001DAF45 /* ToDoListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B2D1D7EB5B5001DAF45 /* ToDoListStore.swift */; };
+		50703B301D7EB60F001DAF45 /* ToDoListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B2F1D7EB60F001DAF45 /* ToDoListState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,9 @@
 		50703B221D7EAFF7001DAF45 /* ToDoReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoReducerTests.swift; sourceTree = "<group>"; };
 		50703B251D7EB001001DAF45 /* ToDoListReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListReducer.swift; sourceTree = "<group>"; };
 		50703B261D7EB001001DAF45 /* ToDoReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoReducer.swift; sourceTree = "<group>"; };
+		50703B2B1D7EB2E7001DAF45 /* LoggingMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingMiddleware.swift; sourceTree = "<group>"; };
+		50703B2D1D7EB5B5001DAF45 /* ToDoListStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListStore.swift; sourceTree = "<group>"; };
+		50703B2F1D7EB60F001DAF45 /* ToDoListState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,10 +123,9 @@
 			isa = PBXGroup;
 			children = (
 				50703AE61D7EACB8001DAF45 /* AppDelegate.swift */,
-				50703B251D7EB001001DAF45 /* ToDoListReducer.swift */,
-				50703B261D7EB001001DAF45 /* ToDoReducer.swift */,
 				50703B0F1D7EAD15001DAF45 /* Model */,
 				50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */,
+				50703B2A1D7EB2D9001DAF45 /* State */,
 				50703B201D7EAEC8001DAF45 /* User Interface */,
 				50703AF21D7EACB8001DAF45 /* Info.plist */,
 			);
@@ -174,6 +179,18 @@
 				50703AEF1D7EACB8001DAF45 /* MainMenu.xib */,
 			);
 			name = "User Interface";
+			sourceTree = "<group>";
+		};
+		50703B2A1D7EB2D9001DAF45 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				50703B2D1D7EB5B5001DAF45 /* ToDoListStore.swift */,
+				50703B2F1D7EB60F001DAF45 /* ToDoListState.swift */,
+				50703B251D7EB001001DAF45 /* ToDoListReducer.swift */,
+				50703B261D7EB001001DAF45 /* ToDoReducer.swift */,
+				50703B2B1D7EB2E7001DAF45 /* LoggingMiddleware.swift */,
+			);
+			name = State;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,7 +300,10 @@
 				50703B0D1D7EAD09001DAF45 /* ToDoID.swift in Sources */,
 				50703B0C1D7EAD09001DAF45 /* ToDoActions.swift in Sources */,
 				50703B281D7EB001001DAF45 /* ToDoReducer.swift in Sources */,
+				50703B2E1D7EB5B5001DAF45 /* ToDoListStore.swift in Sources */,
 				50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */,
+				50703B2C1D7EB2E7001DAF45 /* LoggingMiddleware.swift in Sources */,
+				50703B301D7EB60F001DAF45 /* ToDoListState.swift in Sources */,
 				50703B0B1D7EAD09001DAF45 /* ToDo.swift in Sources */,
 				50703B271D7EB001001DAF45 /* ToDoListReducer.swift in Sources */,
 			);
