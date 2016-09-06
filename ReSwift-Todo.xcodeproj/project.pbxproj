@@ -12,13 +12,14 @@
 		50703AEC1D7EACB8001DAF45 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50703AEA1D7EACB8001DAF45 /* Document.xib */; };
 		50703AEE1D7EACB8001DAF45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50703AED1D7EACB8001DAF45 /* Assets.xcassets */; };
 		50703AF11D7EACB8001DAF45 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50703AEF1D7EACB8001DAF45 /* MainMenu.xib */; };
-		50703AFC1D7EACB8001DAF45 /* ReSwift_TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AFB1D7EACB8001DAF45 /* ReSwift_TodoTests.swift */; };
 		50703B0A1D7EAD09001DAF45 /* ToDoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B061D7EAD09001DAF45 /* ToDoList.swift */; };
 		50703B0B1D7EAD09001DAF45 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B071D7EAD09001DAF45 /* ToDo.swift */; };
 		50703B0C1D7EAD09001DAF45 /* ToDoActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B081D7EAD09001DAF45 /* ToDoActions.swift */; };
 		50703B0D1D7EAD09001DAF45 /* ToDoID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B091D7EAD09001DAF45 /* ToDoID.swift */; };
 		50703B131D7EADDA001DAF45 /* ReSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50703B111D7EADD2001DAF45 /* ReSwift.framework */; };
 		50703B141D7EADDA001DAF45 /* ReSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50703B111D7EADD2001DAF45 /* ReSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		50703B1D1D7EAE36001DAF45 /* ToDoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B1B1D7EAE36001DAF45 /* ToDoListTests.swift */; };
+		50703B1E1D7EAE36001DAF45 /* ToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B1C1D7EAE36001DAF45 /* ToDoTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,13 +55,14 @@
 		50703AF01D7EACB8001DAF45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		50703AF21D7EACB8001DAF45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50703AF71D7EACB8001DAF45 /* ReSwift-TodoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReSwift-TodoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		50703AFB1D7EACB8001DAF45 /* ReSwift_TodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReSwift_TodoTests.swift; sourceTree = "<group>"; };
 		50703AFD1D7EACB8001DAF45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50703B061D7EAD09001DAF45 /* ToDoList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoList.swift; sourceTree = "<group>"; };
 		50703B071D7EAD09001DAF45 /* ToDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
 		50703B081D7EAD09001DAF45 /* ToDoActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoActions.swift; sourceTree = "<group>"; };
 		50703B091D7EAD09001DAF45 /* ToDoID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoID.swift; sourceTree = "<group>"; };
 		50703B111D7EADD2001DAF45 /* ReSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReSwift.framework; path = Carthage/Build/Mac/ReSwift.framework; sourceTree = "<group>"; };
+		50703B1B1D7EAE36001DAF45 /* ToDoListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListTests.swift; sourceTree = "<group>"; };
+		50703B1C1D7EAE36001DAF45 /* ToDoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +120,7 @@
 		50703AFA1D7EACB8001DAF45 /* ReSwift-TodoTests */ = {
 			isa = PBXGroup;
 			children = (
-				50703AFB1D7EACB8001DAF45 /* ReSwift_TodoTests.swift */,
+				50703B1F1D7EAE3A001DAF45 /* Model */,
 				50703AFD1D7EACB8001DAF45 /* Info.plist */,
 			);
 			path = "ReSwift-TodoTests";
@@ -141,6 +143,15 @@
 				50703B111D7EADD2001DAF45 /* ReSwift.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		50703B1F1D7EAE3A001DAF45 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				50703B1B1D7EAE36001DAF45 /* ToDoListTests.swift */,
+				50703B1C1D7EAE36001DAF45 /* ToDoTests.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +269,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50703AFC1D7EACB8001DAF45 /* ReSwift_TodoTests.swift in Sources */,
+				50703B1D1D7EAE36001DAF45 /* ToDoListTests.swift in Sources */,
+				50703B1E1D7EAE36001DAF45 /* ToDoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +398,7 @@
 				INFOPLIST_FILE = "ReSwift-Todo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "reswift.github.io.ReSwift-Todo";
+				PRODUCT_MODULE_NAME = ReSwiftTodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -402,6 +415,7 @@
 				INFOPLIST_FILE = "ReSwift-Todo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "reswift.github.io.ReSwift-Todo";
+				PRODUCT_MODULE_NAME = ReSwiftTodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -410,11 +424,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "ReSwift-TodoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "reswift.github.io.ReSwift-TodoTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReSwift-Todo.app/Contents/MacOS/ReSwift-Todo";
 			};
 			name = Debug;
@@ -423,6 +439,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "ReSwift-TodoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
