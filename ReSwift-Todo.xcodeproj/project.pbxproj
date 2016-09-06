@@ -13,6 +13,10 @@
 		50703AEE1D7EACB8001DAF45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50703AED1D7EACB8001DAF45 /* Assets.xcassets */; };
 		50703AF11D7EACB8001DAF45 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50703AEF1D7EACB8001DAF45 /* MainMenu.xib */; };
 		50703AFC1D7EACB8001DAF45 /* ReSwift_TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AFB1D7EACB8001DAF45 /* ReSwift_TodoTests.swift */; };
+		50703B0A1D7EAD09001DAF45 /* ToDoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B061D7EAD09001DAF45 /* ToDoList.swift */; };
+		50703B0B1D7EAD09001DAF45 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B071D7EAD09001DAF45 /* ToDo.swift */; };
+		50703B0C1D7EAD09001DAF45 /* ToDoActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B081D7EAD09001DAF45 /* ToDoActions.swift */; };
+		50703B0D1D7EAD09001DAF45 /* ToDoID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B091D7EAD09001DAF45 /* ToDoID.swift */; };
 		50703B131D7EADDA001DAF45 /* ReSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50703B111D7EADD2001DAF45 /* ReSwift.framework */; };
 		50703B141D7EADDA001DAF45 /* ReSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50703B111D7EADD2001DAF45 /* ReSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -52,6 +56,10 @@
 		50703AF71D7EACB8001DAF45 /* ReSwift-TodoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReSwift-TodoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50703AFB1D7EACB8001DAF45 /* ReSwift_TodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReSwift_TodoTests.swift; sourceTree = "<group>"; };
 		50703AFD1D7EACB8001DAF45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50703B061D7EAD09001DAF45 /* ToDoList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoList.swift; sourceTree = "<group>"; };
+		50703B071D7EAD09001DAF45 /* ToDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
+		50703B081D7EAD09001DAF45 /* ToDoActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoActions.swift; sourceTree = "<group>"; };
+		50703B091D7EAD09001DAF45 /* ToDoID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoID.swift; sourceTree = "<group>"; };
 		50703B111D7EADD2001DAF45 /* ReSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReSwift.framework; path = Carthage/Build/Mac/ReSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +110,7 @@
 				50703AED1D7EACB8001DAF45 /* Assets.xcassets */,
 				50703AEF1D7EACB8001DAF45 /* MainMenu.xib */,
 				50703AF21D7EACB8001DAF45 /* Info.plist */,
+				50703B0F1D7EAD15001DAF45 /* Model */,
 			);
 			path = "ReSwift-Todo";
 			sourceTree = "<group>";
@@ -113,6 +122,17 @@
 				50703AFD1D7EACB8001DAF45 /* Info.plist */,
 			);
 			path = "ReSwift-TodoTests";
+			sourceTree = "<group>";
+		};
+		50703B0F1D7EAD15001DAF45 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				50703B061D7EAD09001DAF45 /* ToDoList.swift */,
+				50703B071D7EAD09001DAF45 /* ToDo.swift */,
+				50703B081D7EAD09001DAF45 /* ToDoActions.swift */,
+				50703B091D7EAD09001DAF45 /* ToDoID.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		50703B101D7EADC2001DAF45 /* Frameworks */ = {
@@ -226,7 +246,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				50703AE91D7EACB8001DAF45 /* Document.swift in Sources */,
+				50703B0A1D7EAD09001DAF45 /* ToDoList.swift in Sources */,
+				50703B0D1D7EAD09001DAF45 /* ToDoID.swift in Sources */,
+				50703B0C1D7EAD09001DAF45 /* ToDoActions.swift in Sources */,
 				50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */,
+				50703B0B1D7EAD09001DAF45 /* ToDo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
