@@ -27,11 +27,11 @@ class ToDoReducer {
         var toDo = toDo
 
         switch action {
-        case let .Check(toDoID):
+        case let .check(toDoID):
             guard toDo.toDoID == toDoID else { return toDo }
             toDo.completed = true
 
-        case let .Uncheck(toDoID):
+        case let .uncheck(toDoID):
             guard toDo.toDoID == toDoID else { return toDo }
             toDo.completed = false
         }

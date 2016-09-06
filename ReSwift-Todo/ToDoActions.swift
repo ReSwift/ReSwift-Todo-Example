@@ -10,6 +10,7 @@ import Foundation
 import ReSwift
 
 enum ToDoAction: Action {
-    case Check(ToDoID)
-    case Uncheck(ToDoID)
+    
+    case check(ToDoID)
+    case uncheck(ToDoID)
 }

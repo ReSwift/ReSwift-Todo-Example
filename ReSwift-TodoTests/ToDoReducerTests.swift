@@ -35,7 +35,7 @@ class ToDoReducerTests: XCTestCase {
 
         let state = ToDo(title: "irrelevant", completed: true)
 
-        let result = reducer.handleAction(ToDoAction.Check(ToDoID()), state: state)
+        let result = reducer.handleAction(ToDoAction.check(ToDoID()), state: state)
 
         XCTAssertEqual(result, state)
     }
@@ -45,7 +45,7 @@ class ToDoReducerTests: XCTestCase {
         let toDoID = ToDoID()
         let state = ToDo(toDoID: toDoID, title: "irrelevant", completed: false)
 
-        let result = reducer.handleAction(ToDoAction.Check(toDoID), state: state)
+        let result = reducer.handleAction(ToDoAction.check(toDoID), state: state)
 
         XCTAssertNotNil(result)
         if let result = result {
@@ -60,7 +60,7 @@ class ToDoReducerTests: XCTestCase {
         let toDoID = ToDoID()
         let state = ToDo(toDoID: toDoID, title: "irrelevant", completed: true)
 
-        let result = reducer.handleAction(ToDoAction.Check(toDoID), state: state)
+        let result = reducer.handleAction(ToDoAction.check(toDoID), state: state)
 
         XCTAssertNotNil(result)
         if let result = result {
@@ -74,7 +74,7 @@ class ToDoReducerTests: XCTestCase {
 
         let state = ToDo(title: "irrelevant", completed: false)
 
-        let result = reducer.handleAction(ToDoAction.Uncheck(ToDoID()), state: state)
+        let result = reducer.handleAction(ToDoAction.uncheck(ToDoID()), state: state)
 
         XCTAssertEqual(result, state)
     }
@@ -84,7 +84,7 @@ class ToDoReducerTests: XCTestCase {
         let toDoID = ToDoID()
         let state = ToDo(toDoID: toDoID, title: "irrelevant", completed: true)
 
-        let result = reducer.handleAction(ToDoAction.Uncheck(toDoID), state: state)
+        let result = reducer.handleAction(ToDoAction.uncheck(toDoID), state: state)
 
         XCTAssertNotNil(result)
         if let result = result {
@@ -99,7 +99,7 @@ class ToDoReducerTests: XCTestCase {
         let toDoID = ToDoID()
         let state = ToDo(toDoID: toDoID, title: "irrelevant", completed: false)
 
-        let result = reducer.handleAction(ToDoAction.Uncheck(toDoID), state: state)
+        let result = reducer.handleAction(ToDoAction.uncheck(toDoID), state: state)
 
         XCTAssertNotNil(result)
         if let result = result {
