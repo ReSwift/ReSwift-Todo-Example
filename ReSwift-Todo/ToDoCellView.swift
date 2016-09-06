@@ -11,12 +11,27 @@ import Cocoa
 
 class ToDoCellView: NSTableCellView {
 
-    static let identifier = "ToDoCell"
+    static var reuseIdentifier: String { return "ToDoCell" }
 
     @IBOutlet var checkbox: NSButton!
 
     var titleTextField: NSTextField! {
         get { return textField }
         set { textField = newValue }
+    }
+
+    private(set) var viewModel: ToDoItemViewModel! {
+        didSet {
+            titleTextField.stringValue = viewModel.title
+            checkbox.state = viewModel.checked ? NSOnState : NSOffState
+        }
+    }
+}
+
+extension ToDoCellView: DisplaysToDo {
+
+    func showToDo(toDoViewModel viewModel: ToDoItemViewModel) {
+
+        self.viewModel = viewModel
     }
 }
