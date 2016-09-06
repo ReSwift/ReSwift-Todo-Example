@@ -16,6 +16,9 @@ protocol ToDoListWindowControllerDelegate: class {
 
 class ToDoListWindowController: NSWindowController {
 
+    @IBOutlet var titleTextField: NSTextField!
+    @IBOutlet var tableView: NSTableView!
+
     /// Changing the `delegate` while the window is displayed
     /// calls the `toDoListWindowControllerDidLoad` callback
     /// on the new `delegate`.
