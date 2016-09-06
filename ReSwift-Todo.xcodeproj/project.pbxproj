@@ -107,12 +107,10 @@
 			isa = PBXGroup;
 			children = (
 				50703AE61D7EACB8001DAF45 /* AppDelegate.swift */,
-				50703AE81D7EACB8001DAF45 /* Document.swift */,
-				50703AEA1D7EACB8001DAF45 /* Document.xib */,
-				50703AED1D7EACB8001DAF45 /* Assets.xcassets */,
-				50703AEF1D7EACB8001DAF45 /* MainMenu.xib */,
-				50703AF21D7EACB8001DAF45 /* Info.plist */,
 				50703B0F1D7EAD15001DAF45 /* Model */,
+				50703AE81D7EACB8001DAF45 /* Document.swift */,
+				50703B201D7EAEC8001DAF45 /* User Interface */,
+				50703AF21D7EACB8001DAF45 /* Info.plist */,
 			);
 			path = "ReSwift-Todo";
 			sourceTree = "<group>";
@@ -152,6 +150,16 @@
 				50703B1C1D7EAE36001DAF45 /* ToDoTests.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		50703B201D7EAEC8001DAF45 /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				50703AEA1D7EACB8001DAF45 /* Document.xib */,
+				50703AED1D7EACB8001DAF45 /* Assets.xcassets */,
+				50703AEF1D7EACB8001DAF45 /* MainMenu.xib */,
+			);
+			name = "User Interface";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
