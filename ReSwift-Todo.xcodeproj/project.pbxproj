@@ -39,6 +39,7 @@
 		50703B451D7EF590001DAF45 /* ToDoTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B441D7EF590001DAF45 /* ToDoTableDataSource.swift */; };
 		50703B471D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B461D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift */; };
 		50703B491D7F0DE5001DAF45 /* ToDoTableDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B481D7F0DE5001DAF45 /* ToDoTableDataSourceTests.swift */; };
+		50703B4B1D7F1284001DAF45 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B4A1D7F1284001DAF45 /* CheckBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		50703B441D7EF590001DAF45 /* ToDoTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableDataSource.swift; sourceTree = "<group>"; };
 		50703B461D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionType+ReSwiftTodo.swift"; sourceTree = "<group>"; };
 		50703B481D7F0DE5001DAF45 /* ToDoTableDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableDataSourceTests.swift; sourceTree = "<group>"; };
+		50703B4A1D7F1284001DAF45 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 				50703B3C1D7EE581001DAF45 /* To-Do Item */,
 				50703AED1D7EACB8001DAF45 /* Assets.xcassets */,
 				50703AEF1D7EACB8001DAF45 /* MainMenu.xib */,
+				50703B4A1D7F1284001DAF45 /* CheckBox.swift */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				50703B0D1D7EAD09001DAF45 /* ToDoID.swift in Sources */,
 				50703B0C1D7EAD09001DAF45 /* ToDoActions.swift in Sources */,
 				50703B471D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift in Sources */,
+				50703B4B1D7F1284001DAF45 /* CheckBox.swift in Sources */,
 				50703B281D7EB001001DAF45 /* ToDoReducer.swift in Sources */,
 				50703B451D7EF590001DAF45 /* ToDoTableDataSource.swift in Sources */,
 				50703B2E1D7EB5B5001DAF45 /* ToDoListStore.swift in Sources */,

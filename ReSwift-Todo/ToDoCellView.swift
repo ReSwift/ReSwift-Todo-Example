@@ -13,7 +13,7 @@ class ToDoCellView: NSTableCellView {
 
     static var reuseIdentifier: String { return "ToDoCell" }
 
-    @IBOutlet var checkbox: NSButton!
+    @IBOutlet var checkbox: CheckBox!
 
     var titleTextField: NSTextField! {
         get { return textField }
@@ -23,7 +23,7 @@ class ToDoCellView: NSTableCellView {
     private(set) var viewModel: ToDoViewModel! {
         didSet {
             titleTextField.stringValue = viewModel.title
-            checkbox.state = viewModel.checked ? NSOnState : NSOffState
+            checkbox.checked = viewModel.checked
         }
     }
 
