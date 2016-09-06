@@ -30,6 +30,7 @@
 		50703B301D7EB60F001DAF45 /* ToDoListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B2F1D7EB60F001DAF45 /* ToDoListState.swift */; };
 		50703B321D7EB736001DAF45 /* ToDoListWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B311D7EB736001DAF45 /* ToDoListWindowController.swift */; };
 		50703B341D7EB838001DAF45 /* ToDoListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B331D7EB838001DAF45 /* ToDoListPresenter.swift */; };
+		50703B371D7EBC76001DAF45 /* ToDoCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B361D7EBC76001DAF45 /* ToDoCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		50703B2F1D7EB60F001DAF45 /* ToDoListState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListState.swift; sourceTree = "<group>"; };
 		50703B311D7EB736001DAF45 /* ToDoListWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListWindowController.swift; sourceTree = "<group>"; };
 		50703B331D7EB838001DAF45 /* ToDoListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListPresenter.swift; sourceTree = "<group>"; };
+		50703B361D7EBC76001DAF45 /* ToDoCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			children = (
 				50703AEA1D7EACB8001DAF45 /* ToDoListWindowController.xib */,
 				50703B311D7EB736001DAF45 /* ToDoListWindowController.swift */,
+				50703B361D7EBC76001DAF45 /* ToDoCellView.swift */,
 				50703AED1D7EACB8001DAF45 /* Assets.xcassets */,
 				50703AEF1D7EACB8001DAF45 /* MainMenu.xib */,
 			);
@@ -311,6 +314,7 @@
 			files = (
 				50703AE91D7EACB8001DAF45 /* ToDoDocument.swift in Sources */,
 				50703B0A1D7EAD09001DAF45 /* ToDoList.swift in Sources */,
+				50703B371D7EBC76001DAF45 /* ToDoCellView.swift in Sources */,
 				50703B0D1D7EAD09001DAF45 /* ToDoID.swift in Sources */,
 				50703B0C1D7EAD09001DAF45 /* ToDoActions.swift in Sources */,
 				50703B281D7EB001001DAF45 /* ToDoReducer.swift in Sources */,
