@@ -32,8 +32,10 @@
 		50703B341D7EB838001DAF45 /* ToDoListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B331D7EB838001DAF45 /* ToDoListPresenter.swift */; };
 		50703B371D7EBC76001DAF45 /* ToDoCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B361D7EBC76001DAF45 /* ToDoCellView.swift */; };
 		50703B391D7EE50D001DAF45 /* ToDoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B381D7EE50D001DAF45 /* ToDoViewModel.swift */; };
+		50703B3B1D7EE569001DAF45 /* ToDoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B3A1D7EE569001DAF45 /* ToDoListViewModel.swift */; };
 		50703B3F1D7EE65A001DAF45 /* ToDoCellViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B3E1D7EE65A001DAF45 /* ToDoCellViewTests.swift */; };
 		50703B411D7EE8D2001DAF45 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B401D7EE8D2001DAF45 /* Helpers.swift */; };
+		50703B431D7EF237001DAF45 /* ToDoListWindowControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B421D7EF237001DAF45 /* ToDoListWindowControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,8 +90,10 @@
 		50703B331D7EB838001DAF45 /* ToDoListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListPresenter.swift; sourceTree = "<group>"; };
 		50703B361D7EBC76001DAF45 /* ToDoCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoCellView.swift; sourceTree = "<group>"; };
 		50703B381D7EE50D001DAF45 /* ToDoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoViewModel.swift; sourceTree = "<group>"; };
+		50703B3A1D7EE569001DAF45 /* ToDoListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListViewModel.swift; sourceTree = "<group>"; };
 		50703B3E1D7EE65A001DAF45 /* ToDoCellViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoCellViewTests.swift; sourceTree = "<group>"; };
 		50703B401D7EE8D2001DAF45 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		50703B421D7EF237001DAF45 /* ToDoListWindowControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListWindowControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +195,7 @@
 			children = (
 				50703AEA1D7EACB8001DAF45 /* ToDoListWindowController.xib */,
 				50703B311D7EB736001DAF45 /* ToDoListWindowController.swift */,
+				50703B3A1D7EE569001DAF45 /* ToDoListViewModel.swift */,
 				50703B3C1D7EE581001DAF45 /* To-Do Item */,
 				50703AED1D7EACB8001DAF45 /* Assets.xcassets */,
 				50703AEF1D7EACB8001DAF45 /* MainMenu.xib */,
@@ -231,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				50703B3E1D7EE65A001DAF45 /* ToDoCellViewTests.swift */,
+				50703B421D7EF237001DAF45 /* ToDoListWindowControllerTests.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -337,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50703B3B1D7EE569001DAF45 /* ToDoListViewModel.swift in Sources */,
 				50703AE91D7EACB8001DAF45 /* ToDoDocument.swift in Sources */,
 				50703B0A1D7EAD09001DAF45 /* ToDoList.swift in Sources */,
 				50703B371D7EBC76001DAF45 /* ToDoCellView.swift in Sources */,
@@ -360,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50703B241D7EAFF7001DAF45 /* ToDoReducerTests.swift in Sources */,
+				50703B431D7EF237001DAF45 /* ToDoListWindowControllerTests.swift in Sources */,
 				50703B411D7EE8D2001DAF45 /* Helpers.swift in Sources */,
 				50703B3F1D7EE65A001DAF45 /* ToDoCellViewTests.swift in Sources */,
 				50703B1D1D7EAE36001DAF45 /* ToDoListTests.swift in Sources */,

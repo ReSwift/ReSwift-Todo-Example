@@ -9,11 +9,6 @@
 import Foundation
 import ReSwift
 
-protocol DisplaysToDoList {
-
-    func displayToDoList(toDoList: ToDoList)
-}
-
 class ToDoListPresenter {
 
     typealias View = DisplaysToDoList
@@ -26,10 +21,20 @@ class ToDoListPresenter {
     }
 }
 
+extension ToDoListViewModel {
+
+    init(toDoList: ToDoList) {
+
+        self.title = toDoList.title
+    }
+}
+
 extension ToDoListPresenter: StoreSubscriber {
 
     func newState(state: ToDoListState) {
 
-        view.displayToDoList(state.toDoList)
+        let viewModel = ToDoListViewModel(toDoList: state.toDoList)
+
+        view.displayToDoList(toDoListViewModel: viewModel)
     }
 }

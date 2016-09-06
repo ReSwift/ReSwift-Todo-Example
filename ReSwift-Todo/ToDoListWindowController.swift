@@ -65,28 +65,20 @@ class ToDoListWindowController: NSWindowController {
     }
 }
 
+protocol DisplaysToDoList {
+
+    func displayToDoList(toDoListViewModel viewModel: ToDoListViewModel)
+}
+
 extension ToDoListWindowController: DisplaysToDoList {
 
-    func displayToDoList(toDoList: ToDoList) {
+    func displayToDoList(toDoListViewModel viewModel: ToDoListViewModel) {
 
-        displayToDoTitle(toDoList)
-
-        removeExistingNodes()
-        displayToDos(toDoList.items)
+        displayToDoTitle(viewModel: viewModel)
     }
 
-    private func displayToDoTitle(toDoList: ToDoList) {
+    private func displayToDoTitle(viewModel viewModel: ToDoListViewModel) {
 
-        let title = toDoList.title
-        window?.title = title
-        titleTextField.stringValue = title
-    }
-
-    private func removeExistingNodes() {
-
-    }
-
-    private func displayToDos(items: [ToDo]) {
-
+        titleTextField.stringValue = viewModel.title
     }
 }
