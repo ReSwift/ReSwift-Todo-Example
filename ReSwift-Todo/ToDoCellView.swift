@@ -26,6 +26,11 @@ class ToDoCellView: NSTableCellView {
             checkbox.state = viewModel.checked ? NSOnState : NSOffState
         }
     }
+
+    static func make(tableView tableView: NSTableView, owner: AnyObject? = nil) -> ToDoCellView? {
+
+        return tableView.makeViewWithIdentifier(ToDoCellView.reuseIdentifier, owner: owner) as? ToDoCellView
+    }
 }
 
 extension ToDoCellView: DisplaysToDo {

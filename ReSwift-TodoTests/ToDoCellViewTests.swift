@@ -32,4 +32,27 @@ class ToDoCellViewTests: XCTestCase {
         XCTAssertNotNil(view.titleTextField)
     }
 
+    func testMake_DelegatesToTableView() {
+
+        class TestTableView: NSTableView {
+
+            var didMakeWith: (identifier: String, owner: AnyObject?)?
+            private override func makeViewWithIdentifier(identifier: String, owner: AnyObject?) -> NSView? {
+
+                didMakeWith = (identifier, owner)
+                return nil
+            }
+        }
+
+        let ownerDouble = NSObject()
+        let tableViewDouble = TestTableView()
+
+        _ = ToDoCellView.make(tableView: tableViewDouble, owner: ownerDouble)
+
+        XCTAssertNotNil(tableViewDouble.didMakeWith)
+        if let values = tableViewDouble.didMakeWith {
+            XCTAssertEqual(values.identifier, ToDoCellView.reuseIdentifier)
+            XCTAssert(values.owner === ownerDouble)
+        }
+    }
 }
