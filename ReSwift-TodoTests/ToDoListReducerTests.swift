@@ -16,13 +16,13 @@ class ToDoListReducerTests: XCTestCase {
 
     // MARK: Unsupported Action
 
-    func testReduce_NoTodoList_ReturnDemoList() {
+    func testReduce_NoTodoList_ReturnStateWithDemoList() {
 
         struct AnyAction: Action {}
 
         let result = reducer.handleAction(AnyAction(), state: nil)
 
-        XCTAssert(result.hasEqualContent(ToDoList.demoList()))
+        XCTAssert(result.toDoList.hasEqualContent(ToDoList.demoList()))
     }
 
     func testReduce_NoTodoList_DoesntCallToDoReducer() {
@@ -46,8 +46,9 @@ class ToDoListReducerTests: XCTestCase {
 
         let toDo = ToDo(title: "irrelevant", completed: false)
         let list = ToDoList(title: "irrelevant", items: [toDo])
+        let state = ToDoListState(toDoList: list)
 
-        _ = reducer.handleAction(AnyAction(), state: list)
+        _ = reducer.handleAction(AnyAction(), state: state)
 
         XCTAssertNotNil(toDoReducerDouble.didHandleActionWith)
         if let values = toDoReducerDouble.didHandleActionWith {

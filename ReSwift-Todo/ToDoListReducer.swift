@@ -15,15 +15,17 @@ class ToDoListReducer: ReSwift.Reducer {
 
     lazy var toDoReducer: ToDoReducer = ToDoReducer()
 
-    func handleAction(action: Action, state: ToDoList?) -> ToDoList {
+    func handleAction(action: Action, state: ToDoListState?) -> ToDoListState {
 
         // Nil state is only relevant on first launch, so
         // return a demo list for starters.
-        guard let state = state else {
-            return ToDoList.demoList()
+        guard var state = state else {
+            return ToDoListState()
         }
 
-        return passActionToItems(action, toDoList: state)
+        state.toDoList = passActionToItems(action, toDoList: state.toDoList)
+
+        return state
     }
 
     func passActionToItems(action: Action, toDoList: ToDoList) -> ToDoList {
