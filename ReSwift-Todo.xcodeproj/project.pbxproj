@@ -20,6 +20,11 @@
 		50703B141D7EADDA001DAF45 /* ReSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50703B111D7EADD2001DAF45 /* ReSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50703B1D1D7EAE36001DAF45 /* ToDoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B1B1D7EAE36001DAF45 /* ToDoListTests.swift */; };
 		50703B1E1D7EAE36001DAF45 /* ToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B1C1D7EAE36001DAF45 /* ToDoTests.swift */; };
+		50703B231D7EAFF7001DAF45 /* ToDoListReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B211D7EAFF7001DAF45 /* ToDoListReducerTests.swift */; };
+		50703B241D7EAFF7001DAF45 /* ToDoReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B221D7EAFF7001DAF45 /* ToDoReducerTests.swift */; };
+		50703B271D7EB001001DAF45 /* ToDoListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B251D7EB001001DAF45 /* ToDoListReducer.swift */; };
+		50703B281D7EB001001DAF45 /* ToDoReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B261D7EB001001DAF45 /* ToDoReducer.swift */; };
+		50703B291D7EB048001DAF45 /* ReSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50703B111D7EADD2001DAF45 /* ReSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +68,10 @@
 		50703B111D7EADD2001DAF45 /* ReSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReSwift.framework; path = Carthage/Build/Mac/ReSwift.framework; sourceTree = "<group>"; };
 		50703B1B1D7EAE36001DAF45 /* ToDoListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListTests.swift; sourceTree = "<group>"; };
 		50703B1C1D7EAE36001DAF45 /* ToDoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTests.swift; sourceTree = "<group>"; };
+		50703B211D7EAFF7001DAF45 /* ToDoListReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListReducerTests.swift; sourceTree = "<group>"; };
+		50703B221D7EAFF7001DAF45 /* ToDoReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoReducerTests.swift; sourceTree = "<group>"; };
+		50703B251D7EB001001DAF45 /* ToDoListReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListReducer.swift; sourceTree = "<group>"; };
+		50703B261D7EB001001DAF45 /* ToDoReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoReducer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50703B291D7EB048001DAF45 /* ReSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				50703AE61D7EACB8001DAF45 /* AppDelegate.swift */,
+				50703B251D7EB001001DAF45 /* ToDoListReducer.swift */,
+				50703B261D7EB001001DAF45 /* ToDoReducer.swift */,
 				50703B0F1D7EAD15001DAF45 /* Model */,
 				50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */,
 				50703B201D7EAEC8001DAF45 /* User Interface */,
@@ -118,6 +130,8 @@
 		50703AFA1D7EACB8001DAF45 /* ReSwift-TodoTests */ = {
 			isa = PBXGroup;
 			children = (
+				50703B211D7EAFF7001DAF45 /* ToDoListReducerTests.swift */,
+				50703B221D7EAFF7001DAF45 /* ToDoReducerTests.swift */,
 				50703B1F1D7EAE3A001DAF45 /* Model */,
 				50703AFD1D7EACB8001DAF45 /* Info.plist */,
 			);
@@ -268,8 +282,10 @@
 				50703B0A1D7EAD09001DAF45 /* ToDoList.swift in Sources */,
 				50703B0D1D7EAD09001DAF45 /* ToDoID.swift in Sources */,
 				50703B0C1D7EAD09001DAF45 /* ToDoActions.swift in Sources */,
+				50703B281D7EB001001DAF45 /* ToDoReducer.swift in Sources */,
 				50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */,
 				50703B0B1D7EAD09001DAF45 /* ToDo.swift in Sources */,
+				50703B271D7EB001001DAF45 /* ToDoListReducer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +293,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50703B241D7EAFF7001DAF45 /* ToDoReducerTests.swift in Sources */,
 				50703B1D1D7EAE36001DAF45 /* ToDoListTests.swift in Sources */,
+				50703B231D7EAFF7001DAF45 /* ToDoListReducerTests.swift in Sources */,
 				50703B1E1D7EAE36001DAF45 /* ToDoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,6 +452,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "ReSwift-TodoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "reswift.github.io.ReSwift-TodoTests";
@@ -449,6 +471,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "ReSwift-TodoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "reswift.github.io.ReSwift-TodoTests";
