@@ -62,15 +62,77 @@ class ToDoListImporterTests: XCTestCase {
         XCTAssertEqual(result, ToDoList(title: "The Project", items: []))
     }
 
+    func testImportText_ProjectTitleFollowedByTextLine_ReturnsListWithTitleAndItem() {
+
+        var maybeResult: ToDoList?
+
+        expectNoError {
+            maybeResult = try importer.importToDoList([
+                "The Project:",
+                "text",
+                "- item"
+                ].joinWithSeparator("\n")
+            )
+        }
+
+        guard let result = maybeResult
+            else { XCTFail("expected result"); return }
+
+        let expectedList = ToDoList(title: "The Project", items: [ToDo(title: "item")])
+        XCTAssert(result.hasEqualContent(expectedList))
+    }
+
+    func testImportText_ProjectTitleFollowedByEmptyLine_ReturnsListWithTitleOnly() {
+
+        var maybeResult: ToDoList?
+
+        expectNoError {
+            maybeResult = try importer.importToDoList([
+                "The Project:",
+                "",
+                "- item"
+                ].joinWithSeparator("\n")
+            )
+        }
+
+        guard let result = maybeResult
+            else { XCTFail("expected result"); return }
+
+        let expectedList = ToDoList(title: "The Project", items: [ToDo(title: "item")])
+        XCTAssert(result.hasEqualContent(expectedList))
+    }
+
+    func testImportText_ProjectTitleAndSeparatedDashedLines_ReturnsListWithTitleAndItems() {
+
+        var maybeResult: ToDoList?
+
+        expectNoError {
+            maybeResult = try importer.importToDoList([
+                "Le Title:",
+                "- fum",
+                "",
+                "- fam"
+                ].joinWithSeparator("\n")
+            )
+        }
+
+        guard let result = maybeResult
+            else { XCTFail("expected result"); return }
+
+        let expectedList = ToDoList(title: "Le Title", items: [ToDo(title: "fum"), ToDo(title: "fam")])
+        XCTAssert(result.hasEqualContent(expectedList))
+    }
+
     func testImportText_ProjectTitleAndDashedLines_ReturnsListWithTitleAndItems() {
 
         var maybeResult: ToDoList?
 
         expectNoError {
-            maybeResult = try importer.importToDoList(
-                "The Project:\n" +
-                "- foo\n" +
-                "- bar\n"
+            maybeResult = try importer.importToDoList([
+                "The Project:",
+                "- foo",
+                "- bar"
+                ].joinWithSeparator("\n")
             )
         }
 

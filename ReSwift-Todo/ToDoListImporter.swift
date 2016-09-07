@@ -19,13 +19,15 @@ class ToDoListImporter {
         let projectContent = lines.split(take: 1)
 
         guard let firstLine = projectContent.0.first?.stringByTrimmingWhitespace()
-            where firstLine.containsString(":")
+            where firstLine.characters.last == ":"
             else { return ToDoList.empty }
 
         let title = firstLine.substringToIndex(firstLine.endIndex.predecessor())
         let items = projectContent.1
-            .filter { !$0.stringByTrimmingWhitespace().isEmpty }
-            .map { (line: String) -> ToDo in
+            .filter {
+                let line = $0.stringByTrimmingWhitespace()
+                return !line.isEmpty && line.characters.first == "-"
+            }.map { (line: String) -> ToDo in
 
                 let itemTitle = line
                     .substringFromIndex(line.startIndex.successor())
