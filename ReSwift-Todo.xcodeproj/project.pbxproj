@@ -40,6 +40,7 @@
 		50703B471D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B461D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift */; };
 		50703B491D7F0DE5001DAF45 /* ToDoTableDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B481D7F0DE5001DAF45 /* ToDoTableDataSourceTests.swift */; };
 		50703B4B1D7F1284001DAF45 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703B4A1D7F1284001DAF45 /* CheckBox.swift */; };
+		507347921D7FFFBD00ACFD0D /* ErrorHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507347911D7FFFBD00ACFD0D /* ErrorHelpers.swift */; };
 		507347941D8001A200ACFD0D /* String+ReSwiftTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507347931D8001A200ACFD0D /* String+ReSwiftTodo.swift */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,7 @@
 		50703B461D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionType+ReSwiftTodo.swift"; sourceTree = "<group>"; };
 		50703B481D7F0DE5001DAF45 /* ToDoTableDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableDataSourceTests.swift; sourceTree = "<group>"; };
 		50703B4A1D7F1284001DAF45 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		507347911D7FFFBD00ACFD0D /* ErrorHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHelpers.swift; sourceTree = "<group>"; };
 		507347931D8001A200ACFD0D /* String+ReSwiftTodo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ReSwiftTodo.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +171,7 @@
 				50703B1F1D7EAE3A001DAF45 /* Model */,
 				50703B3D1D7EE64D001DAF45 /* UI */,
 				50703B401D7EE8D2001DAF45 /* Helpers.swift */,
+				507347911D7FFFBD00ACFD0D /* ErrorHelpers.swift */,
 				50703AFD1D7EACB8001DAF45 /* Info.plist */,
 			);
 			path = "ReSwift-TodoTests";
@@ -387,6 +390,7 @@
 			files = (
 				50703B241D7EAFF7001DAF45 /* ToDoReducerTests.swift in Sources */,
 				50703B431D7EF237001DAF45 /* ToDoListWindowControllerTests.swift in Sources */,
+				507347921D7FFFBD00ACFD0D /* ErrorHelpers.swift in Sources */,
 				50703B411D7EE8D2001DAF45 /* Helpers.swift in Sources */,
 				50703B3F1D7EE65A001DAF45 /* ToDoCellViewTests.swift in Sources */,
 				50703B1D1D7EAE36001DAF45 /* ToDoListTests.swift in Sources */,
