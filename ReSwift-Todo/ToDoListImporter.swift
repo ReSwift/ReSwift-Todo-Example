@@ -16,11 +16,25 @@ class ToDoListImporter {
             .split(allowEmptySlices: true) { $0 == Character(String.newline) }
             .map(String.init)
 
-        guard let firstLine = lines.first?.stringByTrimmingWhitespace()
+        let projectContent = lines.split(take: 1)
+
+        guard let firstLine = projectContent.0.first?.stringByTrimmingWhitespace()
             where firstLine.containsString(":")
             else { return ToDoList.empty }
 
-        return ToDoList(title: firstLine.substringToIndex(firstLine.endIndex.predecessor()), items: [])
+        let title = firstLine.substringToIndex(firstLine.endIndex.predecessor())
+        let items = projectContent.1
+            .filter { !$0.stringByTrimmingWhitespace().isEmpty }
+            .map { (line: String) -> ToDo in
+
+                let itemTitle = line
+                    .substringFromIndex(line.startIndex.successor())
+                    .stringByTrimmingWhitespace()
+
+                return ToDo(title: itemTitle)
+        }
+
+        return ToDoList(title: title, items: items)
     }
 }
 
