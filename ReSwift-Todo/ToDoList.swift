@@ -10,6 +10,8 @@ import Foundation
 
 struct ToDoList {
 
+    static var empty: ToDoList { return ToDoList(title: "", items: []) }
+
     var title: String
     var items: [ToDo]
 }
