@@ -13,22 +13,22 @@ class ToDoReducer {
 
     init() { }
 
-    func handleAction(action: Action, state: ToDo?) -> ToDo? {
+    func handleAction(action: Action, state: ToDo?, clock: Clock = Clock()) -> ToDo? {
 
         guard let action = action as? ToDoAction, toDo = state
             else { return state }
 
-        return handleToDoAction(action, toDo: toDo)
+        return handleToDoAction(action, toDo: toDo, clock: clock)
     }
 
-    func handleToDoAction(action: ToDoAction, toDo: ToDo) -> ToDo {
+    func handleToDoAction(action: ToDoAction, toDo: ToDo, clock: Clock) -> ToDo {
 
         var toDo = toDo
 
         switch action {
         case let .check(toDoID):
             guard toDo.toDoID == toDoID else { return toDo }
-            toDo.completion = .finished(when: nil)
+            toDo.completion = .finished(when: clock.now())
 
         case let .uncheck(toDoID):
             guard toDo.toDoID == toDoID else { return toDo }

@@ -11,6 +11,8 @@
 		502C04711D87D9660032B7F3 /* ToDoListSerializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04701D87D9660032B7F3 /* ToDoListSerializerTests.swift */; };
 		502C04731D87DF040032B7F3 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04721D87DF040032B7F3 /* ErrorHandling.swift */; };
 		502C04751D87E38E0032B7F3 /* ToDoListActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04741D87E38E0032B7F3 /* ToDoListActions.swift */; };
+		502C04791D87F0310032B7F3 /* ClockStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04781D87F0310032B7F3 /* ClockStub.swift */; };
+		502C047B1D87F0480032B7F3 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C047A1D87F0480032B7F3 /* Clock.swift */; };
 		50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE61D7EACB8001DAF45 /* AppDelegate.swift */; };
 		50703AE91D7EACB8001DAF45 /* ToDoDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */; };
 		50703AEC1D7EACB8001DAF45 /* ToDoListWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50703AEA1D7EACB8001DAF45 /* ToDoListWindowController.xib */; };
@@ -81,6 +83,8 @@
 		502C04701D87D9660032B7F3 /* ToDoListSerializerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListSerializerTests.swift; sourceTree = "<group>"; };
 		502C04721D87DF040032B7F3 /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		502C04741D87E38E0032B7F3 /* ToDoListActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListActions.swift; sourceTree = "<group>"; };
+		502C04781D87F0310032B7F3 /* ClockStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockStub.swift; sourceTree = "<group>"; };
+		502C047A1D87F0480032B7F3 /* Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		50703AE31D7EACB8001DAF45 /* ReSwift-Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReSwift-Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50703AE61D7EACB8001DAF45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDocument.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 				50703AF21D7EACB8001DAF45 /* Info.plist */,
 				50703B461D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift */,
 				507347931D8001A200ACFD0D /* String+ReSwiftTodo.swift */,
+				502C047A1D87F0480032B7F3 /* Clock.swift */,
 			);
 			path = "ReSwift-Todo";
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 				50703B4F1D7F1453001DAF45 /* Fixtures */,
 				50703B401D7EE8D2001DAF45 /* Helpers.swift */,
 				507347911D7FFFBD00ACFD0D /* ErrorHelpers.swift */,
+				502C04781D87F0310032B7F3 /* ClockStub.swift */,
 				50703AFD1D7EACB8001DAF45 /* Info.plist */,
 			);
 			path = "ReSwift-TodoTests";
@@ -436,6 +442,7 @@
 				50703B321D7EB736001DAF45 /* ToDoListWindowController.swift in Sources */,
 				50703B391D7EE50D001DAF45 /* ToDoViewModel.swift in Sources */,
 				50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */,
+				502C047B1D87F0480032B7F3 /* Clock.swift in Sources */,
 				502C046F1D87D9580032B7F3 /* ToDoListSerializer.swift in Sources */,
 				50703B2C1D7EB2E7001DAF45 /* LoggingMiddleware.swift in Sources */,
 				50703B341D7EB838001DAF45 /* ToDoListPresenter.swift in Sources */,
@@ -454,6 +461,7 @@
 				50703B431D7EF237001DAF45 /* ToDoListWindowControllerTests.swift in Sources */,
 				507347921D7FFFBD00ACFD0D /* ErrorHelpers.swift in Sources */,
 				50703B411D7EE8D2001DAF45 /* Helpers.swift in Sources */,
+				502C04791D87F0310032B7F3 /* ClockStub.swift in Sources */,
 				50703B3F1D7EE65A001DAF45 /* ToDoCellViewTests.swift in Sources */,
 				50703B1D1D7EAE36001DAF45 /* ToDoListTests.swift in Sources */,
 				50703B491D7F0DE5001DAF45 /* ToDoTableDataSourceTests.swift in Sources */,

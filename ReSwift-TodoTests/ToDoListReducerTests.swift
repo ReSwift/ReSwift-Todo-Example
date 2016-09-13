@@ -78,7 +78,7 @@ class ToDoListReducerTests: XCTestCase {
 
         var testToDo: ToDo? = nil
         var didHandleActionWith: (action: Action, state: ToDo?)?
-        override func handleAction(action: Action, state: ToDo?) -> ToDo? {
+        override func handleAction(action: Action, state: ToDo?, clock: Clock = Clock()) -> ToDo? {
 
             didHandleActionWith = (action, state)
 

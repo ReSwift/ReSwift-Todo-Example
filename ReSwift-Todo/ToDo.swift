@@ -20,6 +20,14 @@ enum Completion {
         case .finished: return true
         }
     }
+
+    var date: NSDate? {
+
+        switch self {
+        case .unfinished: return nil
+        case .finished(when: let date): return date
+        }
+    }
 }
 
 struct ToDo {
@@ -29,6 +37,7 @@ struct ToDo {
     var completion: Completion
 
     var isFinished: Bool { return completion.isFinished }
+    var finishedAt: NSDate? { return completion.date }
 
     init(toDoID: ToDoID = ToDoID(), title: String, completion: Completion = .unfinished) {
 
