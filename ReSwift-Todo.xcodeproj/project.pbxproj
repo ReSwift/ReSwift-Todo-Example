@@ -11,6 +11,7 @@
 		502C04711D87D9660032B7F3 /* ToDoListSerializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04701D87D9660032B7F3 /* ToDoListSerializerTests.swift */; };
 		502C04731D87DF040032B7F3 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04721D87DF040032B7F3 /* ErrorHandling.swift */; };
 		502C04751D87E38E0032B7F3 /* ToDoListActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04741D87E38E0032B7F3 /* ToDoListActions.swift */; };
+		502C04771D87EC8B0032B7F3 /* complex.txt in Resources */ = {isa = PBXBuildFile; fileRef = 502C04761D87EC8B0032B7F3 /* complex.txt */; };
 		502C04791D87F0310032B7F3 /* ClockStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04781D87F0310032B7F3 /* ClockStub.swift */; };
 		502C047B1D87F0480032B7F3 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C047A1D87F0480032B7F3 /* Clock.swift */; };
 		502C047D1D880BEC0032B7F3 /* DateConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C047C1D880BEC0032B7F3 /* DateConverterTests.swift */; };
@@ -87,12 +88,13 @@
 		502C04701D87D9660032B7F3 /* ToDoListSerializerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListSerializerTests.swift; sourceTree = "<group>"; };
 		502C04721D87DF040032B7F3 /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		502C04741D87E38E0032B7F3 /* ToDoListActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListActions.swift; sourceTree = "<group>"; };
+		502C04761D87EC8B0032B7F3 /* complex.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex.txt; sourceTree = "<group>"; };
 		502C04781D87F0310032B7F3 /* ClockStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockStub.swift; sourceTree = "<group>"; };
 		502C047A1D87F0480032B7F3 /* Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		502C047C1D880BEC0032B7F3 /* DateConverterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverterTests.swift; sourceTree = "<group>"; };
 		502C047F1D880C2A0032B7F3 /* DateConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
 		502C04821D88216A0032B7F3 /* ToDoLineTokenizerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoLineTokenizerTests.swift; sourceTree = "<group>"; };
-		502C04841D8850D00032B7F3 /* ToDoLineTokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoLineTokenizer.swift; sourceTree = "<group>"; };
+		502C04841D8850D00032B7F3 /* ToDoLineTokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToDoLineTokenizer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		50703AE31D7EACB8001DAF45 /* ReSwift-Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReSwift-Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50703AE61D7EACB8001DAF45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDocument.swift; sourceTree = "<group>"; };
@@ -128,12 +130,12 @@
 		50703B461D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionType+ReSwiftTodo.swift"; sourceTree = "<group>"; };
 		50703B481D7F0DE5001DAF45 /* ToDoTableDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableDataSourceTests.swift; sourceTree = "<group>"; };
 		50703B4A1D7F1284001DAF45 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
-		50703B4D1D7F1407001DAF45 /* ToDoListImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListImporter.swift; sourceTree = "<group>"; };
+		50703B4D1D7F1407001DAF45 /* ToDoListImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToDoListImporter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		50703B501D7F149E001DAF45 /* short.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = short.txt; sourceTree = "<group>"; };
 		50703B541D7F152B001DAF45 /* ToDoListImporterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListImporterTests.swift; sourceTree = "<group>"; };
 		5073478F1D7FFE8B00ACFD0D /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
 		507347911D7FFFBD00ACFD0D /* ErrorHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHelpers.swift; sourceTree = "<group>"; };
-		507347931D8001A200ACFD0D /* String+ReSwiftTodo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ReSwiftTodo.swift"; sourceTree = "<group>"; };
+		507347931D8001A200ACFD0D /* String+ReSwiftTodo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "String+ReSwiftTodo.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				50703B501D7F149E001DAF45 /* short.txt */,
+				502C04761D87EC8B0032B7F3 /* complex.txt */,
 			);
 			name = Fixtures;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50703B511D7F149E001DAF45 /* short.txt in Resources */,
+				502C04771D87EC8B0032B7F3 /* complex.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

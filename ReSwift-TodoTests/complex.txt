@@ -1,0 +1,11 @@
+Ignore this preamble.
+
+Run Errands:
+- buy 2l milk @storeA
+- buy 400g cheese @storeA
+- buy matches @storeB @done(2016-09-10)
+
+Another project:
+- ignore this line!
+and this one, too
+only single-project files are supported

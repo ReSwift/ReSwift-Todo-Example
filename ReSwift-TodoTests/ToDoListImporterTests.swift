@@ -200,4 +200,30 @@ class ToDoListImporterTests: XCTestCase {
         let expectedList = ToDoList(title: "Buy Groceries", items: [ToDo(title: "buy 2l milk"), ToDo(title: "buy 400g cheese")])
         XCTAssert(result.hasEqualContent(expectedList))
     }
+
+    // MARK: Import complex.txt
+
+    let complexFixtureURL: NSURL! = NSBundle(forClass: ToDoListImporterTests.self).URLForResource("complex", withExtension: "txt")
+
+    func testImportComplex_ReturnsList() {
+
+        var maybeResult: ToDoList?
+
+        expectNoError {
+            maybeResult = try importer.importToDoList(complexFixtureURL)
+        }
+
+        guard let result = maybeResult
+            else { XCTFail("expected result"); return }
+
+        let expectedList = ToDoList(
+            title: "Run Errands",
+            items: [
+                ToDo(title: "buy 2l milk", tags: Set(arrayLiteral: "storeA")),
+                ToDo(title: "buy 400g cheese", tags: Set(arrayLiteral: "storeA")),
+                ToDo(title: "buy matches", tags: Set(arrayLiteral: "storeB"), completion: .finished(when: NSCalendar.autoupdatingCurrentCalendar().dateFromISOComponents(year: 2016, month: 9, day: 10)))
+            ])
+        XCTAssert(result.hasEqualContent(expectedList))
+    }
+
 }
