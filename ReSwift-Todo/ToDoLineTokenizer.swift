@@ -20,7 +20,7 @@ class ToDoLineTokenizer {
 
     func token(text text: String) -> Token? {
 
-        let text = text.stringByTrimmingWhitespace()
+        let text = text.stringByTrimmingWhitespaceAndNewline()
 
         guard !text.isEmpty else { return nil }
 
@@ -37,12 +37,12 @@ class ToDoLineTokenizer {
 
     private func toDo(text text: String) -> Token? {
 
-        let itemTitle = text
+        let cleanedLine = text
             // strip dash
             .substringFromIndex(text.startIndex.successor())
-            .stringByTrimmingWhitespace()
+            .stringByTrimmingWhitespaceAndNewline()
 
-        return .toDo(ToDo(title: itemTitle))
+        return .toDo(ToDo(title: cleanedLine))
     }
 
     private func projectTitle(text text: String) -> Token? {

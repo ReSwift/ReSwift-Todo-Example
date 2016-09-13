@@ -38,7 +38,7 @@ class ToDoListImporter {
         // TODO: utilize stream-ness instead of making an array from it
         let lines = Array(stream)
 
-        let firstLine = lines.first?.stringByTrimmingWhitespace()
+        let firstLine = lines.first?.stringByTrimmingWhitespaceAndNewline()
 
         func isProjectTitle(line: String) -> Bool {
             return line.characters.last == ":"
@@ -60,13 +60,13 @@ class ToDoListImporter {
 
         let items = projectContent
             .filter {
-                let line = $0.stringByTrimmingWhitespace()
+                let line = $0.stringByTrimmingWhitespaceAndNewline()
                 return !line.isEmpty && line.characters.first == "-"
             }.map { (line: String) -> ToDo in
 
                 let itemTitle = line
                     .substringFromIndex(line.startIndex.successor())
-                    .stringByTrimmingWhitespace()
+                    .stringByTrimmingWhitespaceAndNewline()
 
                 return ToDo(title: itemTitle)
         }
