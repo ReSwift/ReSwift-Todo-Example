@@ -42,7 +42,27 @@ class ToDoLineTokenizer {
             .substringFromIndex(text.startIndex.successor())
             .stringByTrimmingWhitespaceAndNewline()
 
-        return .toDo(ToDo(title: cleanedLine))
+        let words = cleanedLine.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+
+        let firstTag: Int? = words.indexOf(wordIsTag)
+        let lastTitleWordIndex = (firstTag ?? words.endIndex)
+        let components = words.split(take: lastTitleWordIndex)
+
+        let title = components.0.joinWithSeparator(" ")
+
+        let tagWords = components.1.filter(wordIsTag)
+            .map { $0.characters.dropFirst() } // Drop "@"
+            .map(String.init)
+        var tags = Set(tagWords)
+        let completion: Completion
+        if tags.contains("done") {
+            tags.remove("done")
+            completion = .finished(when: nil)
+        } else {
+            completion = .unfinished
+        }
+
+        return .toDo(ToDo(title: title, tags: tags, completion: completion))
     }
 
     private func projectTitle(text text: String) -> Token? {
@@ -52,4 +72,9 @@ class ToDoLineTokenizer {
 
         return .projectTitle(title)
     }
+}
+
+private func wordIsTag(word: String) -> Bool {
+
+    return word.characters.first == "@"
 }

@@ -57,6 +57,34 @@ class ToDoLineTokenizerTests: XCTestCase {
         XCTAssert(toDo.hasEqualContent(expectedToDo))
     }
 
+    func testParse_DashedLineWithTags_ReturnsTodo() {
+
+        let result = tokenizer.token(text: "-    foo @fizz fazz  @buzz  ")
+
+        guard let token = result,
+            case .toDo(let toDo) = token else {
+                XCTFail("wrong case"); return
+        }
+
+        XCTAssertEqual(toDo.title, "foo")
+        XCTAssertEqual(toDo.tags, Set(arrayLiteral: "fizz", "buzz"))
+        XCTAssertFalse(toDo.isFinished)
+    }
+
+    func testParse_DashedLineWithDoneTag_ReturnsFinishedTodo() {
+
+        let result = tokenizer.token(text: "- le item @done  ")
+
+        guard let token = result,
+            case .toDo(let toDo) = token else {
+                XCTFail("wrong case"); return
+        }
+
+        XCTAssertEqual(toDo.title, "le item")
+        XCTAssert(toDo.tags.isEmpty)
+        XCTAssert(toDo.isFinished)
+    }
+
     func testParse_TextWithColon_ReturnsProjectTitle() {
 
         let result = tokenizer.token(text: "bar baz:")
