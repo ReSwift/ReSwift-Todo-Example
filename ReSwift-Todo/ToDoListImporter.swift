@@ -33,46 +33,44 @@ class ToDoListImporter {
         return try parse(stream: lines)
     }
 
+    lazy var tokenizer: ToDoLineTokenizer = ToDoLineTokenizer()
+
     func parse<T: SequenceType where T.Generator.Element == String>(stream stream: T) throws -> ToDoList {
 
-        // TODO: utilize stream-ness instead of making an array from it
-        let lines = Array(stream)
+        var tokens = stream.flatMap(tokenizer.token(text:))
 
-        let firstLine = lines.first?.stringByTrimmingWhitespaceAndNewline()
+        if let projectTitleIndex = tokens.indexOf(tokenIsProjectTitle)
+            where projectTitleIndex > 0 {
 
-        func isProjectTitle(line: String) -> Bool {
-            return line.characters.last == ":"
+            tokens = Array(tokens.dropFirst(projectTitleIndex - 1))
         }
 
-        let title: String?
-        let projectContent: ArraySlice<String>
+        let toDoList: ToDoList = tokens.reduce(ToDoList()) { (memo: ToDoList, token: Token) -> ToDoList in
 
-        if let firstLine = firstLine
-            where isProjectTitle(firstLine) {
+            var toDoList = memo
 
-            title = firstLine.substringToIndex(firstLine.endIndex.predecessor())
-            projectContent = lines.dropFirst()
-        } else {
+            switch token {
+            case .projectTitle(let title):
+                toDoList.title = title
+            case .toDo(let toDo):
+                toDoList.appendItem(toDo)
+            case .comment:
+                // TODO: add support for item comments
+                break
+            }
 
-            title = nil
-            projectContent = lines.dropFirst(0)
+            return toDoList
         }
 
-        let items = projectContent
-            .filter {
-                let line = $0.stringByTrimmingWhitespaceAndNewline()
-                return !line.isEmpty && line.characters.first == "-"
-            }.map { (line: String) -> ToDo in
-
-                let itemTitle = line
-                    .substringFromIndex(line.startIndex.successor())
-                    .stringByTrimmingWhitespaceAndNewline()
-
-                return ToDo(title: itemTitle)
-        }
-        
-        return ToDoList(title: title, items: items)
+        return toDoList
     }
+}
+
+private func tokenIsProjectTitle(token: Token) -> Bool {
+
+    guard case .projectTitle = token else { return false }
+
+    return true
 }
 
 extension Array {

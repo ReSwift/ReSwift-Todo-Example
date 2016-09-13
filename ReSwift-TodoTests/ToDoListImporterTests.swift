@@ -164,6 +164,24 @@ class ToDoListImporterTests: XCTestCase {
         XCTAssert(result.hasEqualContent(expectedList))
     }
 
+    func testImportText_DashedLineWithTags_ReturnsListTaggedItem() {
+
+        var maybeResult: ToDoList?
+
+        expectNoError {
+            maybeResult = try importer.importToDoList([
+                "- foo @bar @baz"
+                ].joinWithSeparator("\n")
+            )
+        }
+
+        guard let result = maybeResult
+            else { XCTFail("expected result"); return }
+
+        let expectedList = ToDoList(title: nil, items: [ToDo(title: "foo", tags: Set(arrayLiteral: "bar", "baz"))])
+        XCTAssert(result.hasEqualContent(expectedList))
+    }
+
     // MARK: Import short.txt
 
     let shortFixtureURL: NSURL! = NSBundle(forClass: ToDoListImporterTests.self).URLForResource("short", withExtension: "txt")

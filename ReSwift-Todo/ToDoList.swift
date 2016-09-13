@@ -18,10 +18,21 @@ struct ToDoList {
     var isEmpty: Bool {
         return (title?.isEmpty ?? true) && items.isEmpty
     }
+
+    mutating func appendItem(toDo: ToDo) {
+
+        items.append(toDo)
+    }
 }
 
 extension ToDoList {
 
+    init() {
+
+        self.title = nil
+        self.items = []
+    }
+    
     static func demoList() -> ToDoList {
 
         let toDos = [
