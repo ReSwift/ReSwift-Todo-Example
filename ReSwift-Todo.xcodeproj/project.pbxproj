@@ -13,6 +13,8 @@
 		502C04751D87E38E0032B7F3 /* ToDoListActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04741D87E38E0032B7F3 /* ToDoListActions.swift */; };
 		502C04791D87F0310032B7F3 /* ClockStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04781D87F0310032B7F3 /* ClockStub.swift */; };
 		502C047B1D87F0480032B7F3 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C047A1D87F0480032B7F3 /* Clock.swift */; };
+		502C047D1D880BEC0032B7F3 /* DateConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C047C1D880BEC0032B7F3 /* DateConverterTests.swift */; };
+		502C04801D880C2A0032B7F3 /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C047F1D880C2A0032B7F3 /* DateConverter.swift */; };
 		50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE61D7EACB8001DAF45 /* AppDelegate.swift */; };
 		50703AE91D7EACB8001DAF45 /* ToDoDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */; };
 		50703AEC1D7EACB8001DAF45 /* ToDoListWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50703AEA1D7EACB8001DAF45 /* ToDoListWindowController.xib */; };
@@ -85,6 +87,8 @@
 		502C04741D87E38E0032B7F3 /* ToDoListActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListActions.swift; sourceTree = "<group>"; };
 		502C04781D87F0310032B7F3 /* ClockStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockStub.swift; sourceTree = "<group>"; };
 		502C047A1D87F0480032B7F3 /* Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		502C047C1D880BEC0032B7F3 /* DateConverterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverterTests.swift; sourceTree = "<group>"; };
+		502C047F1D880C2A0032B7F3 /* DateConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
 		50703AE31D7EACB8001DAF45 /* ReSwift-Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReSwift-Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50703AE61D7EACB8001DAF45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDocument.swift; sourceTree = "<group>"; };
@@ -148,6 +152,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		502C047E1D880C150032B7F3 /* Time */ = {
+			isa = PBXGroup;
+			children = (
+				502C047A1D87F0480032B7F3 /* Clock.swift */,
+				502C047F1D880C2A0032B7F3 /* DateConverter.swift */,
+			);
+			name = Time;
+			sourceTree = "<group>";
+		};
+		502C04811D880C310032B7F3 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				502C047E1D880C150032B7F3 /* Time */,
+				50703B4C1D7F13DE001DAF45 /* Persistence */,
+			);
+			name = Infrastructure;
+			sourceTree = "<group>";
+		};
 		50703ADA1D7EACB8001DAF45 = {
 			isa = PBXGroup;
 			children = (
@@ -174,14 +196,13 @@
 				502C04721D87DF040032B7F3 /* ErrorHandling.swift */,
 				50703B0F1D7EAD15001DAF45 /* Model */,
 				50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */,
-				50703B4C1D7F13DE001DAF45 /* Persistence */,
+				502C04811D880C310032B7F3 /* Infrastructure */,
 				50703B2A1D7EB2D9001DAF45 /* State */,
 				50703B351D7EB83C001DAF45 /* Application */,
 				50703B201D7EAEC8001DAF45 /* User Interface */,
 				50703AF21D7EACB8001DAF45 /* Info.plist */,
 				50703B461D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift */,
 				507347931D8001A200ACFD0D /* String+ReSwiftTodo.swift */,
-				502C047A1D87F0480032B7F3 /* Clock.swift */,
 			);
 			path = "ReSwift-Todo";
 			sourceTree = "<group>";
@@ -192,7 +213,7 @@
 				50703B521D7F14AB001DAF45 /* State */,
 				50703B1F1D7EAE3A001DAF45 /* Model */,
 				50703B3D1D7EE64D001DAF45 /* UI */,
-				50703B531D7F14B0001DAF45 /* Persistence */,
+				50703B531D7F14B0001DAF45 /* Infrastructure */,
 				50703B4F1D7F1453001DAF45 /* Fixtures */,
 				50703B401D7EE8D2001DAF45 /* Helpers.swift */,
 				507347911D7FFFBD00ACFD0D /* ErrorHelpers.swift */,
@@ -312,13 +333,14 @@
 			name = State;
 			sourceTree = "<group>";
 		};
-		50703B531D7F14B0001DAF45 /* Persistence */ = {
+		50703B531D7F14B0001DAF45 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
 				50703B541D7F152B001DAF45 /* ToDoListImporterTests.swift */,
+				502C047C1D880BEC0032B7F3 /* DateConverterTests.swift */,
 				502C04701D87D9660032B7F3 /* ToDoListSerializerTests.swift */,
 			);
-			name = Persistence;
+			name = Infrastructure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,6 +448,7 @@
 			files = (
 				50703B3B1D7EE569001DAF45 /* ToDoListViewModel.swift in Sources */,
 				50703AE91D7EACB8001DAF45 /* ToDoDocument.swift in Sources */,
+				502C04801D880C2A0032B7F3 /* DateConverter.swift in Sources */,
 				50703B0A1D7EAD09001DAF45 /* ToDoList.swift in Sources */,
 				507347901D7FFE8B00ACFD0D /* StreamReader.swift in Sources */,
 				50703B371D7EBC76001DAF45 /* ToDoCellView.swift in Sources */,
@@ -464,6 +487,7 @@
 				502C04791D87F0310032B7F3 /* ClockStub.swift in Sources */,
 				50703B3F1D7EE65A001DAF45 /* ToDoCellViewTests.swift in Sources */,
 				50703B1D1D7EAE36001DAF45 /* ToDoListTests.swift in Sources */,
+				502C047D1D880BEC0032B7F3 /* DateConverterTests.swift in Sources */,
 				50703B491D7F0DE5001DAF45 /* ToDoTableDataSourceTests.swift in Sources */,
 				50703B231D7EAFF7001DAF45 /* ToDoListReducerTests.swift in Sources */,
 				502C04711D87D9660032B7F3 /* ToDoListSerializerTests.swift in Sources */,
