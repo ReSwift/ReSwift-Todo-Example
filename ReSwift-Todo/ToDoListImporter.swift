@@ -8,7 +8,21 @@
 
 import Foundation
 
+enum ImportError: ErrorType {
+
+    case cannotPrepareStream
+}
+
 class ToDoListImporter {
+
+    func importToDoList(URL: NSURL) throws -> ToDoList {
+
+        let reader = try StreamReader(URL: URL, encoding: NSUTF8StringEncoding)
+
+        defer { reader.close() }
+
+        return try parse(stream: reader)
+    }
 
     func importToDoList(text: String) throws -> ToDoList {
 
@@ -16,6 +30,13 @@ class ToDoListImporter {
             .split(allowEmptySlices: true) { $0 == Character(String.newline) }
             .map(String.init)
 
+        return try parse(stream: lines)
+    }
+
+    func parse<T: SequenceType where T.Generator.Element == String>(stream stream: T) throws -> ToDoList {
+
+        // TODO: utilize stream-ness instead of making an array from it
+        let lines = Array(stream)
         let projectContent = lines.split(take: 1)
 
         guard let firstLine = projectContent.0.first?.stringByTrimmingWhitespace()
@@ -35,7 +56,7 @@ class ToDoListImporter {
 
                 return ToDo(title: itemTitle)
         }
-
+        
         return ToDoList(title: title, items: items)
     }
 }

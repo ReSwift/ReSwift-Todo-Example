@@ -19,6 +19,8 @@ class ToDoListImporterTests: XCTestCase {
 
         importer = ToDoListImporter()
     }
+
+    // MARK: - Import Text
     
     func testImportText_EmptyString_ReturnsEmptyList() {
 
@@ -140,6 +142,25 @@ class ToDoListImporterTests: XCTestCase {
             else { XCTFail("expected result"); return }
 
         let expectedList = ToDoList(title: "The Project", items: [ToDo(title: "foo"), ToDo(title: "bar")])
+        XCTAssert(result.hasEqualContent(expectedList))
+    }
+
+    // MARK: Import short.txt
+
+    let shortFixtureURL: NSURL! = NSBundle(forClass: ToDoListImporterTests.self).URLForResource("short", withExtension: "txt")
+
+    func testImportShort_ReturnsList() {
+
+        var maybeResult: ToDoList?
+
+        expectNoError {
+            maybeResult = try importer.importToDoList(shortFixtureURL)
+        }
+
+        guard let result = maybeResult
+            else { XCTFail("expected result"); return }
+
+        let expectedList = ToDoList(title: "Buy Groceries", items: [ToDo(title: "buy 2l milk"), ToDo(title: "buy 400g cheese")])
         XCTAssert(result.hasEqualContent(expectedList))
     }
 }
