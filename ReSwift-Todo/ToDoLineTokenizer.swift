@@ -51,30 +51,33 @@ class ToDoLineTokenizer {
         let components = words.split(take: lastTitleWordIndex)
 
         let title = components.0.joinWithSeparator(" ")
-
         let tagWords = components.1.filter(wordIsTag)
             .map { $0.characters.dropFirst() } // Drop "@"
             .map(String.init)
+        let result: (completion: Completion, tags: Set<String>) = separateTagsFromCompletion(tagWords)
+
+        return .toDo(ToDo(title: title, tags: result.tags, completion: result.completion))
+    }
+
+    private func separateTagsFromCompletion(tagWords: [String]) -> (completion: Completion, tags: Set<String>) {
+
         var tags = Set(tagWords)
-        let completion: Completion
-        let doneTag = tags.filter({ $0.hasPrefix("done") }).first
-        if let doneTag = doneTag {
-            tags.remove(doneTag)
+        let maybeDoneTag = tags.filter({ $0.hasPrefix("done") }).first
 
-            let date: NSDate? = {
-                let dateRemainder = doneTag
-                    .stringByReplacingOccurrencesOfString("done(", withString: "")
-                    .stringByReplacingOccurrencesOfString(")", withString: "")
-                return ToDoLineTokenizer.dateConverter
-                    .date(isoDateString: dateRemainder)
-            }()
+        guard let doneTag = maybeDoneTag
+            else { return (.unfinished, tags) }
 
-            completion = .finished(when: date)
-        } else {
-            completion = .unfinished
-        }
+        tags.remove(doneTag)
 
-        return .toDo(ToDo(title: title, tags: tags, completion: completion))
+        let date: NSDate? = {
+            let dateRemainder = doneTag
+                .stringByReplacingOccurrencesOfString("done(", withString: "")
+                .stringByReplacingOccurrencesOfString(")", withString: "")
+            return ToDoLineTokenizer.dateConverter
+                .date(isoDateString: dateRemainder)
+        }()
+
+        return (.finished(when: date), tags)
     }
 
     private func projectTitle(text text: String) -> Token? {
