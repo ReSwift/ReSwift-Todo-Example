@@ -85,6 +85,25 @@ class ToDoLineTokenizerTests: XCTestCase {
         XCTAssert(toDo.isFinished)
     }
 
+    func testParse_DashedLineWithDoneAndDate_ReturnsFinishedTodo() {
+
+        let result = tokenizer.token(text: "- an item @done(2016-09-11) ")
+
+        guard let token = result,
+            case .toDo(let toDo) = token else {
+                XCTFail("wrong case"); return
+        }
+
+        XCTAssertEqual(toDo.title, "an item")
+        XCTAssert(toDo.tags.isEmpty)
+        XCTAssert(toDo.isFinished)
+
+        guard case .finished(when: let date) = toDo.completion else { return }
+
+        let expectedDate = NSCalendar.autoupdatingCurrentCalendar().dateFromISOComponents(year: 2016, month: 9, day: 11)!
+        XCTAssert(date?.isEqualToDate(expectedDate) ?? false)
+    }
+
     func testParse_TextWithColon_ReturnsProjectTitle() {
 
         let result = tokenizer.token(text: "bar baz:")

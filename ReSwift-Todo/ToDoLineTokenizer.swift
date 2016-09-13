@@ -16,6 +16,8 @@ enum Token {
 
 class ToDoLineTokenizer {
 
+    static var dateConverter = DateConverter()
+
     init() { }
 
     func token(text text: String) -> Token? {
@@ -55,9 +57,19 @@ class ToDoLineTokenizer {
             .map(String.init)
         var tags = Set(tagWords)
         let completion: Completion
-        if tags.contains("done") {
-            tags.remove("done")
-            completion = .finished(when: nil)
+        let doneTag = tags.filter({ $0.hasPrefix("done") }).first
+        if let doneTag = doneTag {
+            tags.remove(doneTag)
+
+            let date: NSDate? = {
+                let dateRemainder = doneTag
+                    .stringByReplacingOccurrencesOfString("done(", withString: "")
+                    .stringByReplacingOccurrencesOfString(")", withString: "")
+                return ToDoLineTokenizer.dateConverter
+                    .date(isoDateString: dateRemainder)
+            }()
+
+            completion = .finished(when: date)
         } else {
             completion = .unfinished
         }
