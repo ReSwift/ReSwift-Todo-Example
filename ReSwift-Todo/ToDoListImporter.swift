@@ -37,14 +37,28 @@ class ToDoListImporter {
 
         // TODO: utilize stream-ness instead of making an array from it
         let lines = Array(stream)
-        let projectContent = lines.split(take: 1)
 
-        guard let firstLine = projectContent.0.first?.stringByTrimmingWhitespace()
-            where firstLine.characters.last == ":"
-            else { return ToDoList.empty }
+        let firstLine = lines.first?.stringByTrimmingWhitespace()
 
-        let title = firstLine.substringToIndex(firstLine.endIndex.predecessor())
-        let items = projectContent.1
+        func isProjectTitle(line: String) -> Bool {
+            return line.characters.last == ":"
+        }
+
+        let title: String?
+        let projectContent: ArraySlice<String>
+
+        if let firstLine = firstLine
+            where isProjectTitle(firstLine) {
+
+            title = firstLine.substringToIndex(firstLine.endIndex.predecessor())
+            projectContent = lines.dropFirst()
+        } else {
+
+            title = nil
+            projectContent = lines.dropFirst(0)
+        }
+
+        let items = projectContent
             .filter {
                 let line = $0.stringByTrimmingWhitespace()
                 return !line.isEmpty && line.characters.first == "-"
