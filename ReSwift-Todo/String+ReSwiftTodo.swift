@@ -12,8 +12,13 @@ extension String {
 
     static var newline: String { return "\n" }
 
+    /// Removes surrounding whitespace and newline characters.
     func stringByTrimmingWhitespace() -> String {
 
-        return stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let characterSet = NSMutableCharacterSet()
+        characterSet.formUnionWithCharacterSet(NSCharacterSet.whitespaceCharacterSet())
+        characterSet.formUnionWithCharacterSet(NSCharacterSet.newlineCharacterSet())
+
+        return stringByTrimmingCharactersInSet(characterSet)
     }
 }
