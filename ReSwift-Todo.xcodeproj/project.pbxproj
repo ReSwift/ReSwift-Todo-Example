@@ -350,7 +350,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = "Christian Tietze";
+				ORGANIZATIONNAME = ReSwift;
 				TargetAttributes = {
 					50703AE21D7EACB8001DAF45 = {
 						CreatedOnToolsVersion = 7.3.1;
