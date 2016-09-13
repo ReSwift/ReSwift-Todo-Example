@@ -26,7 +26,17 @@ extension Array {
     }
 }
 
+enum SerializationError: ErrorType {
+
+    case cannotEncodeString
+}
+
 class ToDoListSerializer {
+
+    func data(toDoList toDoList: ToDoList, encoding: NSStringEncoding = NSUTF8StringEncoding) -> NSData? {
+
+        return string(toDoList: toDoList).dataUsingEncoding(encoding)
+    }
 
     func string(toDoList toDoList: ToDoList) -> String {
 

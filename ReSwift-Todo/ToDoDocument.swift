@@ -33,13 +33,20 @@ class ToDoDocument: NSDocument {
         return true
     }
 
-    override func dataOfType(typeName: String) throws -> NSData {
-        // Insert code here to write your document to data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning nil.
-        // You can also choose to override fileWrapperOfType:error:, writeToURL:ofType:error:, or writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
-    }
-
     lazy var importer: ToDoListImporter = ToDoListImporter()
+    lazy var serializer: ToDoListSerializer = ToDoListSerializer()
+
+    override func dataOfType(typeName: String) throws -> NSData {
+
+        let list = store.state.toDoList
+
+        guard let data = serializer.data(toDoList: list) else {
+            // TODO: show saving error alert
+            throw SerializationError.cannotEncodeString
+        }
+
+        return data
+    }
 
     override func readFromURL(url: NSURL, ofType typeName: String) throws {
 
