@@ -37,7 +37,7 @@ extension ToDoListPresenter: StoreSubscriber {
 
         let itemViewModels = state.toDoList.items.map(ToDoViewModel.init)
         let viewModel = ToDoListViewModel(
-            title: state.toDoList.title,
+            title: state.toDoList.title ?? "",
             items: itemViewModels)
 
         view.displayToDoList(toDoListViewModel: viewModel)

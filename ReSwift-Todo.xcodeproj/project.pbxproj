@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		502C046F1D87D9580032B7F3 /* ToDoListSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C046E1D87D9580032B7F3 /* ToDoListSerializer.swift */; };
+		502C04711D87D9660032B7F3 /* ToDoListSerializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04701D87D9660032B7F3 /* ToDoListSerializerTests.swift */; };
 		50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE61D7EACB8001DAF45 /* AppDelegate.swift */; };
 		50703AE91D7EACB8001DAF45 /* ToDoDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */; };
 		50703AEC1D7EACB8001DAF45 /* ToDoListWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50703AEA1D7EACB8001DAF45 /* ToDoListWindowController.xib */; };
@@ -73,6 +75,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		502C046E1D87D9580032B7F3 /* ToDoListSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListSerializer.swift; sourceTree = "<group>"; };
+		502C04701D87D9660032B7F3 /* ToDoListSerializerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListSerializerTests.swift; sourceTree = "<group>"; };
 		50703AE31D7EACB8001DAF45 /* ReSwift-Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReSwift-Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50703AE61D7EACB8001DAF45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDocument.swift; sourceTree = "<group>"; };
@@ -274,6 +278,7 @@
 			children = (
 				50703B4D1D7F1407001DAF45 /* ToDoListImporter.swift */,
 				5073478F1D7FFE8B00ACFD0D /* StreamReader.swift */,
+				502C046E1D87D9580032B7F3 /* ToDoListSerializer.swift */,
 			);
 			name = Persistence;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				50703B541D7F152B001DAF45 /* ToDoListImporterTests.swift */,
+				502C04701D87D9660032B7F3 /* ToDoListSerializerTests.swift */,
 			);
 			name = Persistence;
 			sourceTree = "<group>";
@@ -423,6 +429,7 @@
 				50703B321D7EB736001DAF45 /* ToDoListWindowController.swift in Sources */,
 				50703B391D7EE50D001DAF45 /* ToDoViewModel.swift in Sources */,
 				50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */,
+				502C046F1D87D9580032B7F3 /* ToDoListSerializer.swift in Sources */,
 				50703B2C1D7EB2E7001DAF45 /* LoggingMiddleware.swift in Sources */,
 				50703B341D7EB838001DAF45 /* ToDoListPresenter.swift in Sources */,
 				50703B301D7EB60F001DAF45 /* ToDoListState.swift in Sources */,
@@ -443,6 +450,7 @@
 				50703B1D1D7EAE36001DAF45 /* ToDoListTests.swift in Sources */,
 				50703B491D7F0DE5001DAF45 /* ToDoTableDataSourceTests.swift in Sources */,
 				50703B231D7EAFF7001DAF45 /* ToDoListReducerTests.swift in Sources */,
+				502C04711D87D9660032B7F3 /* ToDoListSerializerTests.swift in Sources */,
 				50703B551D7F152B001DAF45 /* ToDoListImporterTests.swift in Sources */,
 				50703B1E1D7EAE36001DAF45 /* ToDoTests.swift in Sources */,
 			);

@@ -12,8 +12,12 @@ struct ToDoList {
 
     static var empty: ToDoList { return ToDoList(title: "", items: []) }
 
-    var title: String
+    var title: String?
     var items: [ToDo]
+
+    var isEmpty: Bool {
+        return (title?.isEmpty ?? true) && items.isEmpty
+    }
 }
 
 extension ToDoList {
