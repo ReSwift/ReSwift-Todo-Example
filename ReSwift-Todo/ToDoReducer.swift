@@ -15,9 +15,8 @@ class ToDoReducer {
 
     func handleAction(action: Action, state: ToDo?) -> ToDo? {
 
-        guard let action = action as? ToDoAction, toDo = state else {
-            return state
-        }
+        guard let action = action as? ToDoAction, toDo = state
+            else { return state }
 
         return handleToDoAction(action, toDo: toDo)
     }

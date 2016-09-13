@@ -23,9 +23,21 @@ class ToDoListReducer: ReSwift.Reducer {
             return ToDoListState()
         }
 
-        state.toDoList = passActionToItems(action, toDoList: state.toDoList)
+        var toDoList = state.toDoList
+        toDoList = passActionToList(action, toDoList: toDoList)
+        toDoList = passActionToItems(action, toDoList: toDoList)
+        state.toDoList = toDoList
 
         return state
+    }
+
+    func passActionToList(action: Action, toDoList: ToDoList) -> ToDoList {
+
+        guard let action = action as? ToDoListAction else { return toDoList }
+
+        switch action {
+        case .replaceList(let newList): return newList
+        }
     }
 
     func passActionToItems(action: Action, toDoList: ToDoList) -> ToDoList {

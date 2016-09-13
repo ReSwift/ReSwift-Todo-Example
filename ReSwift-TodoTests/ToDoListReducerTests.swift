@@ -57,6 +57,23 @@ class ToDoListReducerTests: XCTestCase {
         }
     }
 
+
+    // MARK: Replacement action
+
+    func testReduce_ReplaceAction_ReturnsStateWithNewList() {
+
+        let newList = ToDoList(title: "new", items: [])
+        let oldList = ToDoList(title: "old", items: [])
+        let state = ToDoListState(toDoList: oldList)
+
+        let result = reducer.handleAction(ToDoListAction.replaceList(newList), state: state)
+
+        XCTAssert(result.toDoList.hasEqualContent(newList))
+    }
+
+
+    // MARK: - Doubles
+
     class TestToDoReducer: ToDoReducer {
 
         var testToDo: ToDo? = nil

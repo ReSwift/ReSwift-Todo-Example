@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		502C046F1D87D9580032B7F3 /* ToDoListSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C046E1D87D9580032B7F3 /* ToDoListSerializer.swift */; };
 		502C04711D87D9660032B7F3 /* ToDoListSerializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04701D87D9660032B7F3 /* ToDoListSerializerTests.swift */; };
+		502C04731D87DF040032B7F3 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04721D87DF040032B7F3 /* ErrorHandling.swift */; };
+		502C04751D87E38E0032B7F3 /* ToDoListActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04741D87E38E0032B7F3 /* ToDoListActions.swift */; };
 		50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE61D7EACB8001DAF45 /* AppDelegate.swift */; };
 		50703AE91D7EACB8001DAF45 /* ToDoDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */; };
 		50703AEC1D7EACB8001DAF45 /* ToDoListWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50703AEA1D7EACB8001DAF45 /* ToDoListWindowController.xib */; };
@@ -77,6 +79,8 @@
 /* Begin PBXFileReference section */
 		502C046E1D87D9580032B7F3 /* ToDoListSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListSerializer.swift; sourceTree = "<group>"; };
 		502C04701D87D9660032B7F3 /* ToDoListSerializerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListSerializerTests.swift; sourceTree = "<group>"; };
+		502C04721D87DF040032B7F3 /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
+		502C04741D87E38E0032B7F3 /* ToDoListActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListActions.swift; sourceTree = "<group>"; };
 		50703AE31D7EACB8001DAF45 /* ReSwift-Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReSwift-Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50703AE61D7EACB8001DAF45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDocument.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				50703AE61D7EACB8001DAF45 /* AppDelegate.swift */,
+				502C04721D87DF040032B7F3 /* ErrorHandling.swift */,
 				50703B0F1D7EAD15001DAF45 /* Model */,
 				50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */,
 				50703B4C1D7F13DE001DAF45 /* Persistence */,
@@ -196,7 +201,6 @@
 			children = (
 				50703B061D7EAD09001DAF45 /* ToDoList.swift */,
 				50703B071D7EAD09001DAF45 /* ToDo.swift */,
-				50703B081D7EAD09001DAF45 /* ToDoActions.swift */,
 				50703B091D7EAD09001DAF45 /* ToDoID.swift */,
 			);
 			name = Model;
@@ -239,6 +243,8 @@
 			children = (
 				50703B2D1D7EB5B5001DAF45 /* ToDoListStore.swift */,
 				50703B2F1D7EB60F001DAF45 /* ToDoListState.swift */,
+				50703B081D7EAD09001DAF45 /* ToDoActions.swift */,
+				502C04741D87E38E0032B7F3 /* ToDoListActions.swift */,
 				50703B251D7EB001001DAF45 /* ToDoListReducer.swift */,
 				50703B261D7EB001001DAF45 /* ToDoReducer.swift */,
 				50703B2B1D7EB2E7001DAF45 /* LoggingMiddleware.swift */,
@@ -422,6 +428,7 @@
 				50703B0C1D7EAD09001DAF45 /* ToDoActions.swift in Sources */,
 				50703B471D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift in Sources */,
 				50703B4B1D7F1284001DAF45 /* CheckBox.swift in Sources */,
+				502C04751D87E38E0032B7F3 /* ToDoListActions.swift in Sources */,
 				50703B281D7EB001001DAF45 /* ToDoReducer.swift in Sources */,
 				50703B451D7EF590001DAF45 /* ToDoTableDataSource.swift in Sources */,
 				50703B2E1D7EB5B5001DAF45 /* ToDoListStore.swift in Sources */,
@@ -433,6 +440,7 @@
 				50703B2C1D7EB2E7001DAF45 /* LoggingMiddleware.swift in Sources */,
 				50703B341D7EB838001DAF45 /* ToDoListPresenter.swift in Sources */,
 				50703B301D7EB60F001DAF45 /* ToDoListState.swift in Sources */,
+				502C04731D87DF040032B7F3 /* ErrorHandling.swift in Sources */,
 				50703B0B1D7EAD09001DAF45 /* ToDo.swift in Sources */,
 				50703B271D7EB001001DAF45 /* ToDoListReducer.swift in Sources */,
 			);
