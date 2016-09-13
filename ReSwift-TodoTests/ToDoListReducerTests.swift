@@ -44,7 +44,7 @@ class ToDoListReducerTests: XCTestCase {
         let toDoReducerDouble = TestToDoReducer()
         reducer.toDoReducer = toDoReducerDouble
 
-        let toDo = ToDo(title: "irrelevant", completed: false)
+        let toDo = ToDo(title: "irrelevant", completion: .unfinished)
         let list = ToDoList(title: "irrelevant", items: [toDo])
         let state = ToDoListState(toDoList: list)
 

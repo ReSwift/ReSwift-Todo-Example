@@ -27,7 +27,7 @@ extension ToDoViewModel {
 
         self.identifier = toDo.toDoID.identifier
         self.title = toDo.title
-        self.checked = toDo.completed
+        self.checked = toDo.isFinished
     }
 }
 

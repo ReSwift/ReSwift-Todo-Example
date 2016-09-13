@@ -24,7 +24,7 @@ class ToDoReducerTests: XCTestCase {
     func testHandleAction_WithUnsupportedActionAndState_ReturnsState() {
 
         struct SomeAction: Action { }
-        let state = ToDo(title: "an item", completed: true)
+        let state = ToDo(title: "an item", completion: .finished(when: nil))
 
         let result = reducer.handleAction(SomeAction(), state: state)
 
@@ -33,7 +33,7 @@ class ToDoReducerTests: XCTestCase {
 
     func testHandleAction_WithCheckAction_UncheckedToDoWithDifferentID_ReturnsSameState() {
 
-        let state = ToDo(title: "irrelevant", completed: true)
+        let state = ToDo(title: "irrelevant", completion: .finished(when: nil))
 
         let result = reducer.handleAction(ToDoAction.check(ToDoID()), state: state)
 
@@ -43,7 +43,7 @@ class ToDoReducerTests: XCTestCase {
     func testHandleAction_WithCheckAction_UncheckedToDoWithSameID_ReturnsCheckedToDo() {
 
         let toDoID = ToDoID()
-        let state = ToDo(toDoID: toDoID, title: "irrelevant", completed: false)
+        let state = ToDo(toDoID: toDoID, title: "irrelevant", completion: .unfinished)
 
         let result = reducer.handleAction(ToDoAction.check(toDoID), state: state)
 
@@ -51,14 +51,14 @@ class ToDoReducerTests: XCTestCase {
         if let result = result {
             XCTAssertEqual(result.toDoID, toDoID)
             XCTAssertEqual(result.title, state.title)
-            XCTAssert(result.completed)
+            XCTAssert(result.isFinished)
         }
     }
 
     func testHandleAction_WithCheckAction_CheckedToDoWithSameID_ReturnsCheckedToDo() {
 
         let toDoID = ToDoID()
-        let state = ToDo(toDoID: toDoID, title: "irrelevant", completed: true)
+        let state = ToDo(toDoID: toDoID, title: "irrelevant", completion: .finished(when: nil))
 
         let result = reducer.handleAction(ToDoAction.check(toDoID), state: state)
 
@@ -66,13 +66,13 @@ class ToDoReducerTests: XCTestCase {
         if let result = result {
             XCTAssertEqual(result.toDoID, toDoID)
             XCTAssertEqual(result.title, state.title)
-            XCTAssert(result.completed)
+            XCTAssert(result.isFinished)
         }
     }
     
     func testHandleAction_WithUncheckAction_CheckedToDoWithDifferentID_ReturnsSameState() {
 
-        let state = ToDo(title: "irrelevant", completed: false)
+        let state = ToDo(title: "irrelevant", completion: .unfinished)
 
         let result = reducer.handleAction(ToDoAction.uncheck(ToDoID()), state: state)
 
@@ -82,7 +82,7 @@ class ToDoReducerTests: XCTestCase {
     func testHandleAction_WithUncheckAction_CheckedToDoWithSameID_ReturnsUncheckedToDo() {
 
         let toDoID = ToDoID()
-        let state = ToDo(toDoID: toDoID, title: "irrelevant", completed: true)
+        let state = ToDo(toDoID: toDoID, title: "irrelevant", completion: .finished(when: nil))
 
         let result = reducer.handleAction(ToDoAction.uncheck(toDoID), state: state)
 
@@ -90,14 +90,14 @@ class ToDoReducerTests: XCTestCase {
         if let result = result {
             XCTAssertEqual(result.toDoID, toDoID)
             XCTAssertEqual(result.title, state.title)
-            XCTAssertFalse(result.completed)
+            XCTAssertFalse(result.isFinished)
         }
     }
 
     func testHandleAction_WithUncheckAction_UncheckedToDoWithSameID_ReturnsUncheckedToDo() {
 
         let toDoID = ToDoID()
-        let state = ToDo(toDoID: toDoID, title: "irrelevant", completed: false)
+        let state = ToDo(toDoID: toDoID, title: "irrelevant", completion: .unfinished)
 
         let result = reducer.handleAction(ToDoAction.uncheck(toDoID), state: state)
 
@@ -105,7 +105,7 @@ class ToDoReducerTests: XCTestCase {
         if let result = result {
             XCTAssertEqual(result.toDoID, toDoID)
             XCTAssertEqual(result.title, state.title)
-            XCTAssertFalse(result.completed)
+            XCTAssertFalse(result.isFinished)
         }
     }
 

@@ -25,9 +25,9 @@ extension ToDoList {
     static func demoList() -> ToDoList {
 
         let toDos = [
-            ToDo(title: "create a new list", completed: true),
-            ToDo(title: "rename the list", completed: false),
-            ToDo(title: "get productive", completed: false)
+            ToDo(title: "create a new list", completion: .finished(when: nil)),
+            ToDo(title: "rename the list", completion: .unfinished),
+            ToDo(title: "get productive", completion: .unfinished)
         ]
 
         return ToDoList(title: "Welcome!", items: toDos)

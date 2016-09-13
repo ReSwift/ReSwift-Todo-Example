@@ -13,23 +13,23 @@ class ToDoListTests: XCTestCase {
 
     func testEqualContent_WithDifferentTitles_ReturnsFalse() {
 
-        let items = [ToDo(title: "irrelevant", completed: true)]
+        let items = [ToDo(title: "irrelevant", completion: .finished(when: nil))]
 
         XCTAssertFalse(ToDoList(title: "a", items: items).hasEqualContent(ToDoList(title: "b", items: items)))
     }
 
     func testEqualContent_WithDifferentItems_ReturnsFalse() {
 
-        let oneItems = [ToDo(title: "one", completed: true)]
-        let otherItems = [ToDo(title: "other", completed: true)]
+        let oneItems = [ToDo(title: "one", completion: .finished(when: nil))]
+        let otherItems = [ToDo(title: "other", completion: .finished(when: nil))]
 
         XCTAssertFalse(ToDoList(title: "a", items: oneItems).hasEqualContent(ToDoList(title: "a", items: otherItems)))
     }
 
     func testEqualContent_With1ContentEqualItem_ReturnsTrue() {
 
-        let oneItems = [ToDo(title: "same", completed: true)]
-        let otherItems = [ToDo(title: "same", completed: true)]
+        let oneItems = [ToDo(title: "same", completion: .finished(when: nil))]
+        let otherItems = [ToDo(title: "same", completion: .finished(when: nil))]
 
         XCTAssertTrue(ToDoList(title: "a", items: oneItems).hasEqualContent(ToDoList(title: "a", items: otherItems)))
     }
@@ -37,11 +37,11 @@ class ToDoListTests: XCTestCase {
     func testEqualContent_With1ContentEqualItemButDifferentCountsLeft_ReturnsFalse() {
 
         let oneItems = [
-            ToDo(title: "same", completed: true)
+            ToDo(title: "same", completion: .finished(when: nil))
         ]
         let otherItems = [
-            ToDo(title: "same", completed: true),
-            ToDo(title: "other", completed: true)
+            ToDo(title: "same", completion: .finished(when: nil)),
+            ToDo(title: "other", completion: .finished(when: nil))
         ]
 
         XCTAssertFalse(ToDoList(title: "a", items: oneItems).hasEqualContent(ToDoList(title: "a", items: otherItems)))
@@ -50,11 +50,11 @@ class ToDoListTests: XCTestCase {
     func testEqualContent_With1ContentEqualItemButDifferentCountsRight_ReturnsFalse() {
 
         let oneItems = [
-            ToDo(title: "same", completed: true),
-            ToDo(title: "other", completed: true)
+            ToDo(title: "same", completion: .finished(when: nil)),
+            ToDo(title: "other", completion: .finished(when: nil))
         ]
         let otherItems = [
-            ToDo(title: "same", completed: true)
+            ToDo(title: "same", completion: .finished(when: nil))
         ]
 
         XCTAssertFalse(ToDoList(title: "a", items: oneItems).hasEqualContent(ToDoList(title: "a", items: otherItems)))
@@ -63,12 +63,12 @@ class ToDoListTests: XCTestCase {
     func testEqualContent_WithContentEqualItemsPlusDifference_ReturnsFalse() {
 
         let oneItems = [
-            ToDo(title: "same", completed: true),
-            ToDo(title: "different", completed: true)
+            ToDo(title: "same", completion: .finished(when: nil)),
+            ToDo(title: "different", completion: .finished(when: nil))
         ]
         let otherItems = [
-            ToDo(title: "same", completed: true),
-            ToDo(title: "unlike", completed: true)
+            ToDo(title: "same", completion: .finished(when: nil)),
+            ToDo(title: "unlike", completion: .finished(when: nil))
         ]
 
         XCTAssertFalse(ToDoList(title: "a", items: oneItems).hasEqualContent(ToDoList(title: "a", items: otherItems)))
@@ -77,12 +77,12 @@ class ToDoListTests: XCTestCase {
     func testEqualContent_WithContentEqualDuplicateItems_ReturnsFalse() {
 
         let oneItems = [
-            ToDo(title: "same", completed: true),
-            ToDo(title: "same", completed: true)
+            ToDo(title: "same", completion: .finished(when: nil)),
+            ToDo(title: "same", completion: .finished(when: nil))
         ]
         let otherItems = [
-            ToDo(title: "same", completed: true),
-            ToDo(title: "unlike", completed: true)
+            ToDo(title: "same", completion: .finished(when: nil)),
+            ToDo(title: "unlike", completion: .finished(when: nil))
         ]
 
         XCTAssertFalse(ToDoList(title: "a", items: oneItems).hasEqualContent(ToDoList(title: "a", items: otherItems)))

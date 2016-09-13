@@ -13,16 +13,16 @@ class ToDoTests: XCTestCase {
 
     func testHasEqualContent_WithDifferentTitle_ReturnsFalse() {
 
-        XCTAssertFalse(ToDo(title: "a", completed: false).hasEqualContent(ToDo(title: "b", completed: false)))
+        XCTAssertFalse(ToDo(title: "a", completion: .unfinished).hasEqualContent(ToDo(title: "b", completion: .unfinished)))
     }
 
     func testHasEqualContent_WithDifferentCompletionState_ReturnsFalse() {
 
-        XCTAssertFalse(ToDo(title: "a", completed: false).hasEqualContent(ToDo(title: "a", completed: true)))
+        XCTAssertFalse(ToDo(title: "a", completion: .unfinished).hasEqualContent(ToDo(title: "a", completion: .finished(when: nil))))
     }
 
     func testHasEqualContent_WithDifferentIDs_ReturnsTrue() {
 
-        XCTAssertTrue(ToDo(toDoID: ToDoID(), title: "a", completed: false).hasEqualContent(ToDo(toDoID: ToDoID(), title: "a", completed: false)))
+        XCTAssertTrue(ToDo(toDoID: ToDoID(), title: "a", completion: .unfinished).hasEqualContent(ToDo(toDoID: ToDoID(), title: "a", completion: .unfinished)))
     }
 }
