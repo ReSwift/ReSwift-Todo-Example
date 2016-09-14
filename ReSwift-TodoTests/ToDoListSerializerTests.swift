@@ -61,7 +61,7 @@ class ToDoListSerializerTests: XCTestCase {
         XCTAssertEqual(result, "Project X:\n- baz\n- boz\n- bizz\n")
     }
 
-    func testSerialize_DoneItemWithoutDate_AppendsDoneTag() {
+    func testSerialize_FinishedItemWithoutDate_AppendsDoneTag() {
 
         let items = [ToDo(title: "the item", completion: .finished(when: nil))]
         let list = ToDoList(title: nil, items: items)
@@ -71,7 +71,7 @@ class ToDoListSerializerTests: XCTestCase {
         XCTAssertEqual(result, "- the item @done\n")
     }
 
-    func testSerialize_DoneItemWithDate_AppendsDoneTagWithDate() {
+    func testSerialize_FinishedItemWithDate_AppendsDoneTagWithDate() {
 
         let date = NSCalendar.autoupdatingCurrentCalendar().dateFromISOComponents(year: 2012, month: 11, day: 10)
         let items = [ToDo(title: "an item", completion: .finished(when: date))]
@@ -81,5 +81,24 @@ class ToDoListSerializerTests: XCTestCase {
 
         XCTAssertEqual(result, "- an item @done(2012-11-10)\n")
     }
-    
+
+    func testSerialize_UnfinishedItemWithTags_AppendsTagsSortedAlphabetically() {
+
+        let items = [ToDo(title: "an item", tags: Set(arrayLiteral: "foo", "bar"))]
+        let list = ToDoList(title: nil, items: items)
+
+        let result = serializer.string(toDoList: list)
+
+        XCTAssertEqual(result, "- an item @bar @foo\n")
+    }
+
+    func testSerialize_FinishedItemWithTags_AppendsTagsSortedAlphabeticallyBeforeDoneTag() {
+
+        let items = [ToDo(title: "ze item", completion: .finished(when: nil), tags: Set(arrayLiteral: "zar", "kar"))]
+        let list = ToDoList(title: nil, items: items)
+
+        let result = serializer.string(toDoList: list)
+
+        XCTAssertEqual(result, "- ze item @kar @zar @done\n")
+    }
 }

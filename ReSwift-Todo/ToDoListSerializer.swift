@@ -36,7 +36,7 @@ class ToDoListSerializer {
     init() { }
 
     lazy var dateConverter: DateConverter = DateConverter()
-    
+
     func data(toDoList toDoList: ToDoList, encoding: NSStringEncoding = NSUTF8StringEncoding) -> NSData? {
 
         return string(toDoList: toDoList).dataUsingEncoding(encoding)
@@ -59,6 +59,7 @@ class ToDoListSerializer {
     private func itemRepresentation(item: ToDo) -> String {
 
         let body = "- \(item.title)"
+        let tags = item.tags.sort().map { "@\($0)" }
         let done: String? = {
             switch item.completion {
             case .unfinished: return nil
@@ -70,8 +71,9 @@ class ToDoListSerializer {
             }
         }()
 
-        return [body, done]
-            .flatMap(identity) // remove nils
+        return [body]
+            .appendedContentsOf(tags)
+            .appendedContentsOf([done].flatMap(identity)) // remove nil
             .joinWithSeparator(" ")
     }
 }
