@@ -52,6 +52,8 @@ class ToDoListWindowController: NSWindowController {
         }
     }
 
+    var store: ToDoListStore?
+
     convenience init() {
 
         self.init(windowNibName: String(ToDoListWindowController))
@@ -78,6 +80,20 @@ class ToDoListWindowController: NSWindowController {
         super.windowDidLoad()
 
         didLoad = true
+    }
+
+    @IBAction func changeTitle(sender: AnyObject) {
+
+        guard let textField = sender as? NSTextField else { return }
+
+        let newName = textField.stringValue
+
+        dispatchAction(ToDoListAction.rename(newName))
+    }
+
+    func dispatchAction(action: Action) {
+
+        store?.dispatch(action)
     }
 
     func windowWillClose(notification: NSNotification) {

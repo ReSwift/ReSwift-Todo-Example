@@ -114,6 +114,9 @@
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <action selector="changeTitle:" target="-2" id="REj-PE-bmn"/>
+                        </connections>
                     </textField>
                 </subviews>
                 <constraints>

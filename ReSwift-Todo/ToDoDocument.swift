@@ -20,6 +20,7 @@ class ToDoDocument: NSDocument {
 
         let windowController = ToDoListWindowController()
         windowController.delegate = self
+        windowController.store = self.store
 
         self.presenter = ToDoListPresenter(view: windowController)
 
