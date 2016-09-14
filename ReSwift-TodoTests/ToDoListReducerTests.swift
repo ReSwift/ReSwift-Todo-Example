@@ -58,6 +58,20 @@ class ToDoListReducerTests: XCTestCase {
     }
 
 
+    // MARK: Renaming action
+
+    func testReduce_Rename_ReturnsListWithNewName() {
+
+        let newName = "a new name"
+        let oldList = ToDoList(title: nil, items: [])
+        let state = ToDoListState(toDoList: oldList)
+
+        let result = reducer.handleAction(ToDoListAction.rename(newName), state: state)
+
+        XCTAssertEqual(result.toDoList.title, newName)
+    }
+
+
     // MARK: Replacement action
 
     func testReduce_ReplaceAction_ReturnsStateWithNewList() {

@@ -11,5 +11,6 @@ import ReSwift
 
 enum ToDoListAction: Action {
 
+    case rename(String)
     case replaceList(ToDoList)
 }

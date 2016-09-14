@@ -36,6 +36,12 @@ class ToDoListReducer: ReSwift.Reducer {
         guard let action = action as? ToDoListAction else { return toDoList }
 
         switch action {
+        case .rename(let newName):
+
+            var result = toDoList
+            result.title = newName
+            return result
+
         case .replaceList(let newList): return newList
         }
     }
