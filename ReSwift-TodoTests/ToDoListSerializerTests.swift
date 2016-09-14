@@ -60,4 +60,26 @@ class ToDoListSerializerTests: XCTestCase {
 
         XCTAssertEqual(result, "Project X:\n- baz\n- boz\n- bizz\n")
     }
+
+    func testSerialize_DoneItemWithoutDate_AppendsDoneTag() {
+
+        let items = [ToDo(title: "the item", completion: .finished(when: nil))]
+        let list = ToDoList(title: nil, items: items)
+
+        let result = serializer.string(toDoList: list)
+
+        XCTAssertEqual(result, "- the item @done\n")
+    }
+
+    func testSerialize_DoneItemWithDate_AppendsDoneTagWithDate() {
+
+        let date = NSCalendar.autoupdatingCurrentCalendar().dateFromISOComponents(year: 2012, month: 11, day: 10)
+        let items = [ToDo(title: "an item", completion: .finished(when: date))]
+        let list = ToDoList(title: nil, items: items)
+
+        let result = serializer.string(toDoList: list)
+
+        XCTAssertEqual(result, "- an item @done(2012-11-10)\n")
+    }
+    
 }
