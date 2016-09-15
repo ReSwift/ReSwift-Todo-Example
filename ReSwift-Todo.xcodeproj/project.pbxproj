@@ -30,6 +30,8 @@
 		504CDFF51D8A948700D16314 /* SelectionReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFF41D8A948700D16314 /* SelectionReducerTests.swift */; };
 		504CDFF71D8ADB3D00D16314 /* ToDoTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFF61D8ADB3D00D16314 /* ToDoTableView.swift */; };
 		504CDFF91D8ADCEC00D16314 /* NullToDoTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFF81D8ADCEC00D16314 /* NullToDoTableDataSource.swift */; };
+		504CDFFB1D8ADEFA00D16314 /* PatchingResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFFA1D8ADEFA00D16314 /* PatchingResponder.swift */; };
+		504CDFFE1D8ADF3400D16314 /* KeyboardEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFFD1D8ADF3400D16314 /* KeyboardEventHandler.swift */; };
 		50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE61D7EACB8001DAF45 /* AppDelegate.swift */; };
 		50703AE91D7EACB8001DAF45 /* ToDoDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */; };
 		50703AEC1D7EACB8001DAF45 /* ToDoListWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50703AEA1D7EACB8001DAF45 /* ToDoListWindowController.xib */; };
@@ -119,6 +121,8 @@
 		504CDFF41D8A948700D16314 /* SelectionReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionReducerTests.swift; sourceTree = "<group>"; };
 		504CDFF61D8ADB3D00D16314 /* ToDoTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableView.swift; sourceTree = "<group>"; };
 		504CDFF81D8ADCEC00D16314 /* NullToDoTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullToDoTableDataSource.swift; sourceTree = "<group>"; };
+		504CDFFA1D8ADEFA00D16314 /* PatchingResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatchingResponder.swift; sourceTree = "<group>"; };
+		504CDFFD1D8ADF3400D16314 /* KeyboardEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardEventHandler.swift; sourceTree = "<group>"; };
 		50703AE31D7EACB8001DAF45 /* ReSwift-Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReSwift-Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50703AE61D7EACB8001DAF45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDocument.swift; sourceTree = "<group>"; };
@@ -249,6 +253,16 @@
 			name = "Selection Changes";
 			sourceTree = "<group>";
 		};
+		504CDFFC1D8ADF2400D16314 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				50703B4A1D7F1284001DAF45 /* CheckBox.swift */,
+				504CDFF61D8ADB3D00D16314 /* ToDoTableView.swift */,
+				504CDFFA1D8ADEFA00D16314 /* PatchingResponder.swift */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
 		50703ADA1D7EACB8001DAF45 = {
 			isa = PBXGroup;
 			children = (
@@ -335,12 +349,12 @@
 				50703AEA1D7EACB8001DAF45 /* ToDoListWindowController.xib */,
 				50703B311D7EB736001DAF45 /* ToDoListWindowController.swift */,
 				50703B441D7EF590001DAF45 /* ToDoTableDataSource.swift */,
-				504CDFF61D8ADB3D00D16314 /* ToDoTableView.swift */,
 				50703B3A1D7EE569001DAF45 /* ToDoListViewModel.swift */,
+				504CDFFD1D8ADF3400D16314 /* KeyboardEventHandler.swift */,
 				50703B3C1D7EE581001DAF45 /* To-Do Item */,
+				504CDFFC1D8ADF2400D16314 /* Components */,
 				50703AED1D7EACB8001DAF45 /* Assets.xcassets */,
 				50703AEF1D7EACB8001DAF45 /* MainMenu.xib */,
-				50703B4A1D7F1284001DAF45 /* CheckBox.swift */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
@@ -556,11 +570,13 @@
 				50703B281D7EB001001DAF45 /* ToDoReducer.swift in Sources */,
 				50703B451D7EF590001DAF45 /* ToDoTableDataSource.swift in Sources */,
 				50703B2E1D7EB5B5001DAF45 /* ToDoListStore.swift in Sources */,
+				504CDFFB1D8ADEFA00D16314 /* PatchingResponder.swift in Sources */,
 				504CDFE51D8A703D00D16314 /* Undoable.swift in Sources */,
 				507347941D8001A200ACFD0D /* String+ReSwiftTodo.swift in Sources */,
 				50703B321D7EB736001DAF45 /* ToDoListWindowController.swift in Sources */,
 				50703B391D7EE50D001DAF45 /* ToDoViewModel.swift in Sources */,
 				50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */,
+				504CDFFE1D8ADF3400D16314 /* KeyboardEventHandler.swift in Sources */,
 				502C047B1D87F0480032B7F3 /* Clock.swift in Sources */,
 				504CDFEE1D8A8E1300D16314 /* SelectionState.swift in Sources */,
 				502C046F1D87D9580032B7F3 /* ToDoListSerializer.swift in Sources */,

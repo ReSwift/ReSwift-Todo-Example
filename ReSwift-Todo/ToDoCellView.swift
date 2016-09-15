@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-protocol ToDoItemChangeDelegate: class {
+@objc protocol ToDoItemChangeDelegate: class {
 
     func toDoItem(identifier identifier: String, didChangeChecked checked: Bool)
     func toDoItem(identifier identifier: String, didChangeTitle title: String)

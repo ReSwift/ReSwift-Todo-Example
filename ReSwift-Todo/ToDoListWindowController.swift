@@ -39,6 +39,7 @@ class ToDoListWindowController: NSWindowController {
 
     @IBOutlet var titleTextField: NSTextField!
     @IBOutlet var tableView: NSTableView!
+    @IBOutlet var keyboardEventHandler: KeyboardEventHandler?
 
     /// Changing the `delegate` while the window is displayed
     /// calls the `toDoListWindowControllerDidLoad` callback
@@ -55,10 +56,16 @@ class ToDoListWindowController: NSWindowController {
 
         didSet {
             tableView.setDataSource(dataSource.tableDataSource)
+            keyboardEventHandler?.dataSource = dataSource
         }
     }
 
-    var store: ToDoListStore?
+    var store: ToDoListStore? {
+
+        didSet {
+            keyboardEventHandler?.store = store
+        }
+    }
 
     convenience init() {
 
@@ -79,6 +86,9 @@ class ToDoListWindowController: NSWindowController {
 
         tableView.setDataSource(self.dataSource.tableDataSource)
         tableView.setDelegate(self)
+
+        keyboardEventHandler?.dataSource = self.dataSource
+        keyboardEventHandler?.store = self.store
     }
 
     override func windowDidLoad() {
@@ -111,138 +121,6 @@ class ToDoListWindowController: NSWindowController {
         delegate?.toDoListWindowControllerWillClose(self)
     }
 }
-
-// MARK: - Keyboard shortcut handling
-
-extension ToDoListWindowController {
-
-    // MARK: Selection
-
-    override func cancelOperation(sender: AnyObject?) {
-
-        dispatchAction(SelectionAction.deselect)
-    }
-
-    override func moveUp(sender: AnyObject?) {
-
-        let newRow: Int = {
-
-            guard let selectedRow = dataSource.selectedRow
-                where selectedRow > 0
-                else  { return dataSource.toDoCount - 1 }
-
-            return selectedRow - 1
-        }()
-
-        dispatchAction(SelectionAction.select(row: newRow))
-    }
-
-    override func moveDown(sender: AnyObject?) {
-
-        let newRow: Int = {
-
-            guard let selectedRow = dataSource.selectedRow
-                where selectedRow < dataSource.toDoCount.predecessor()
-                else  { return 0 }
-
-            return selectedRow + 1
-        }()
-
-        dispatchAction(SelectionAction.select(row: newRow))
-    }
-
-
-    // MARK: Editing
-
-    override func insertText(insertString: AnyObject) {
-
-        let string: String = {
-            if let string = insertString as? String {
-                return string
-            } else if let attributedString = insertString as? NSAttributedString {
-                return attributedString.string
-            }
-
-            return ""
-        }()
-
-        guard let selectedRow = dataSource.selectedRow
-            else { super.insertText(insertString); return }
-
-        guard string != " "
-            else { toggleTask(row: selectedRow); return }
-
-        editCell(row: selectedRow, insertText: string)
-    }
-
-    private func toggleTask(row row: Int) {
-
-        guard let toDo = self.dataSource.selectedToDo
-            else { return }
-
-        toDoItem(identifier: toDo.identifier, didChangeChecked: !toDo.checked)
-    }
-
-    override func insertNewline(sender: AnyObject?) {
-
-        let targetRow: Int = {
-            guard let selectedRow = dataSource.selectedRow
-                else { return self.dataSource.toDoCount }
-
-            return selectedRow + 1
-        }()
-
-        dispatchAction(InsertTaskAction(toDo: ToDo.empty, index: targetRow))
-        dispatchAction(SelectionAction.select(row: targetRow))
-    }
-
-    override func insertTab(sender: AnyObject?) {
-
-        guard let selectedRow = dataSource.selectedRow
-            else { return }
-
-        editCell(row: selectedRow)
-    }
-
-
-    private func editCell(row row: Int, insertText text: String? = nil) {
-
-        guard let cellView = self.tableView.viewAtColumn(0, row: row, makeIfNecessary: true) as? ToDoCellView,
-            textField = cellView.textField
-            else { return }
-
-        textField.selectText(self)
-
-        guard let editor = textField.currentEditor(),
-            text = text
-            else { return }
-
-        editor.insertText(text)
-    }
-
-
-    // MARK: Removal
-
-    override func deleteForward(sender: AnyObject?) {
-
-        removeSelectedTask()
-    }
-
-    override func deleteBackward(sender: AnyObject?) {
-
-        removeSelectedTask()
-    }
-
-    private func removeSelectedTask() {
-
-        guard let selectedToDo = dataSource.selectedToDo,
-            toDoID = ToDoID(identifier: selectedToDo.identifier)
-            else { return }
-
-        dispatchAction(RemoveTaskAction(toDoID: toDoID))
-    }
-}
-
 
 // MARK: Displaying Data 
 
@@ -340,5 +218,23 @@ extension ToDoListWindowController: ToDoItemChangeDelegate {
             else { preconditionFailure("Invalid To-Do item identifier \(identifier).") }
 
         dispatchAction(ToDoAction.rename(toDoID, title: title))
+    }
+}
+
+extension ToDoListWindowController: ToDoItemEditDelegate {
+
+    func editItem(row row: Int, insertText text: String?) {
+
+        guard let cellView = self.tableView.viewAtColumn(0, row: row, makeIfNecessary: true) as? ToDoCellView,
+            textField = cellView.textField
+            else { return }
+
+        textField.selectText(self)
+
+        guard let editor = textField.currentEditor(),
+            text = text
+            else { return }
+
+        editor.insertText(text)
     }
 }

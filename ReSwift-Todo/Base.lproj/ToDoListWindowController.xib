@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ToDoListWindowController">
             <connections>
+                <outlet property="keyboardEventHandler" destination="abw-hP-Fdm" id="Ziu-pN-12J"/>
                 <outlet property="tableView" destination="dh0-bV-uMi" id="FoJ-ZM-OIm"/>
                 <outlet property="titleTextField" destination="jYI-kA-EJ2" id="S8i-PC-mt2"/>
                 <outlet property="window" destination="Nvv-fc-d0P" id="QNN-cJ-m7t"/>
@@ -133,5 +134,12 @@
                 <outlet property="delegate" destination="-2" id="W9R-nx-n9Y"/>
             </connections>
         </window>
+        <customObject id="abw-hP-Fdm" customClass="KeyboardEventHandler" customModule="ReSwiftTodo" customModuleProvider="target">
+            <connections>
+                <outlet property="itemChangeDelegate" destination="-2" id="h4t-3t-H1s"/>
+                <outlet property="itemEditDelegate" destination="-2" id="X1o-3p-dOf"/>
+                <outlet property="referenceResponder" destination="dh0-bV-uMi" id="zyV-Ke-fHa"/>
+            </connections>
+        </customObject>
     </objects>
 </document>
