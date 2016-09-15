@@ -22,9 +22,7 @@ class UndoableStateAdapter: UndoActionContext {
 
     func toDoTitle(toDoID toDoID: ToDoID) -> String? {
 
-        return state.toDoList.items
-            .filter { $0.toDoID == toDoID }
-            .first?.title
+        return state.toDoList.toDo(toDoID: toDoID)?.title
     }
 }
 

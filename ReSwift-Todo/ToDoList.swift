@@ -41,6 +41,14 @@ struct ToDoList {
         }
     }
 
+    func toDo(toDoID toDoID: ToDoID) -> ToDo? {
+
+        guard let index = indexOf(toDoID: toDoID)
+            else { return nil }
+
+        return items[index]
+    }
+
     mutating func removeItem(toDoID toDoID: ToDoID) {
 
         guard let index = items.indexOf({ $0.toDoID == toDoID }) else { return }
