@@ -62,22 +62,45 @@ struct ReplaceToDoListAction: ToDoListAction {
     }
 }
 
-struct InsertItemAction: UndoableAction, ToDoListAction {
+struct InsertTaskAction: UndoableAction, ToDoListAction {
 
+    let toDo: ToDo
     let index: Int
 
     func apply(oldToDoList oldToDoList: ToDoList) -> ToDoList {
 
         var result = oldToDoList
-        result.insertItem(ToDo.empty, atIndex: index)
+        result.insertItem(toDo, atIndex: index)
         return result
     }
 
-    var isUndoable: Bool { return false }
+    var isUndoable: Bool { return true }
     var name: String { return "Append Task" }
 
     func inverse(context context: UndoActionContext) -> UndoableAction? {
 
-        return nil
+        return RemoveTaskAction(toDoID: toDo.toDoID)
+    }
+}
+
+struct RemoveTaskAction: UndoableAction, ToDoListAction {
+
+    let toDoID: ToDoID
+
+    func apply(oldToDoList oldToDoList: ToDoList) -> ToDoList {
+
+        var result = oldToDoList
+        result.removeItem(toDoID: toDoID)
+        return result
+    }
+
+    var isUndoable: Bool { return true }
+    var name: String { return "Remove Task" }
+
+    func inverse(context context: UndoActionContext) -> UndoableAction? {
+
+        guard let removingToDo = context.toDoInList(toDoID: toDoID) else { return nil }
+
+        return InsertTaskAction(toDo: removingToDo.toDo, index: removingToDo.index)
     }
 }

@@ -24,6 +24,15 @@ class UndoableStateAdapter: UndoActionContext {
 
         return state.toDoList.toDo(toDoID: toDoID)?.title
     }
+
+    func toDoInList(toDoID toDoID: ToDoID) -> ToDoInList? {
+
+        guard let index = state.toDoList.indexOf(toDoID: toDoID),
+            toDo = state.toDoList.toDo(toDoID: toDoID)
+            else { return nil }
+
+        return (toDo, index)
+    }
 }
 
 

@@ -41,6 +41,11 @@ struct ToDoList {
         }
     }
 
+    func indexOf(toDoID toDoID: ToDoID) -> Int? {
+
+        return items.indexOf({ $0.toDoID == toDoID })
+    }
+
     func toDo(toDoID toDoID: ToDoID) -> ToDo? {
 
         guard let index = indexOf(toDoID: toDoID)
@@ -51,7 +56,8 @@ struct ToDoList {
 
     mutating func removeItem(toDoID toDoID: ToDoID) {
 
-        guard let index = items.indexOf({ $0.toDoID == toDoID }) else { return }
+        guard let index = indexOf(toDoID: toDoID)
+            else { return }
 
         items.removeAtIndex(index)
     }
