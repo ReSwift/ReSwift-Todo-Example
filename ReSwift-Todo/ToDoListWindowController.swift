@@ -149,6 +149,23 @@ extension ToDoListWindowController {
 
         dispatchAction(SelectionAction.select(row: newRow))
     }
+
+
+    // MARK: Editing
+
+    override func insertNewline(sender: AnyObject?) {
+
+        let targetRow: Int = {
+            guard let selectedRow = dataSource.selectedRow
+                else { return self.dataSource.toDoCount }
+
+            return selectedRow + 1
+        }()
+
+        dispatchAction(InsertTaskAction(toDo: ToDo.empty, index: targetRow))
+        dispatchAction(SelectionAction.select(row: targetRow))
+    }
+
 }
 
 
