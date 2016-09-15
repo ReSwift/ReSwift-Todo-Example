@@ -14,7 +14,9 @@ typealias ToDoListStore = Store<ToDoListState>
 /// Generic action which can be dispatched. 
 /// - Note: Use `UndoableAction` for most UI events instead.
 typealias Action = ReSwift.Action
-typealias UndoableAction = protocol<Action, Undoable>
+
+// A typealias will not work and only raise EXC_BAD_ACCESS exceptions. ¯\_(ツ)_/¯
+protocol UndoableAction: Action, Undoable { }
 
 func toDoListStore(undoManager undoManager: NSUndoManager) -> ToDoListStore {
 
@@ -22,6 +24,7 @@ func toDoListStore(undoManager undoManager: NSUndoManager) -> ToDoListStore {
         reducer: ToDoListReducer(),
         state: nil,
         middleware: [
-            loggingMiddleware
+            loggingMiddleware,
+            undoMiddleware(undoManager: undoManager)
         ])
 }

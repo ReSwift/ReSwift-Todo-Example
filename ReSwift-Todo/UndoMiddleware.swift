@@ -35,7 +35,7 @@ extension UndoCommand {
     }
 }
 
-func undoMiddlewareFactory(undoManager undoManager: NSUndoManager) -> Middleware {
+func undoMiddleware(undoManager undoManager: NSUndoManager) -> Middleware {
 
     func undoAction(action action: UndoableAction, state: ToDoListState, dispatch: DispatchFunction) -> UndoCommand? {
 
@@ -53,14 +53,15 @@ func undoMiddlewareFactory(undoManager undoManager: NSUndoManager) -> Middleware
                     return next(undoneAction.action)
                 }
 
-                if let action = action as? UndoableAction where action.isUndoable,
+                if let undoableAction = action as? UndoableAction where undoableAction.isUndoable,
                     let state = getState() as? ToDoListState,
                     dispatch = dispatch,
-                    undo = undoAction(action: action, state: state, dispatch: dispatch) {
+                    undo = undoAction(action: undoableAction, state: state, dispatch: dispatch) {
 
                     undo.register(undoManager: undoManager)
                 }
-                
+
+
                 return next(action)
             }
         }
