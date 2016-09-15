@@ -166,6 +166,31 @@ extension ToDoListWindowController {
         dispatchAction(SelectionAction.select(row: targetRow))
     }
 
+    override func insertTab(sender: AnyObject?) {
+
+        guard let selectedRow = dataSource.selectedRow
+            else { return }
+
+        editCell(row: selectedRow)
+    }
+
+
+    private func editCell(row row: Int, insertText text: String? = nil) {
+
+        guard let cellView = self.tableView.viewAtColumn(0, row: row, makeIfNecessary: true) as? ToDoCellView,
+            textField = cellView.textField
+            else { return }
+
+        textField.selectText(self)
+
+        guard let editor = textField.currentEditor(),
+            text = text
+            else { return }
+
+        editor.insertText(text)
+    }
+
+
 }
 
 
