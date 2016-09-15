@@ -29,6 +29,9 @@ extension ToDoTableDataSourceType where Self: NSTableViewDataSource {
     }
 }
 
+
+// MARK: -
+
 class ToDoListWindowController: NSWindowController {
 
     @IBOutlet var titleTextField: NSTextField!
@@ -91,7 +94,7 @@ class ToDoListWindowController: NSWindowController {
         dispatchAction(RenameToDoListAction(renameTo: newName))
     }
 
-    func dispatchAction(action: Action) {
+    private func dispatchAction(action: Action) {
 
         store?.dispatch(action)
     }
@@ -133,10 +136,36 @@ extension ToDoListWindowController: DisplaysToDoList {
     }
 }
 
+
+// MARK: Cell creation & event handling
+
 extension ToDoListWindowController: NSTableViewDelegate {
 
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
 
-        return dataSource.toDoCellView(tableView: tableView, row: row, owner: self)
+        guard let cellView = dataSource.toDoCellView(tableView: tableView, row: row, owner: self)
+            else { return nil }
+
+        cellView.toDoItemChangeDelegate = self
+
+        return cellView
+    }
+}
+
+extension ToDoListWindowController: ToDoItemChangeDelegate {
+
+    func toDoItem(identifier identifier: String, didChangeChecked checked: Bool) {
+
+        guard let toDoID = ToDoID(identifier: identifier)
+            else { preconditionFailure("Invalid To-Do item identifier \(identifier).") }
+
+        let action: ToDoAction = {
+            switch checked {
+            case true:  return ToDoAction.check(toDoID)
+            case false: return ToDoAction.uncheck(toDoID)
+            }
+        }()
+
+        dispatchAction(action)
     }
 }
