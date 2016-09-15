@@ -19,6 +19,7 @@ protocol ToDoTableDataSourceType {
     var tableDataSource: NSTableViewDataSource { get }
 
     var selectedRow: Int? { get }
+    var selectedToDo: ToDoViewModel? { get }
     var toDoCount: Int { get }
 
     func updateContents(toDoListViewModel viewModel: ToDoListViewModel)
@@ -191,6 +192,26 @@ extension ToDoListWindowController {
     }
 
 
+    // MARK: Removal
+
+    override func deleteForward(sender: AnyObject?) {
+
+        removeSelectedTask()
+    }
+
+    override func deleteBackward(sender: AnyObject?) {
+
+        removeSelectedTask()
+    }
+
+    private func removeSelectedTask() {
+
+        guard let selectedToDo = dataSource.selectedToDo,
+            toDoID = ToDoID(identifier: selectedToDo.identifier)
+            else { return }
+
+        dispatchAction(RemoveTaskAction(toDoID: toDoID))
+    }
 }
 
 

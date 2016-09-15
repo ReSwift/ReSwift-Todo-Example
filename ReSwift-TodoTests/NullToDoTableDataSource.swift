@@ -14,6 +14,7 @@ class NullToDoTableDataSource: ToDoTableDataSourceType {
     var tableDataSource: NSTableViewDataSource { return NullTableViewDataSource() }
 
     var selectedRow: Int? { return nil }
+    var selectedToDo: ToDoViewModel? { return nil }
     var toDoCount: Int { return 0 }
 
     func updateContents(toDoListViewModel viewModel: ToDoListViewModel) {
