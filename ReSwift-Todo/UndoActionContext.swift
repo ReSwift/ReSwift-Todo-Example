@@ -16,4 +16,6 @@ import Foundation
 protocol UndoActionContext {
 
     var toDoListTitle: String? { get }
+
+    func toDoTitle(toDoID toDoID: ToDoID) -> String?
 }
