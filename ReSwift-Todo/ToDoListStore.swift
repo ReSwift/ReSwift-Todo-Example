@@ -11,6 +11,11 @@ import ReSwift
 
 typealias ToDoListStore = Store<ToDoListState>
 
+/// Generic action which can be dispatched. 
+/// - Note: Use `UndoableAction` for most UI events instead.
+typealias Action = ReSwift.Action
+typealias UndoableAction = protocol<Action, Undoable>
+
 func toDoListStore(undoManager undoManager: NSUndoManager) -> ToDoListStore {
 
     return ToDoListStore(

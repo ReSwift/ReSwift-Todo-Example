@@ -9,8 +9,6 @@
 import Foundation
 import ReSwift
 
-typealias Action = ReSwift.Action
-
 struct ToDoListState: StateType {
 
     var toDoList: ToDoList = ToDoList.demoList()

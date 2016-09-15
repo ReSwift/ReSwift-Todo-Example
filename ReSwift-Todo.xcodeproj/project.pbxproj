@@ -18,6 +18,11 @@
 		502C04801D880C2A0032B7F3 /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C047F1D880C2A0032B7F3 /* DateConverter.swift */; };
 		502C04831D88216A0032B7F3 /* ToDoLineTokenizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04821D88216A0032B7F3 /* ToDoLineTokenizerTests.swift */; };
 		502C04851D8850D00032B7F3 /* ToDoLineTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502C04841D8850D00032B7F3 /* ToDoLineTokenizer.swift */; };
+		504CDFDF1D8A6DDC00D16314 /* UndoMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFDE1D8A6DDC00D16314 /* UndoMiddleware.swift */; };
+		504CDFE11D8A6E7300D16314 /* NotUndoable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFE01D8A6E7300D16314 /* NotUndoable.swift */; };
+		504CDFE31D8A6F2D00D16314 /* UndoCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFE21D8A6F2D00D16314 /* UndoCommand.swift */; };
+		504CDFE51D8A703D00D16314 /* Undoable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFE41D8A703D00D16314 /* Undoable.swift */; };
+		504CDFE71D8A721D00D16314 /* UndoActionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFE61D8A721D00D16314 /* UndoActionContext.swift */; };
 		50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE61D7EACB8001DAF45 /* AppDelegate.swift */; };
 		50703AE91D7EACB8001DAF45 /* ToDoDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */; };
 		50703AEC1D7EACB8001DAF45 /* ToDoListWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50703AEA1D7EACB8001DAF45 /* ToDoListWindowController.xib */; };
@@ -95,6 +100,11 @@
 		502C047F1D880C2A0032B7F3 /* DateConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
 		502C04821D88216A0032B7F3 /* ToDoLineTokenizerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoLineTokenizerTests.swift; sourceTree = "<group>"; };
 		502C04841D8850D00032B7F3 /* ToDoLineTokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToDoLineTokenizer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		504CDFDE1D8A6DDC00D16314 /* UndoMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UndoMiddleware.swift; sourceTree = "<group>"; };
+		504CDFE01D8A6E7300D16314 /* NotUndoable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotUndoable.swift; sourceTree = "<group>"; };
+		504CDFE21D8A6F2D00D16314 /* UndoCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UndoCommand.swift; sourceTree = "<group>"; };
+		504CDFE41D8A703D00D16314 /* Undoable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Undoable.swift; sourceTree = "<group>"; };
+		504CDFE61D8A721D00D16314 /* UndoActionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UndoActionContext.swift; sourceTree = "<group>"; };
 		50703AE31D7EACB8001DAF45 /* ReSwift-Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReSwift-Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50703AE61D7EACB8001DAF45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDocument.swift; sourceTree = "<group>"; };
@@ -170,10 +180,31 @@
 		502C04811D880C310032B7F3 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				504CDFE21D8A6F2D00D16314 /* UndoCommand.swift */,
 				502C047E1D880C150032B7F3 /* Time */,
 				50703B4C1D7F13DE001DAF45 /* Persistence */,
 			);
 			name = Infrastructure;
+			sourceTree = "<group>";
+		};
+		504CDFDD1D8A6DA800D16314 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				50703B461D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift */,
+				507347931D8001A200ACFD0D /* String+ReSwiftTodo.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		504CDFE81D8A75A100D16314 /* Undo */ = {
+			isa = PBXGroup;
+			children = (
+				504CDFDE1D8A6DDC00D16314 /* UndoMiddleware.swift */,
+				504CDFE61D8A721D00D16314 /* UndoActionContext.swift */,
+				504CDFE41D8A703D00D16314 /* Undoable.swift */,
+				504CDFE01D8A6E7300D16314 /* NotUndoable.swift */,
+			);
+			name = Undo;
 			sourceTree = "<group>";
 		};
 		50703ADA1D7EACB8001DAF45 = {
@@ -200,15 +231,14 @@
 			children = (
 				50703AE61D7EACB8001DAF45 /* AppDelegate.swift */,
 				502C04721D87DF040032B7F3 /* ErrorHandling.swift */,
-				50703B0F1D7EAD15001DAF45 /* Model */,
 				50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */,
+				50703B0F1D7EAD15001DAF45 /* Model */,
 				502C04811D880C310032B7F3 /* Infrastructure */,
 				50703B2A1D7EB2D9001DAF45 /* State */,
 				50703B351D7EB83C001DAF45 /* Application */,
 				50703B201D7EAEC8001DAF45 /* User Interface */,
+				504CDFDD1D8A6DA800D16314 /* Util */,
 				50703AF21D7EACB8001DAF45 /* Info.plist */,
-				50703B461D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift */,
-				507347931D8001A200ACFD0D /* String+ReSwiftTodo.swift */,
 			);
 			path = "ReSwift-Todo";
 			sourceTree = "<group>";
@@ -281,6 +311,7 @@
 				50703B251D7EB001001DAF45 /* ToDoListReducer.swift */,
 				50703B261D7EB001001DAF45 /* ToDoReducer.swift */,
 				50703B2B1D7EB2E7001DAF45 /* LoggingMiddleware.swift */,
+				504CDFE81D8A75A100D16314 /* Undo */,
 			);
 			name = State;
 			sourceTree = "<group>";
@@ -462,16 +493,21 @@
 				50703B0A1D7EAD09001DAF45 /* ToDoList.swift in Sources */,
 				507347901D7FFE8B00ACFD0D /* StreamReader.swift in Sources */,
 				50703B371D7EBC76001DAF45 /* ToDoCellView.swift in Sources */,
+				504CDFE71D8A721D00D16314 /* UndoActionContext.swift in Sources */,
 				502C04851D8850D00032B7F3 /* ToDoLineTokenizer.swift in Sources */,
 				50703B0D1D7EAD09001DAF45 /* ToDoID.swift in Sources */,
+				504CDFE31D8A6F2D00D16314 /* UndoCommand.swift in Sources */,
 				50703B4E1D7F1407001DAF45 /* ToDoListImporter.swift in Sources */,
+				504CDFE11D8A6E7300D16314 /* NotUndoable.swift in Sources */,
 				50703B0C1D7EAD09001DAF45 /* ToDoActions.swift in Sources */,
 				50703B471D7EF83D001DAF45 /* CollectionType+ReSwiftTodo.swift in Sources */,
 				50703B4B1D7F1284001DAF45 /* CheckBox.swift in Sources */,
 				502C04751D87E38E0032B7F3 /* ToDoListActions.swift in Sources */,
+				504CDFDF1D8A6DDC00D16314 /* UndoMiddleware.swift in Sources */,
 				50703B281D7EB001001DAF45 /* ToDoReducer.swift in Sources */,
 				50703B451D7EF590001DAF45 /* ToDoTableDataSource.swift in Sources */,
 				50703B2E1D7EB5B5001DAF45 /* ToDoListStore.swift in Sources */,
+				504CDFE51D8A703D00D16314 /* Undoable.swift in Sources */,
 				507347941D8001A200ACFD0D /* String+ReSwiftTodo.swift in Sources */,
 				50703B321D7EB736001DAF45 /* ToDoListWindowController.swift in Sources */,
 				50703B391D7EE50D001DAF45 /* ToDoViewModel.swift in Sources */,
