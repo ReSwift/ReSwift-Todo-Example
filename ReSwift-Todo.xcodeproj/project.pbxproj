@@ -207,6 +207,24 @@
 			name = Undo;
 			sourceTree = "<group>";
 		};
+		504CDFE91D8A7F3800D16314 /* To-Do List Actions */ = {
+			isa = PBXGroup;
+			children = (
+				502C04741D87E38E0032B7F3 /* ToDoListActions.swift */,
+				50703B251D7EB001001DAF45 /* ToDoListReducer.swift */,
+			);
+			name = "To-Do List Actions";
+			sourceTree = "<group>";
+		};
+		504CDFEA1D8A7F4500D16314 /* To-Do Item Actions */ = {
+			isa = PBXGroup;
+			children = (
+				50703B081D7EAD09001DAF45 /* ToDoActions.swift */,
+				50703B261D7EB001001DAF45 /* ToDoReducer.swift */,
+			);
+			name = "To-Do Item Actions";
+			sourceTree = "<group>";
+		};
 		50703ADA1D7EACB8001DAF45 = {
 			isa = PBXGroup;
 			children = (
@@ -306,10 +324,8 @@
 			children = (
 				50703B2D1D7EB5B5001DAF45 /* ToDoListStore.swift */,
 				50703B2F1D7EB60F001DAF45 /* ToDoListState.swift */,
-				50703B081D7EAD09001DAF45 /* ToDoActions.swift */,
-				502C04741D87E38E0032B7F3 /* ToDoListActions.swift */,
-				50703B251D7EB001001DAF45 /* ToDoListReducer.swift */,
-				50703B261D7EB001001DAF45 /* ToDoReducer.swift */,
+				504CDFEA1D8A7F4500D16314 /* To-Do Item Actions */,
+				504CDFE91D8A7F3800D16314 /* To-Do List Actions */,
 				50703B2B1D7EB2E7001DAF45 /* LoggingMiddleware.swift */,
 				504CDFE81D8A75A100D16314 /* Undo */,
 			);
