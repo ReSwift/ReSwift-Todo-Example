@@ -23,6 +23,23 @@ struct ToDoList {
 
         items.append(toDo)
     }
+
+    /// Always inserts `toDo` into the list: 
+    ///
+    /// - if `index` exceeds the bounds of the items collection,
+    ///   it will be appended or prepended;
+    /// - if `index` falls inside these bounds, it will be
+    ///   inserted between existing elements.
+    mutating func insertItem(toDo: ToDo, atIndex index: Int) {
+
+        if index < 1 {
+            items.insert(toDo, atIndex: 0)
+        } else if index < items.count {
+            items.insert(toDo, atIndex: index)
+        } else {
+            items.append(toDo)
+        }
+    }
 }
 
 extension ToDoList {

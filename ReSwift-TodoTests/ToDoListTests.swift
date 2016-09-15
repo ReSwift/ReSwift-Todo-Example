@@ -89,4 +89,118 @@ class ToDoListTests: XCTestCase {
     }
 
 
+    // MARK: Adding items
+
+    func testAppendItem_EmptyList_AddsItem() {
+
+        let toDo = ToDo(title: "an item")
+        var list = ToDoList.empty
+
+        list.appendItem(toDo)
+
+        let expectedList = ToDoList(title: nil, items: [toDo])
+        XCTAssertEqual(list, expectedList)
+    }
+
+    func testAppendItem_ListWithItem_AddsItemToEnd() {
+
+        let newToDo = ToDo(title: "new item")
+        let existingToDo = ToDo(title: "existing item")
+        var list = ToDoList(title: nil, items: [existingToDo])
+
+        list.appendItem(newToDo)
+
+        let expectedList = ToDoList(title: nil, items: [existingToDo, newToDo])
+        XCTAssertEqual(list, expectedList)
+        let wronglySortedList = ToDoList(title: nil, items: [newToDo, existingToDo])
+        XCTAssertNotEqual(list, wronglySortedList)
+    }
+
+    func testInsertItem_EmptyList_At0_AddsItem() {
+
+        let toDo = ToDo(title: "an item")
+        var list = ToDoList.empty
+
+        list.insertItem(toDo, atIndex: 0)
+
+        let expectedList = ToDoList(title: nil, items: [toDo])
+        XCTAssertEqual(list, expectedList)
+    }
+
+    func testInsertItem_EmptyList_AtNegativeValue_AddsItem() {
+
+        let toDo = ToDo(title: "an item")
+        var list = ToDoList.empty
+
+        list.insertItem(toDo, atIndex: -123)
+
+        let expectedList = ToDoList(title: nil, items: [toDo])
+        XCTAssertEqual(list, expectedList)
+    }
+
+    func testInsertItem_EmptyList_At1000_AddsItem() {
+
+        let toDo = ToDo(title: "an item")
+        var list = ToDoList.empty
+
+        list.insertItem(toDo, atIndex: 1000)
+
+        let expectedList = ToDoList(title: nil, items: [toDo])
+        XCTAssertEqual(list, expectedList)
+    }
+
+    func testInsertItem_ListWithItem_AtNegativeValue_AddsItemToBeginning() {
+
+        let newToDo = ToDo(title: "new item")
+        let existingToDo = ToDo(title: "existing item")
+        var list = ToDoList(title: nil, items: [existingToDo])
+
+        list.insertItem(newToDo, atIndex: -999)
+
+        let expectedList = ToDoList(title: nil, items: [newToDo, existingToDo])
+        XCTAssertEqual(list, expectedList)
+        let wronglySortedList = ToDoList(title: nil, items: [existingToDo, newToDo])
+        XCTAssertNotEqual(list, wronglySortedList)
+    }
+
+    func testInsertItem_ListWithItem_At0_AddsItemToBeginning() {
+
+        let newToDo = ToDo(title: "new item")
+        let existingToDo = ToDo(title: "existing item")
+        var list = ToDoList(title: nil, items: [existingToDo])
+
+        list.insertItem(newToDo, atIndex: 0)
+
+        let expectedList = ToDoList(title: nil, items: [newToDo, existingToDo])
+        XCTAssertEqual(list, expectedList)
+        let wronglySortedList = ToDoList(title: nil, items: [existingToDo, newToDo])
+        XCTAssertNotEqual(list, wronglySortedList)
+    }
+
+    func testInsertItem_ListWithItem_AtHighValue_AddsItemToEnd() {
+
+        let newToDo = ToDo(title: "new item")
+        let existingToDo = ToDo(title: "existing item")
+        var list = ToDoList(title: nil, items: [existingToDo])
+
+        list.insertItem(newToDo, atIndex: 123)
+
+        let expectedList = ToDoList(title: nil, items: [existingToDo, newToDo])
+        XCTAssertEqual(list, expectedList)
+        let wronglySortedList = ToDoList(title: nil, items: [newToDo, existingToDo])
+        XCTAssertNotEqual(list, wronglySortedList)
+    }
+
+    func testInsertItem_ListWith2Items_At1_AddsItemInBetween() {
+
+        let newToDo = ToDo(title: "new item")
+        let firstToDo = ToDo(title: "existing item")
+        let secondToDo = ToDo(title: "another existing item")
+        var list = ToDoList(title: nil, items: [firstToDo, secondToDo])
+
+        list.insertItem(newToDo, atIndex: 1)
+
+        let expectedList = ToDoList(title: nil, items: [firstToDo, newToDo, secondToDo])
+        XCTAssertEqual(list, expectedList)
+    }
 }
