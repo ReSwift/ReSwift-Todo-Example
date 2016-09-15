@@ -37,6 +37,8 @@ class ToDoListWindowController: NSWindowController {
     @IBOutlet var titleTextField: NSTextField!
     @IBOutlet var tableView: NSTableView!
 
+    var cachedSelectedRow: Int?
+
     /// Changing the `delegate` while the window is displayed
     /// calls the `toDoListWindowControllerDidLoad` callback
     /// on the new `delegate`.
@@ -122,6 +124,8 @@ extension ToDoListWindowController: DisplaysToDoList {
 
         displayToDoTitle(viewModel: viewModel)
         updateTableDataSource(viewModel: viewModel)
+        reselectRow()
+        focusTableView()
     }
 
     private func displayToDoTitle(viewModel viewModel: ToDoListViewModel) {
@@ -133,6 +137,18 @@ extension ToDoListWindowController: DisplaysToDoList {
 
         dataSource.updateContents(toDoListViewModel: viewModel)
         tableView.reloadData()
+    }
+
+    private func reselectRow() {
+
+        guard let lastSelectedRow = self.cachedSelectedRow else { return }
+
+        tableView.selectRowIndexes(NSIndexSet(index: lastSelectedRow), byExtendingSelection: false)
+    }
+
+    private func focusTableView() {
+
+        self.window?.makeFirstResponder(tableView)
     }
 }
 
@@ -149,6 +165,11 @@ extension ToDoListWindowController: NSTableViewDelegate {
         cellView.toDoItemChangeDelegate = self
 
         return cellView
+    }
+
+    func tableViewSelectionDidChange(notification: NSNotification) {
+
+        self.cachedSelectedRow = tableView.selectedRow
     }
 }
 
