@@ -24,6 +24,10 @@
 		504CDFE51D8A703D00D16314 /* Undoable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFE41D8A703D00D16314 /* Undoable.swift */; };
 		504CDFE71D8A721D00D16314 /* UndoActionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFE61D8A721D00D16314 /* UndoActionContext.swift */; };
 		504CDFEC1D8A81E300D16314 /* RemoveIdempotentActionsMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFEB1D8A81E300D16314 /* RemoveIdempotentActionsMiddleware.swift */; };
+		504CDFEE1D8A8E1300D16314 /* SelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFED1D8A8E1300D16314 /* SelectionState.swift */; };
+		504CDFF01D8A8E3600D16314 /* SelectionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFEF1D8A8E3600D16314 /* SelectionActions.swift */; };
+		504CDFF21D8A8E7100D16314 /* SelectionReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFF11D8A8E7100D16314 /* SelectionReducer.swift */; };
+		504CDFF51D8A948700D16314 /* SelectionReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFF41D8A948700D16314 /* SelectionReducerTests.swift */; };
 		50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE61D7EACB8001DAF45 /* AppDelegate.swift */; };
 		50703AE91D7EACB8001DAF45 /* ToDoDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */; };
 		50703AEC1D7EACB8001DAF45 /* ToDoListWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50703AEA1D7EACB8001DAF45 /* ToDoListWindowController.xib */; };
@@ -107,6 +111,10 @@
 		504CDFE41D8A703D00D16314 /* Undoable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Undoable.swift; sourceTree = "<group>"; };
 		504CDFE61D8A721D00D16314 /* UndoActionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UndoActionContext.swift; sourceTree = "<group>"; };
 		504CDFEB1D8A81E300D16314 /* RemoveIdempotentActionsMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveIdempotentActionsMiddleware.swift; sourceTree = "<group>"; };
+		504CDFED1D8A8E1300D16314 /* SelectionState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionState.swift; sourceTree = "<group>"; };
+		504CDFEF1D8A8E3600D16314 /* SelectionActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionActions.swift; sourceTree = "<group>"; };
+		504CDFF11D8A8E7100D16314 /* SelectionReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionReducer.swift; sourceTree = "<group>"; };
+		504CDFF41D8A948700D16314 /* SelectionReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionReducerTests.swift; sourceTree = "<group>"; };
 		50703AE31D7EACB8001DAF45 /* ReSwift-Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReSwift-Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50703AE61D7EACB8001DAF45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDocument.swift; sourceTree = "<group>"; };
@@ -227,6 +235,16 @@
 			name = "To-Do Item Actions";
 			sourceTree = "<group>";
 		};
+		504CDFF31D8A946C00D16314 /* Selection Changes */ = {
+			isa = PBXGroup;
+			children = (
+				504CDFED1D8A8E1300D16314 /* SelectionState.swift */,
+				504CDFEF1D8A8E3600D16314 /* SelectionActions.swift */,
+				504CDFF11D8A8E7100D16314 /* SelectionReducer.swift */,
+			);
+			name = "Selection Changes";
+			sourceTree = "<group>";
+		};
 		50703ADA1D7EACB8001DAF45 = {
 			isa = PBXGroup;
 			children = (
@@ -326,8 +344,9 @@
 			children = (
 				50703B2D1D7EB5B5001DAF45 /* ToDoListStore.swift */,
 				50703B2F1D7EB60F001DAF45 /* ToDoListState.swift */,
-				504CDFEA1D8A7F4500D16314 /* To-Do Item Actions */,
 				504CDFE91D8A7F3800D16314 /* To-Do List Actions */,
+				504CDFEA1D8A7F4500D16314 /* To-Do Item Actions */,
+				504CDFF31D8A946C00D16314 /* Selection Changes */,
 				50703B2B1D7EB2E7001DAF45 /* LoggingMiddleware.swift */,
 				504CDFEB1D8A81E300D16314 /* RemoveIdempotentActionsMiddleware.swift */,
 				504CDFE81D8A75A100D16314 /* Undo */,
@@ -387,6 +406,7 @@
 			children = (
 				50703B211D7EAFF7001DAF45 /* ToDoListReducerTests.swift */,
 				50703B221D7EAFF7001DAF45 /* ToDoReducerTests.swift */,
+				504CDFF41D8A948700D16314 /* SelectionReducerTests.swift */,
 			);
 			name = State;
 			sourceTree = "<group>";
@@ -506,6 +526,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				504CDFF01D8A8E3600D16314 /* SelectionActions.swift in Sources */,
 				50703B3B1D7EE569001DAF45 /* ToDoListViewModel.swift in Sources */,
 				50703AE91D7EACB8001DAF45 /* ToDoDocument.swift in Sources */,
 				502C04801D880C2A0032B7F3 /* DateConverter.swift in Sources */,
@@ -524,6 +545,7 @@
 				50703B4B1D7F1284001DAF45 /* CheckBox.swift in Sources */,
 				502C04751D87E38E0032B7F3 /* ToDoListActions.swift in Sources */,
 				504CDFDF1D8A6DDC00D16314 /* UndoMiddleware.swift in Sources */,
+				504CDFF21D8A8E7100D16314 /* SelectionReducer.swift in Sources */,
 				50703B281D7EB001001DAF45 /* ToDoReducer.swift in Sources */,
 				50703B451D7EF590001DAF45 /* ToDoTableDataSource.swift in Sources */,
 				50703B2E1D7EB5B5001DAF45 /* ToDoListStore.swift in Sources */,
@@ -533,6 +555,7 @@
 				50703B391D7EE50D001DAF45 /* ToDoViewModel.swift in Sources */,
 				50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */,
 				502C047B1D87F0480032B7F3 /* Clock.swift in Sources */,
+				504CDFEE1D8A8E1300D16314 /* SelectionState.swift in Sources */,
 				502C046F1D87D9580032B7F3 /* ToDoListSerializer.swift in Sources */,
 				50703B2C1D7EB2E7001DAF45 /* LoggingMiddleware.swift in Sources */,
 				50703B341D7EB838001DAF45 /* ToDoListPresenter.swift in Sources */,
@@ -556,6 +579,7 @@
 				50703B1D1D7EAE36001DAF45 /* ToDoListTests.swift in Sources */,
 				502C047D1D880BEC0032B7F3 /* DateConverterTests.swift in Sources */,
 				50703B491D7F0DE5001DAF45 /* ToDoTableDataSourceTests.swift in Sources */,
+				504CDFF51D8A948700D16314 /* SelectionReducerTests.swift in Sources */,
 				50703B231D7EAFF7001DAF45 /* ToDoListReducerTests.swift in Sources */,
 				502C04711D87D9660032B7F3 /* ToDoListSerializerTests.swift in Sources */,
 				50703B551D7F152B001DAF45 /* ToDoListImporterTests.swift in Sources */,
