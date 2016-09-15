@@ -14,6 +14,7 @@ class ToDoListReducer: ReSwift.Reducer {
     init() { }
 
     lazy var toDoReducer: ToDoReducer = ToDoReducer()
+    lazy var selectionReducer: SelectionReducer = SelectionReducer()
 
     func handleAction(action: Action, state: ToDoListState?) -> ToDoListState {
 
@@ -27,6 +28,8 @@ class ToDoListReducer: ReSwift.Reducer {
         toDoList = passActionToList(action, toDoList: toDoList)
         toDoList = passActionToItems(action, toDoList: toDoList)
         state.toDoList = toDoList
+
+        state.selection = passActionToSelection(action, selectionState: state.selection)
 
         return state
     }
@@ -46,5 +49,9 @@ class ToDoListReducer: ReSwift.Reducer {
         
         return toDoList
     }
-    
+
+    func passActionToSelection(action: Action, selectionState: SelectionState) -> SelectionState {
+
+        return selectionReducer.handleAction(action, state: selectionState)
+    }
 }

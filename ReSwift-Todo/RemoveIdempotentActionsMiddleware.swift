@@ -26,6 +26,11 @@ let removeIdempotentActionsMiddleware: Middleware = { dispatch, getState in
                 print("Ignoring \(action)")
 
                 return state
+            } else if let action = action as? SelectionAction where action.selectionState == state.selection {
+
+                print("Ignoring \(action)")
+
+                return state
             }
             
             return next(action)

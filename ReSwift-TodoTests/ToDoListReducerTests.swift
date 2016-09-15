@@ -46,7 +46,7 @@ class ToDoListReducerTests: XCTestCase {
 
         let toDo = ToDo(title: "irrelevant", completion: .unfinished)
         let list = ToDoList(title: "irrelevant", items: [toDo])
-        let state = ToDoListState(toDoList: list)
+        let state = ToDoListState(toDoList: list, selection: nil)
 
         _ = reducer.handleAction(AnyAction(), state: state)
 
@@ -64,7 +64,7 @@ class ToDoListReducerTests: XCTestCase {
 
         let newName = "a new name"
         let oldList = ToDoList(title: nil, items: [])
-        let state = ToDoListState(toDoList: oldList)
+        let state = ToDoListState(toDoList: oldList, selection: nil)
 
         let result = reducer.handleAction(RenameToDoListAction(renameTo: newName), state: state)
 
@@ -78,7 +78,7 @@ class ToDoListReducerTests: XCTestCase {
 
         let newList = ToDoList(title: "new", items: [])
         let oldList = ToDoList(title: "old", items: [])
-        let state = ToDoListState(toDoList: oldList)
+        let state = ToDoListState(toDoList: oldList, selection: nil)
 
         let result = reducer.handleAction(ReplaceToDoListAction(newToDoList: newList), state: state)
 

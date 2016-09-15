@@ -12,4 +12,5 @@ import ReSwift
 struct ToDoListState: StateType {
 
     var toDoList: ToDoList = ToDoList.demoList()
+    var selection: SelectionState = nil
 }
