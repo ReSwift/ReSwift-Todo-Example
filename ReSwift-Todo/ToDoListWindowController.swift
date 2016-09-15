@@ -154,6 +154,35 @@ extension ToDoListWindowController {
 
     // MARK: Editing
 
+    override func insertText(insertString: AnyObject) {
+
+        let string: String = {
+            if let string = insertString as? String {
+                return string
+            } else if let attributedString = insertString as? NSAttributedString {
+                return attributedString.string
+            }
+
+            return ""
+        }()
+
+        guard let selectedRow = dataSource.selectedRow
+            else { super.insertText(insertString); return }
+
+        guard string != " "
+            else { toggleTask(row: selectedRow); return }
+
+        editCell(row: selectedRow, insertText: string)
+    }
+
+    private func toggleTask(row row: Int) {
+
+        guard let toDo = self.dataSource.selectedToDo
+            else { return }
+
+        toDoItem(identifier: toDo.identifier, didChangeChecked: !toDo.checked)
+    }
+
     override func insertNewline(sender: AnyObject?) {
 
         let targetRow: Int = {
