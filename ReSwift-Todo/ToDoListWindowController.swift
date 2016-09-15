@@ -168,4 +168,12 @@ extension ToDoListWindowController: ToDoItemChangeDelegate {
 
         dispatchAction(action)
     }
+
+    func toDoItem(identifier identifier: String, didChangeTitle title: String) {
+
+        guard let toDoID = ToDoID(identifier: identifier)
+            else { preconditionFailure("Invalid To-Do item identifier \(identifier).") }
+
+        dispatchAction(ToDoAction.rename(toDoID, title: title))
+    }
 }

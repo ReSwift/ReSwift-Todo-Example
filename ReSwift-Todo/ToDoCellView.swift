@@ -12,6 +12,7 @@ import Cocoa
 protocol ToDoItemChangeDelegate: class {
 
     func toDoItem(identifier identifier: String, didChangeChecked checked: Bool)
+    func toDoItem(identifier identifier: String, didChangeTitle title: String)
 }
 
 class ToDoCellView: NSTableCellView {
@@ -44,6 +45,13 @@ class ToDoCellView: NSTableCellView {
         toDoItemChangeDelegate?.toDoItem(
             identifier: viewModel.identifier,
             didChangeChecked: checkbox.checked)
+    }
+
+    @IBAction func renameItem(sender: AnyObject) {
+
+        toDoItemChangeDelegate?.toDoItem(
+            identifier: viewModel.identifier,
+            didChangeTitle: titleTextField.stringValue)
     }
 }
 

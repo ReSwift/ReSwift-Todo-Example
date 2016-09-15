@@ -71,6 +71,9 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <action selector="renameItem:" target="DxO-ZL-OBf" id="Sn3-gv-PSA"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
