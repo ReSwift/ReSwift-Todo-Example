@@ -40,6 +40,13 @@ struct ToDoList {
             items.append(toDo)
         }
     }
+
+    mutating func removeItem(toDoID toDoID: ToDoID) {
+
+        guard let index = items.indexOf({ $0.toDoID == toDoID }) else { return }
+
+        items.removeAtIndex(index)
+    }
 }
 
 extension ToDoList {

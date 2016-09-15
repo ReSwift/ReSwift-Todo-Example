@@ -203,4 +203,41 @@ class ToDoListTests: XCTestCase {
         let expectedList = ToDoList(title: nil, items: [firstToDo, newToDo, secondToDo])
         XCTAssertEqual(list, expectedList)
     }
+
+    // MARK: Removing items
+
+    func testRemoveItem_ItemWithDifferentID_ReturnsUnchangedList() {
+
+        let existingToDo = ToDo(toDoID: ToDoID(), title: "irrelevant")
+        var list = ToDoList(title: nil, items: [existingToDo])
+
+        list.removeItem(toDoID: ToDoID())
+
+        let expectedList = ToDoList(title: nil, items: [existingToDo])
+        XCTAssertEqual(list, expectedList)
+    }
+
+    func testRemoveItem_ItemWithSameID_ReturnsEmptyList() {
+
+        let toDoID = ToDoID()
+        let existingToDo = ToDo(toDoID: toDoID, title: "irrelevant")
+        var list = ToDoList(title: nil, items: [existingToDo])
+
+        list.removeItem(toDoID: toDoID)
+
+        XCTAssertEqual(list, ToDoList.empty)
+    }
+
+    func testRemoveItem_OneOf2ItemsWithSameID_ReturnsListWithOtherItemLeft() {
+
+        let toDoID = ToDoID()
+        let matchingToDo = ToDo(toDoID: toDoID, title: "irrelevant")
+        let unmatchingToDo = ToDo(toDoID: ToDoID(), title: "also irrelevant")
+        var list = ToDoList(title: nil, items: [matchingToDo, unmatchingToDo])
+
+        list.removeItem(toDoID: toDoID)
+
+        let expectedList = ToDoList(title: nil, items: [unmatchingToDo])
+        XCTAssertEqual(list, expectedList)
+    }
 }
