@@ -61,3 +61,23 @@ struct ReplaceToDoListAction: ToDoListAction {
         return newToDoList
     }
 }
+
+struct InsertItemAction: UndoableAction, ToDoListAction {
+
+    let index: Int
+
+    func apply(oldToDoList oldToDoList: ToDoList) -> ToDoList {
+
+        var result = oldToDoList
+        result.insertItem(ToDo.empty, atIndex: index)
+        return result
+    }
+
+    var isUndoable: Bool { return false }
+    var name: String { return "Append Task" }
+
+    func inverse(context context: UndoActionContext) -> UndoableAction? {
+
+        return nil
+    }
+}
