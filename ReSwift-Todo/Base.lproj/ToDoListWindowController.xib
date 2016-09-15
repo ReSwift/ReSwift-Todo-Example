@@ -61,7 +61,7 @@
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="toggleCheckbox:" target="DxO-ZL-OBf" id="s8K-nK-NgA"/>
+                                                                <action selector="checkboxChanged:" target="DxO-ZL-OBf" id="xpY-xZ-knV"/>
                                                             </connections>
                                                         </button>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="FMU-47-XnI">

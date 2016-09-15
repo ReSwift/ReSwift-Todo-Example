@@ -40,7 +40,7 @@ class ToDoCellView: NSTableCellView {
         return tableView.makeViewWithIdentifier(ToDoCellView.reuseIdentifier, owner: owner) as? ToDoCellView
     }
 
-    @IBAction func toggleCheckbox(sender: AnyObject) {
+    @IBAction func checkboxChanged(sender: AnyObject) {
 
         toDoItemChangeDelegate?.toDoItem(
             identifier: viewModel.identifier,
