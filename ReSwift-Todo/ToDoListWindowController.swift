@@ -88,7 +88,7 @@ class ToDoListWindowController: NSWindowController {
 
         let newName = textField.stringValue
 
-        dispatchAction(ToDoListAction.rename(newName))
+        dispatchAction(RenameToDoListAction(renameTo: newName))
     }
 
     func dispatchAction(action: Action) {

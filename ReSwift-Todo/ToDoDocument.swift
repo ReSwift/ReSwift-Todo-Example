@@ -61,7 +61,7 @@ class ToDoDocument: NSDocument {
             return
         }
 
-        store.dispatch(ToDoListAction.replaceList(contents))
+        store.dispatch(ReplaceToDoListAction(newToDoList: contents))
     }
 
 }

@@ -66,7 +66,7 @@ class ToDoListReducerTests: XCTestCase {
         let oldList = ToDoList(title: nil, items: [])
         let state = ToDoListState(toDoList: oldList)
 
-        let result = reducer.handleAction(ToDoListAction.rename(newName), state: state)
+        let result = reducer.handleAction(RenameToDoListAction(renameTo: newName), state: state)
 
         XCTAssertEqual(result.toDoList.title, newName)
     }
@@ -80,7 +80,7 @@ class ToDoListReducerTests: XCTestCase {
         let oldList = ToDoList(title: "old", items: [])
         let state = ToDoListState(toDoList: oldList)
 
-        let result = reducer.handleAction(ToDoListAction.replaceList(newList), state: state)
+        let result = reducer.handleAction(ReplaceToDoListAction(newToDoList: newList), state: state)
 
         XCTAssert(result.toDoList.hasEqualContent(newList))
     }
