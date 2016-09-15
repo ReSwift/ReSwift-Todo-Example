@@ -65,7 +65,7 @@ class ToDoListWindowControllerTests: XCTestCase {
     func testDisplayList_ChangesTitleTextFieldContents() {
 
         let title = "The Title"
-        let viewModel = ToDoListViewModel(title: title, items: [])
+        let viewModel = ToDoListViewModel(title: title, items: [], selectedRow: nil)
         let textFieldDouble = NSTextField()
         controller.titleTextField = textFieldDouble
 
@@ -77,7 +77,7 @@ class ToDoListWindowControllerTests: XCTestCase {
     func testDisplayList_DelegatesToTableDataSource() {
 
         let dataSourceDouble = TestDataSource()
-        let viewModel = ToDoListViewModel(title: "some title", items: [])
+        let viewModel = ToDoListViewModel(title: "some title", items: [], selectedRow: nil)
         controller.dataSource = dataSourceDouble
 
         controller.displayToDoList(toDoListViewModel: viewModel)
@@ -100,7 +100,7 @@ class ToDoListWindowControllerTests: XCTestCase {
         }
 
         let tableViewDouble = TestTableView()
-        let viewModel = ToDoListViewModel(title: "irrelevant", items: [])
+        let viewModel = ToDoListViewModel(title: "irrelevant", items: [], selectedRow: nil)
         controller.tableView = tableViewDouble
 
         controller.displayToDoList(toDoListViewModel: viewModel)

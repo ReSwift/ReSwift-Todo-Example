@@ -13,6 +13,8 @@ struct ToDoListViewModel {
     let title: String
     let items: [ToDoViewModel]
     var itemCount: Int { return items.count }
+
+    let selectedRow: Int?
 }
 
 extension ToDoListViewModel: Equatable { }

@@ -25,7 +25,7 @@ class ToDoTableDataSourceTests: XCTestCase {
         let dataSource = ToDoTableDataSource()
         let items = (0...3).map(String.init)
             .map { ToDoViewModel(identifier: $0, title: $0, checked: false) }
-        let viewModel = ToDoListViewModel(title: "irrelevant", items: items)
+        let viewModel = ToDoListViewModel(title: "irrelevant", items: items, selectedRow: nil)
 
         dataSource.updateContents(toDoListViewModel: viewModel)
 
