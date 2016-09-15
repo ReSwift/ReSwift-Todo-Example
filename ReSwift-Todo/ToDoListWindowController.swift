@@ -18,6 +18,9 @@ protocol ToDoTableDataSourceType {
 
     var tableDataSource: NSTableViewDataSource { get }
 
+    var selectedRow: Int? { get }
+    var toDoCount: Int { get }
+
     func updateContents(toDoListViewModel viewModel: ToDoListViewModel)
     func toDoCellView(tableView tableView: NSTableView, row: Int, owner: AnyObject) -> ToDoCellView?
 }
@@ -28,7 +31,6 @@ extension ToDoTableDataSourceType where Self: NSTableViewDataSource {
         return self
     }
 }
-
 
 // MARK: -
 
@@ -94,11 +96,6 @@ class ToDoListWindowController: NSWindowController {
         dispatchAction(RenameToDoListAction(renameTo: newName))
     }
 
-    override func cancelOperation(sender: AnyObject?) {
-
-        dispatchAction(SelectionAction.deselect)
-    }
-
     private func dispatchAction(action: Action) {
 
         store?.dispatch(action)
@@ -113,6 +110,47 @@ class ToDoListWindowController: NSWindowController {
         delegate?.toDoListWindowControllerWillClose(self)
     }
 }
+
+// MARK: - Keyboard shortcut handling
+
+extension ToDoListWindowController {
+
+    // MARK: Selection
+
+    override func cancelOperation(sender: AnyObject?) {
+
+        dispatchAction(SelectionAction.deselect)
+    }
+
+    override func moveUp(sender: AnyObject?) {
+
+        let newRow: Int = {
+
+            guard let selectedRow = dataSource.selectedRow
+                where selectedRow > 0
+                else  { return dataSource.toDoCount - 1 }
+
+            return selectedRow - 1
+        }()
+
+        dispatchAction(SelectionAction.select(row: newRow))
+    }
+
+    override func moveDown(sender: AnyObject?) {
+
+        let newRow: Int = {
+
+            guard let selectedRow = dataSource.selectedRow
+                where selectedRow < dataSource.toDoCount.predecessor()
+                else  { return 0 }
+
+            return selectedRow + 1
+        }()
+
+        dispatchAction(SelectionAction.select(row: newRow))
+    }
+}
+
 
 // MARK: Displaying Data 
 

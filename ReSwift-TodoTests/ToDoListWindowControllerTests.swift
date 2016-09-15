@@ -111,19 +111,17 @@ class ToDoListWindowControllerTests: XCTestCase {
 
     // MARK: - Collaborators
 
-    class TestDataSource: ToDoTableDataSourceType {
-
-        var tableDataSource: NSTableViewDataSource { return NullTableViewDataSource() }
+    class TestDataSource: NullToDoTableDataSource {
 
         var didUpdateWith: ToDoListViewModel?
-        func updateContents(toDoListViewModel viewModel: ToDoListViewModel) {
+        override func updateContents(toDoListViewModel viewModel: ToDoListViewModel) {
 
             didUpdateWith = viewModel
         }
 
         var testToDoCellView: ToDoCellView?
         var didRequestCellViewWith: (tableView: NSTableView, row: Int, owner: AnyObject)?
-        func toDoCellView(tableView tableView: NSTableView, row: Int, owner: AnyObject) -> ToDoCellView? {
+        override func toDoCellView(tableView tableView: NSTableView, row: Int, owner: AnyObject) -> ToDoCellView? {
 
             didRequestCellViewWith = (tableView, row, owner)
 
@@ -131,5 +129,3 @@ class ToDoListWindowControllerTests: XCTestCase {
         }
     }
 }
-
-class NullTableViewDataSource: NSObject, NSTableViewDataSource { }

@@ -29,6 +29,7 @@
 		504CDFF21D8A8E7100D16314 /* SelectionReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFF11D8A8E7100D16314 /* SelectionReducer.swift */; };
 		504CDFF51D8A948700D16314 /* SelectionReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFF41D8A948700D16314 /* SelectionReducerTests.swift */; };
 		504CDFF71D8ADB3D00D16314 /* ToDoTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFF61D8ADB3D00D16314 /* ToDoTableView.swift */; };
+		504CDFF91D8ADCEC00D16314 /* NullToDoTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CDFF81D8ADCEC00D16314 /* NullToDoTableDataSource.swift */; };
 		50703AE71D7EACB8001DAF45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE61D7EACB8001DAF45 /* AppDelegate.swift */; };
 		50703AE91D7EACB8001DAF45 /* ToDoDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */; };
 		50703AEC1D7EACB8001DAF45 /* ToDoListWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50703AEA1D7EACB8001DAF45 /* ToDoListWindowController.xib */; };
@@ -117,6 +118,7 @@
 		504CDFF11D8A8E7100D16314 /* SelectionReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionReducer.swift; sourceTree = "<group>"; };
 		504CDFF41D8A948700D16314 /* SelectionReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionReducerTests.swift; sourceTree = "<group>"; };
 		504CDFF61D8ADB3D00D16314 /* ToDoTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableView.swift; sourceTree = "<group>"; };
+		504CDFF81D8ADCEC00D16314 /* NullToDoTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullToDoTableDataSource.swift; sourceTree = "<group>"; };
 		50703AE31D7EACB8001DAF45 /* ReSwift-Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReSwift-Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50703AE61D7EACB8001DAF45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50703AE81D7EACB8001DAF45 /* ToDoDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDocument.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				50703B401D7EE8D2001DAF45 /* Helpers.swift */,
 				507347911D7FFFBD00ACFD0D /* ErrorHelpers.swift */,
 				502C04781D87F0310032B7F3 /* ClockStub.swift */,
+				504CDFF81D8ADCEC00D16314 /* NullToDoTableDataSource.swift */,
 				50703AFD1D7EACB8001DAF45 /* Info.plist */,
 			);
 			path = "ReSwift-TodoTests";
@@ -586,6 +589,7 @@
 				504CDFF51D8A948700D16314 /* SelectionReducerTests.swift in Sources */,
 				50703B231D7EAFF7001DAF45 /* ToDoListReducerTests.swift in Sources */,
 				502C04711D87D9660032B7F3 /* ToDoListSerializerTests.swift in Sources */,
+				504CDFF91D8ADCEC00D16314 /* NullToDoTableDataSource.swift in Sources */,
 				50703B551D7F152B001DAF45 /* ToDoListImporterTests.swift in Sources */,
 				502C04831D88216A0032B7F3 /* ToDoLineTokenizerTests.swift in Sources */,
 				50703B1E1D7EAE36001DAF45 /* ToDoTests.swift in Sources */,

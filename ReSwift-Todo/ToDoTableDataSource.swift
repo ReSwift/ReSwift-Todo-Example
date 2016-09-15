@@ -23,6 +23,9 @@ extension ToDoTableDataSource: NSTableViewDataSource {
 
 extension ToDoTableDataSource: ToDoTableDataSourceType {
 
+    var selectedRow: Int? { return viewModel?.selectedRow }
+    var toDoCount: Int { return viewModel?.itemCount ?? 0 }
+    
     func updateContents(toDoListViewModel viewModel: ToDoListViewModel) {
 
         self.viewModel = viewModel
