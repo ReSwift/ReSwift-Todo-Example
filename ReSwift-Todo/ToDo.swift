@@ -32,6 +32,8 @@ enum Completion {
 
 struct ToDo {
 
+    static var empty: ToDo { return ToDo(title: "New Task") }
+    
     let toDoID: ToDoID
     var title: String
     var completion: Completion
