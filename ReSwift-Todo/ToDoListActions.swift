@@ -8,8 +8,37 @@
 
 import Foundation
 
-enum ToDoListAction: Action {
+enum ToDoListAction: UndoableAction {
 
-    case rename(String)
+    case rename(String?)
     case replaceList(ToDoList)
+
+    // MARK: Undoable
+
+    var name: String {
+
+        switch self {
+        case .rename: return "Rename Project"
+        case .replaceList: return "Replace List"
+        }
+    }
+
+    var isUndoable: Bool {
+
+        switch self {
+        case .rename: return true
+        default: return false
+        }
+    }
+
+    func inverse(context context: UndoActionContext) -> UndoableAction? {
+
+        switch self {
+        case .rename:
+            let oldName = context.toDoListTitle
+            return ToDoListAction.rename(oldName)
+
+        default: return nil
+        }
+    }
 }
