@@ -117,4 +117,31 @@ class ToDoReducerTests: XCTestCase {
         }
     }
 
+    func testHandleAction_WithRenameAction_ItemWithDifferentID_ReturnsSameItem() {
+
+        let originalTitle = "old title"
+        let item = ToDo(toDoID: ToDoID(), title: originalTitle)
+
+        let result = reducer.handleAction(ToDoAction.rename(ToDoID(), title: "new title!!1"), state: item)
+
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(result, item)
+        }
+    }
+
+    func testHandleAction_WithRenameAction_ItemWithSameID_ReturnsRenamedItem() {
+
+        let originalTitle = "old title"
+        let toDoID = ToDoID()
+        let item = ToDo(toDoID: toDoID, title: originalTitle)
+        let newTitle = "new title!!1"
+
+        let result = reducer.handleAction(ToDoAction.rename(toDoID, title: newTitle), state: item)
+
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(result.title, newTitle)
+        }
+    }
 }

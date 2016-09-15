@@ -12,4 +12,6 @@ enum ToDoAction: Action {
     
     case check(ToDoID)
     case uncheck(ToDoID)
+
+    case rename(ToDoID, title: String)
 }

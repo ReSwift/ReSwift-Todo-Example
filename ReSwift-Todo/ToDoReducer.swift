@@ -33,6 +33,10 @@ class ToDoReducer {
         case let .uncheck(toDoID):
             guard toDo.toDoID == toDoID else { return toDo }
             toDo.completion = .unfinished
+
+        case let .rename(toDoID, title: title):
+            guard toDo.toDoID == toDoID else { return toDo }
+            toDo.title = title
         }
         
         return toDo
