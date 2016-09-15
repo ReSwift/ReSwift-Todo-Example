@@ -24,6 +24,7 @@ func toDoListStore(undoManager undoManager: NSUndoManager) -> ToDoListStore {
         reducer: ToDoListReducer(),
         state: nil,
         middleware: [
+            removeIdempotentActionsMiddleware,
             loggingMiddleware,
             undoMiddleware(undoManager: undoManager)
         ])
