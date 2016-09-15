@@ -94,6 +94,11 @@ class ToDoListWindowController: NSWindowController {
         dispatchAction(RenameToDoListAction(renameTo: newName))
     }
 
+    override func cancelOperation(sender: AnyObject?) {
+
+        dispatchAction(SelectionAction.deselect)
+    }
+
     private func dispatchAction(action: Action) {
 
         store?.dispatch(action)
