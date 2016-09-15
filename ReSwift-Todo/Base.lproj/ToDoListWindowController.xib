@@ -61,7 +61,7 @@
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <binding destination="DxO-ZL-OBf" name="value" keyPath="objectValue.checked" id="aIP-Bd-Q47"/>
+                                                                <action selector="toggleCheckbox:" target="DxO-ZL-OBf" id="s8K-nK-NgA"/>
                                                             </connections>
                                                         </button>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="FMU-47-XnI">
@@ -71,9 +71,6 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
-                                                            <connections>
-                                                                <binding destination="DxO-ZL-OBf" name="value" keyPath="objectValue.title" id="ai1-r9-mLP"/>
-                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>

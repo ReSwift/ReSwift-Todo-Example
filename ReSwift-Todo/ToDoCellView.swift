@@ -9,6 +9,11 @@
 import Foundation
 import Cocoa
 
+protocol ToDoItemChangeDelegate: class {
+
+    func toDoItem(identifier identifier: String, didChangeChecked checked: Bool)
+}
+
 class ToDoCellView: NSTableCellView {
 
     static var reuseIdentifier: String { return "ToDoCell" }
@@ -27,9 +32,18 @@ class ToDoCellView: NSTableCellView {
         }
     }
 
+    weak var toDoItemChangeDelegate: ToDoItemChangeDelegate?
+
     static func make(tableView tableView: NSTableView, owner: AnyObject? = nil) -> ToDoCellView? {
 
         return tableView.makeViewWithIdentifier(ToDoCellView.reuseIdentifier, owner: owner) as? ToDoCellView
+    }
+
+    @IBAction func toggleCheckbox(sender: AnyObject) {
+
+        toDoItemChangeDelegate?.toDoItem(
+            identifier: viewModel.identifier,
+            didChangeChecked: checkbox.checked)
     }
 }
 
