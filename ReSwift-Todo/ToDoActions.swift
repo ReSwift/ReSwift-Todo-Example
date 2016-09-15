@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ReSwift
 
 enum ToDoAction: Action {
     
