@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
 
-    func appended(other: String) -> String {
+    func appended(_ other: String) -> String {
 
         return self + other
     }
@@ -18,15 +18,15 @@ extension String {
 
 extension Array {
 
-    func appendedContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C) -> [Element] {
+    func appendedContentsOf<C : Collection>(_ newElements: C) -> [Element] where C.Iterator.Element == Element {
 
         var result = self
-        result.appendContentsOf(newElements)
+        result.append(contentsOf: newElements)
         return result
     }
 }
 
-enum SerializationError: ErrorType {
+enum SerializationError: Error {
 
     case cannotEncodeString
 }
@@ -37,12 +37,12 @@ class ToDoListSerializer {
 
     lazy var dateConverter: DateConverter = DateConverter()
 
-    func data(toDoList toDoList: ToDoList, encoding: NSStringEncoding = NSUTF8StringEncoding) -> NSData? {
+    func data(toDoList: ToDoList, encoding: String.Encoding = String.Encoding.utf8) -> Data? {
 
-        return string(toDoList: toDoList).dataUsingEncoding(encoding)
+        return string(toDoList: toDoList).data(using: encoding)
     }
 
-    func string(toDoList toDoList: ToDoList) -> String {
+    func string(toDoList: ToDoList) -> String {
 
         guard !toDoList.isEmpty else { return "" }
 
@@ -53,13 +53,13 @@ class ToDoListSerializer {
             .appendedContentsOf(items)
             .filter({ !$0.isEmpty }) // Remove empty title lines
 
-        return lines.joinWithSeparator("\n").appended("\n")
+        return lines.joined(separator: "\n").appended("\n")
     }
 
-    private func itemRepresentation(item: ToDo) -> String {
+    fileprivate func itemRepresentation(_ item: ToDo) -> String {
 
         let body = "- \(item.title)"
-        let tags = item.tags.sort().map { "@\($0)" }
+        let tags = item.tags.sorted().map { "@\($0)" }
         let done: String? = {
             switch item.completion {
             case .unfinished: return nil
@@ -74,10 +74,10 @@ class ToDoListSerializer {
         return [body]
             .appendedContentsOf(tags)
             .appendedContentsOf([done].flatMap(identity)) // remove nil
-            .joinWithSeparator(" ")
+            .joined(separator: " ")
     }
 }
 
-func identity<T>(value: T?) -> T? {
+func identity<T>(_ value: T?) -> T? {
     return value
 }

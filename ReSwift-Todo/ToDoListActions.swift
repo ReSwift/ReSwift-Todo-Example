@@ -11,7 +11,7 @@ import ReSwift
 
 protocol ToDoListAction: Action {
 
-    func apply(oldToDoList oldToDoList: ToDoList) -> ToDoList
+    func apply(oldToDoList: ToDoList) -> ToDoList
 }
 
 // I modeled these actions each as its own struct. There's no
@@ -35,7 +35,7 @@ struct RenameToDoListAction: UndoableAction, ToDoListAction {
         self.newName = newName
     }
 
-    func apply(oldToDoList oldToDoList: ToDoList) -> ToDoList {
+    func apply(oldToDoList: ToDoList) -> ToDoList {
 
         var result = oldToDoList
         result.title = self.newName
@@ -45,7 +45,7 @@ struct RenameToDoListAction: UndoableAction, ToDoListAction {
     var name: String { return "Rename Project" }
     var isUndoable: Bool { return true }
 
-    func inverse(context context: UndoActionContext) -> UndoableAction? {
+    func inverse(context: UndoActionContext) -> UndoableAction? {
 
         let oldName = context.toDoListTitle
         return RenameToDoListAction(renameTo: oldName)
@@ -56,7 +56,7 @@ struct ReplaceToDoListAction: ToDoListAction {
 
     let newToDoList: ToDoList
 
-    func apply(oldToDoList oldToDoList: ToDoList) -> ToDoList {
+    func apply(oldToDoList: ToDoList) -> ToDoList {
 
         return newToDoList
     }
@@ -67,7 +67,7 @@ struct InsertTaskAction: UndoableAction, ToDoListAction {
     let toDo: ToDo
     let index: Int
 
-    func apply(oldToDoList oldToDoList: ToDoList) -> ToDoList {
+    func apply(oldToDoList: ToDoList) -> ToDoList {
 
         var result = oldToDoList
         result.insertItem(toDo, atIndex: index)
@@ -77,7 +77,7 @@ struct InsertTaskAction: UndoableAction, ToDoListAction {
     var isUndoable: Bool { return true }
     var name: String { return "Append Task" }
 
-    func inverse(context context: UndoActionContext) -> UndoableAction? {
+    func inverse(context: UndoActionContext) -> UndoableAction? {
 
         return RemoveTaskAction(toDoID: toDo.toDoID)
     }
@@ -87,7 +87,7 @@ struct RemoveTaskAction: UndoableAction, ToDoListAction {
 
     let toDoID: ToDoID
 
-    func apply(oldToDoList oldToDoList: ToDoList) -> ToDoList {
+    func apply(oldToDoList: ToDoList) -> ToDoList {
 
         var result = oldToDoList
         result.removeItem(toDoID: toDoID)
@@ -97,7 +97,7 @@ struct RemoveTaskAction: UndoableAction, ToDoListAction {
     var isUndoable: Bool { return true }
     var name: String { return "Remove Task" }
 
-    func inverse(context context: UndoActionContext) -> UndoableAction? {
+    func inverse(context: UndoActionContext) -> UndoableAction? {
 
         guard let removingToDo = context.toDoInList(toDoID: toDoID) else { return nil }
 

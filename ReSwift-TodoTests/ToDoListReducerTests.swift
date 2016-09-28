@@ -20,7 +20,7 @@ class ToDoListReducerTests: XCTestCase {
 
         struct AnyAction: Action {}
 
-        let result = reducer.handleAction(AnyAction(), state: nil)
+        let result = reducer.handleAction(action: AnyAction(), state: nil)
 
         XCTAssert(result.toDoList.hasEqualContent(ToDoList.demoList()))
     }
@@ -32,7 +32,7 @@ class ToDoListReducerTests: XCTestCase {
         let toDoReducerDouble = TestToDoReducer()
         reducer.toDoReducer = toDoReducerDouble
 
-        _ = reducer.handleAction(AnyAction(), state: nil)
+        _ = reducer.handleAction(action: AnyAction(), state: nil)
 
         XCTAssertNil(toDoReducerDouble.didHandleActionWith)
     }
@@ -48,7 +48,7 @@ class ToDoListReducerTests: XCTestCase {
         let list = ToDoList(title: "irrelevant", items: [toDo])
         let state = ToDoListState(toDoList: list, selection: nil)
 
-        _ = reducer.handleAction(AnyAction(), state: state)
+        _ = reducer.handleAction(action: AnyAction(), state: state)
 
         XCTAssertNotNil(toDoReducerDouble.didHandleActionWith)
         if let values = toDoReducerDouble.didHandleActionWith {
@@ -66,7 +66,7 @@ class ToDoListReducerTests: XCTestCase {
         let oldList = ToDoList(title: nil, items: [])
         let state = ToDoListState(toDoList: oldList, selection: nil)
 
-        let result = reducer.handleAction(RenameToDoListAction(renameTo: newName), state: state)
+        let result = reducer.handleAction(action: RenameToDoListAction(renameTo: newName), state: state)
 
         XCTAssertEqual(result.toDoList.title, newName)
     }
@@ -80,7 +80,7 @@ class ToDoListReducerTests: XCTestCase {
         let oldList = ToDoList(title: "old", items: [])
         let state = ToDoListState(toDoList: oldList, selection: nil)
 
-        let result = reducer.handleAction(ReplaceToDoListAction(newToDoList: newList), state: state)
+        let result = reducer.handleAction(action: ReplaceToDoListAction(newToDoList: newList), state: state)
 
         XCTAssert(result.toDoList.hasEqualContent(newList))
     }
@@ -92,7 +92,7 @@ class ToDoListReducerTests: XCTestCase {
 
         var testToDo: ToDo? = nil
         var didHandleActionWith: (action: Action, state: ToDo?)?
-        override func handleAction(action: Action, state: ToDo?, clock: Clock = Clock()) -> ToDo? {
+        override func handleAction(_ action: Action, state: ToDo?, clock: Clock = Clock()) -> ToDo? {
 
             didHandleActionWith = (action, state)
 

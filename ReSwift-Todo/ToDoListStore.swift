@@ -18,7 +18,7 @@ typealias Action = ReSwift.Action
 // A typealias will not work and only raise EXC_BAD_ACCESS exceptions. ¯\_(ツ)_/¯
 protocol UndoableAction: Action, Undoable { }
 
-func toDoListStore(undoManager undoManager: NSUndoManager) -> ToDoListStore {
+func toDoListStore(undoManager: UndoManager) -> ToDoListStore {
 
     return ToDoListStore(
         reducer: ToDoListReducer(),

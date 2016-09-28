@@ -11,8 +11,8 @@ import Cocoa
 
 @objc protocol ToDoItemChangeDelegate: class {
 
-    func toDoItem(identifier identifier: String, didChangeChecked checked: Bool)
-    func toDoItem(identifier identifier: String, didChangeTitle title: String)
+    func toDoItem(identifier: String, didChangeChecked checked: Bool)
+    func toDoItem(identifier: String, didChangeTitle title: String)
 }
 
 class ToDoCellView: NSTableCellView {
@@ -26,7 +26,7 @@ class ToDoCellView: NSTableCellView {
         set { textField = newValue }
     }
 
-    private(set) var viewModel: ToDoViewModel! {
+    fileprivate(set) var viewModel: ToDoViewModel! {
         didSet {
             titleTextField.stringValue = viewModel.title
             checkbox.checked = viewModel.checked
@@ -35,19 +35,19 @@ class ToDoCellView: NSTableCellView {
 
     weak var toDoItemChangeDelegate: ToDoItemChangeDelegate?
 
-    static func make(tableView tableView: NSTableView, owner: AnyObject? = nil) -> ToDoCellView? {
+    static func make(tableView: NSTableView, owner: AnyObject? = nil) -> ToDoCellView? {
 
-        return tableView.makeViewWithIdentifier(ToDoCellView.reuseIdentifier, owner: owner) as? ToDoCellView
+        return tableView.make(withIdentifier: ToDoCellView.reuseIdentifier, owner: owner) as? ToDoCellView
     }
 
-    @IBAction func checkboxChanged(sender: AnyObject) {
+    @IBAction func checkboxChanged(_ sender: AnyObject) {
 
         toDoItemChangeDelegate?.toDoItem(
             identifier: viewModel.identifier,
             didChangeChecked: checkbox.checked)
     }
 
-    @IBAction func renameItem(sender: AnyObject) {
+    @IBAction func renameItem(_ sender: AnyObject) {
 
         toDoItemChangeDelegate?.toDoItem(
             identifier: viewModel.identifier,

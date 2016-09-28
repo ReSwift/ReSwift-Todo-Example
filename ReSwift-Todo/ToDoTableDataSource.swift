@@ -15,7 +15,7 @@ class ToDoTableDataSource: NSObject {
 
 extension ToDoTableDataSource: NSTableViewDataSource {
 
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+    func numberOfRows(in tableView: NSTableView) -> Int {
 
         return viewModel?.itemCount ?? 0
     }
@@ -32,10 +32,10 @@ extension ToDoTableDataSource: ToDoTableDataSourceType {
         self.viewModel = viewModel
     }
 
-    func toDoCellView(tableView tableView: NSTableView, row: Int, owner: AnyObject) -> ToDoCellView? {
+    func toDoCellView(tableView: NSTableView, row: Int, owner: AnyObject) -> ToDoCellView? {
 
         guard let cellViewModel = viewModel?.items[safe: row],
-            cellView = ToDoCellView.make(tableView: tableView, owner: owner)
+            let cellView = ToDoCellView.make(tableView: tableView, owner: owner)
             else { return nil }
 
         cellView.showToDo(toDoViewModel: cellViewModel)

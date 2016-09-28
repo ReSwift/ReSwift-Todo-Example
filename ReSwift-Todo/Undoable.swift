@@ -16,7 +16,7 @@ protocol Undoable {
     var notUndoable: NotUndoable { get }
     var isUndoable: Bool { get }
 
-    func inverse(context context: UndoActionContext) -> UndoableAction?
+    func inverse(context: UndoActionContext) -> UndoableAction?
 }
 
 extension Undoable where Self: UndoableAction {

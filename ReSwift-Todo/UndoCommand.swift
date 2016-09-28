@@ -22,7 +22,7 @@ class UndoCommand: NSObject {
     let undoName: String?
     let redoBlock: (Block)?
 
-    init(undoBlock: Block, undoName: String? = nil, redoBlock: (Block)? = nil) {
+    init(undoBlock: @escaping Block, undoName: String? = nil, redoBlock: (Block)? = nil) {
 
         self.undoBlock = undoBlock
         self.undoName = undoName
@@ -37,12 +37,12 @@ class UndoCommand: NSObject {
         return UndoCommand(undoBlock: redoBlock, redoBlock: undoBlock)
     }
 
-    func register(undoManager undoManager: NSUndoManager) {
+    func register(undoManager: UndoManager) {
 
         undoManager.registerUndo(action: self)
 
         // Don't overwrite the inferred name when undoing.
-        if !undoManager.undoing,
+        if !undoManager.isUndoing,
             let undoName = self.undoName {
 
             undoManager.setActionName(undoName)
@@ -50,14 +50,14 @@ class UndoCommand: NSObject {
     }
 }
 
-private extension NSUndoManager {
+private extension UndoManager {
 
-    func registerUndo(action action: UndoCommand) {
+    func registerUndo(action: UndoCommand) {
 
-        registerUndoWithTarget(self, selector: #selector(performUndo(_:)), object: action)
+        self.registerUndo(withTarget: self, selector: #selector(performUndo(_:)), object: action)
     }
 
-    @objc func performUndo(action: UndoCommand) {
+    @objc func performUndo(_ action: UndoCommand) {
 
         action.undoBlock()
 

@@ -33,9 +33,8 @@ class DateConverterTests: XCTestCase {
 
     func testDate_ISODateString_ReturnsDate() {
 
-        let expectedDate = NSCalendar.autoupdatingCurrentCalendar().dateFromISOComponents(year: 2015, month: 12, day: 24)!
-        XCTAssert(
-            DateConverter().date(isoDateString: "2015-12-24")?
-                .isEqualToDate(expectedDate) ?? false)
+        let expectedDate = Calendar.autoupdatingCurrent.dateFromISOComponents(year: 2015, month: 12, day: 24)!
+
+        XCTAssertEqual(DateConverter().date(isoDateString: "2015-12-24"), expectedDate)
     }
 }

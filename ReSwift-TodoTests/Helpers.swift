@@ -8,17 +8,17 @@
 
 import Cocoa
 
-func forceLoadWindowController(controller: NSWindowController) {
+func forceLoadWindowController(_ controller: NSWindowController) {
 
     _ = controller.window
 }
 
-func forceLoadViewController(controller: NSViewController) {
+func forceLoadViewController(_ controller: NSViewController) {
 
     _ = controller.view
 }
 
-func button(button: NSButton?, isWiredToAction action: String, withTarget target: AnyObject) -> Bool {
+func button(_ button: NSButton?, isWiredToAction action: String, withTarget target: AnyObject) -> Bool {
 
     return button?.action == Selector(action) && button?.target === target
 }

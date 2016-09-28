@@ -17,7 +17,7 @@ class ToDoTableDataSourceTests: XCTestCase {
 
         let dataSource = ToDoTableDataSource()
 
-        XCTAssertEqual(dataSource.numberOfRowsInTableView(irrelevantTableView), 0)
+        XCTAssertEqual(dataSource.numberOfRows(in: irrelevantTableView), 0)
     }
 
     func testNumberOfRows_WithVM_ReturnsVMItemCount() {
@@ -29,6 +29,6 @@ class ToDoTableDataSourceTests: XCTestCase {
 
         dataSource.updateContents(toDoListViewModel: viewModel)
 
-        XCTAssertEqual(dataSource.numberOfRowsInTableView(irrelevantTableView), items.count)
+        XCTAssertEqual(dataSource.numberOfRows(in: irrelevantTableView), items.count)
     }
 }

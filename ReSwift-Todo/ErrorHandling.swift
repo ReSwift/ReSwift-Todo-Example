@@ -8,7 +8,7 @@
 
 import Foundation
 
-func reportError(error: ErrorType, function: String = #function, file: String = #file, line: Int = #line) {
+func reportError(_ error: Error, function: String = #function, file: String = #file, line: Int = #line) {
 
     print("ERROR \(function) (\(file):\(line)): \(error)")
 }

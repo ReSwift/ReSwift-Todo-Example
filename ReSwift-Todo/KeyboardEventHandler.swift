@@ -10,7 +10,7 @@ import Cocoa
 
 @objc protocol ToDoItemEditDelegate: class {
 
-    func editItem(row row: Int, insertText text: String?)
+    func editItem(row: Int, insertText text: String?)
 }
 
 class KeyboardEventHandler: PatchingResponder {
@@ -21,24 +21,24 @@ class KeyboardEventHandler: PatchingResponder {
     @IBOutlet weak var itemChangeDelegate: ToDoItemChangeDelegate?
     @IBOutlet weak var itemEditDelegate: ToDoItemEditDelegate?
 
-    private func dispatchAction(action: Action) {
+    fileprivate func dispatchAction(_ action: Action) {
 
         store?.dispatch(action)
     }
 
     // MARK: Selection
 
-    override func cancelOperation(sender: AnyObject?) {
+    override func cancelOperation(_ sender: Any?) {
 
         dispatchAction(SelectionAction.deselect)
     }
 
-    override func moveUp(sender: AnyObject?) {
+    override func moveUp(_ sender: Any?) {
 
         let newRow: Int = {
 
             guard let selectedRow = dataSource.selectedRow
-                where selectedRow > 0
+                , selectedRow > 0
                 else  { return dataSource.toDoCount - 1 }
 
             return selectedRow - 1
@@ -47,12 +47,12 @@ class KeyboardEventHandler: PatchingResponder {
         dispatchAction(SelectionAction.select(row: newRow))
     }
 
-    override func moveDown(sender: AnyObject?) {
+    override func moveDown(_ sender: Any?) {
 
         let newRow: Int = {
 
             guard let selectedRow = dataSource.selectedRow
-                where selectedRow < dataSource.toDoCount.predecessor()
+                , selectedRow < (dataSource.toDoCount - 1)
                 else  { return 0 }
 
             return selectedRow + 1
@@ -64,7 +64,7 @@ class KeyboardEventHandler: PatchingResponder {
 
     // MARK: Editing
 
-    override func insertText(insertString: AnyObject) {
+    override func insertText(_ insertString: Any) {
 
         let string: String = {
             if let string = insertString as? String {
@@ -85,7 +85,7 @@ class KeyboardEventHandler: PatchingResponder {
         editCell(row: selectedRow, insertText: string)
     }
 
-    private func toggleTask(row row: Int) {
+    fileprivate func toggleTask(row: Int) {
 
         guard let toDo = self.dataSource.selectedToDo
             else { return }
@@ -95,7 +95,7 @@ class KeyboardEventHandler: PatchingResponder {
             didChangeChecked: !toDo.checked)
     }
 
-    override func insertNewline(sender: AnyObject?) {
+    override func insertNewline(_ sender: Any?) {
 
         let targetRow: Int = {
             guard let selectedRow = dataSource.selectedRow
@@ -108,7 +108,7 @@ class KeyboardEventHandler: PatchingResponder {
         dispatchAction(SelectionAction.select(row: targetRow))
     }
 
-    override func insertTab(sender: AnyObject?) {
+    override func insertTab(_ sender: Any?) {
 
         guard let selectedRow = dataSource.selectedRow
             else { return }
@@ -117,7 +117,7 @@ class KeyboardEventHandler: PatchingResponder {
     }
 
 
-    private func editCell(row row: Int, insertText text: String? = nil) {
+    fileprivate func editCell(row: Int, insertText text: String? = nil) {
 
         itemEditDelegate?.editItem(row: row, insertText: text)
     }
@@ -125,20 +125,20 @@ class KeyboardEventHandler: PatchingResponder {
 
     // MARK: Removal
 
-    override func deleteForward(sender: AnyObject?) {
+    override func deleteForward(_ sender: Any?) {
 
         removeSelectedTask()
     }
 
-    override func deleteBackward(sender: AnyObject?) {
+    override func deleteBackward(_ sender: Any?) {
         
         removeSelectedTask()
     }
     
-    private func removeSelectedTask() {
+    fileprivate func removeSelectedTask() {
         
         guard let selectedToDo = dataSource.selectedToDo,
-            toDoID = ToDoID(identifier: selectedToDo.identifier)
+            let toDoID = ToDoID(identifier: selectedToDo.identifier)
             else { return }
         
         dispatchAction(RemoveTaskAction(toDoID: toDoID))

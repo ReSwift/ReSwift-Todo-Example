@@ -10,7 +10,7 @@ import Cocoa
 
 class ToDoTableView: NSTableView {
 
-    override func keyDown(theEvent: NSEvent) {
+    override func keyDown(with theEvent: NSEvent) {
 
         // Consume keyDown to prevent interpretation here
         self.nextResponder?.interpretKeyEvents([theEvent])

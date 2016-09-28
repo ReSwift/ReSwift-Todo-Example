@@ -11,7 +11,7 @@ import Foundation
 enum Completion {
 
     case unfinished
-    case finished(when: NSDate?)
+    case finished(when: Date?)
 
     var isFinished: Bool {
 
@@ -21,7 +21,7 @@ enum Completion {
         }
     }
 
-    var date: NSDate? {
+    var date: Date? {
 
         switch self {
         case .unfinished: return nil
@@ -40,7 +40,7 @@ struct ToDo {
     var tags: Set<String>
 
     var isFinished: Bool { return completion.isFinished }
-    var finishedAt: NSDate? { return completion.date }
+    var finishedAt: Date? { return completion.date }
 
     init(toDoID: ToDoID = ToDoID(), title: String, tags: Set<String> = Set(), completion: Completion = .unfinished) {
 
@@ -56,7 +56,7 @@ struct ToDo {
 extension ToDo: Equatable {
 
     /// Equality check ignoring the `ToDoID`.
-    func hasEqualContent(other: ToDo) -> Bool {
+    func hasEqualContent(_ other: ToDo) -> Bool {
 
         return title == other.title && completion == other.completion && tags == other.tags
     }
@@ -76,8 +76,8 @@ func ==(lhs: Completion, rhs: Completion) -> Bool {
     case let (.finished(when: lDate), .finished(when: rDate)):
         return {
             switch (lDate, rDate) {
-            case (.None, .None): return true
-            case let (.Some(lhs), .Some(rhs)): return lhs.isEqualToDate(rhs)
+            case (.none, .none): return true
+            case let (.some(lhs), .some(rhs)): return (lhs == rhs)
             default: return false
             }
             }()

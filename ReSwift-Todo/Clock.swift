@@ -12,8 +12,8 @@ class Clock {
 
     init() { }
     
-    func now() -> NSDate {
+    func now() -> Date {
 
-        return NSDate()
+        return Date()
     }
 }

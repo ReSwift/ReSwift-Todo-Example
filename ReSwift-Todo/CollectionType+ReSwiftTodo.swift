@@ -8,9 +8,9 @@
 
 import Foundation
 
-extension CollectionType where Self.Index : Comparable {
+extension Collection where Self.Index : Comparable {
 
-    subscript (safe index: Self.Index) -> Self.Generator.Element? {
+    subscript (safe index: Self.Index) -> Self.Iterator.Element? {
         return index < endIndex ? self[index] : nil
     }
 }

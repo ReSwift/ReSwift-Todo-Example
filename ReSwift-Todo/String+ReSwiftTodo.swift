@@ -14,6 +14,6 @@ extension String {
 
     func stringByTrimmingWhitespaceAndNewline() -> String {
 
-        return stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
 }

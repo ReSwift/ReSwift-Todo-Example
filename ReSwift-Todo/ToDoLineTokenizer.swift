@@ -20,7 +20,7 @@ class ToDoLineTokenizer {
 
     init() { }
 
-    func token(text text: String) -> Token? {
+    func token(text: String) -> Token? {
 
         let text = text.stringByTrimmingWhitespaceAndNewline()
 
@@ -37,20 +37,20 @@ class ToDoLineTokenizer {
         return .comment(text)
     }
 
-    private func toDo(text text: String) -> Token? {
+    fileprivate func toDo(text: String) -> Token? {
 
         let cleanedLine = text
             // strip dash
-            .substringFromIndex(text.startIndex.successor())
+            .substring(from: text.characters.index(after: text.startIndex))
             .stringByTrimmingWhitespaceAndNewline()
 
-        let words = cleanedLine.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let words = cleanedLine.components(separatedBy: CharacterSet.whitespacesAndNewlines)
 
-        let firstTag: Int? = words.indexOf(wordIsTag)
+        let firstTag: Int? = words.index(where: wordIsTag)
         let lastTitleWordIndex = (firstTag ?? words.endIndex)
         let components = words.split(take: lastTitleWordIndex)
 
-        let title = components.0.joinWithSeparator(" ")
+        let title = components.0.joined(separator: " ")
         let tagWords = components.1.filter(wordIsTag)
             .map { $0.characters.dropFirst() } // Drop "@"
             .map(String.init)
@@ -59,7 +59,7 @@ class ToDoLineTokenizer {
         return .toDo(ToDo(title: title, tags: result.tags, completion: result.completion))
     }
 
-    private func separateTagsFromCompletion(tagWords: [String]) -> (completion: Completion, tags: Set<String>) {
+    fileprivate func separateTagsFromCompletion(_ tagWords: [String]) -> (completion: Completion, tags: Set<String>) {
 
         var tags = Set(tagWords)
         let maybeDoneTag = tags.filter({ $0.hasPrefix("done") }).first
@@ -69,27 +69,27 @@ class ToDoLineTokenizer {
 
         tags.remove(doneTag)
 
-        let date: NSDate? = {
+        let date: Date? = {
             let dateRemainder = doneTag
-                .stringByReplacingOccurrencesOfString("done(", withString: "")
-                .stringByReplacingOccurrencesOfString(")", withString: "")
+                .replacingOccurrences(of: "done(", with: "")
+                .replacingOccurrences(of: ")", with: "")
             return ToDoLineTokenizer.dateConverter
-                .date(isoDateString: dateRemainder)
+                .date(isoDateString: dateRemainder) as Date?
         }()
 
         return (.finished(when: date), tags)
     }
 
-    private func projectTitle(text text: String) -> Token? {
+    fileprivate func projectTitle(text: String) -> Token? {
 
         // Drop trailing colon
-        let title = text.substringToIndex(text.endIndex.predecessor())
+        let title = text.substring(to: text.characters.index(before: text.endIndex))
 
         return .projectTitle(title)
     }
 }
 
-private func wordIsTag(word: String) -> Bool {
+private func wordIsTag(_ word: String) -> Bool {
 
     return word.characters.first == "@"
 }

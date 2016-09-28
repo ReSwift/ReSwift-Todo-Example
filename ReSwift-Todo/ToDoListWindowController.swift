@@ -10,8 +10,8 @@ import Cocoa
 
 protocol ToDoListWindowControllerDelegate: class {
 
-    func toDoListWindowControllerDidLoad(controller: ToDoListWindowController)
-    func toDoListWindowControllerWillClose(controller: ToDoListWindowController)
+    func toDoListWindowControllerDidLoad(_ controller: ToDoListWindowController)
+    func toDoListWindowControllerWillClose(_ controller: ToDoListWindowController)
 }
 
 protocol ToDoTableDataSourceType {
@@ -23,7 +23,7 @@ protocol ToDoTableDataSourceType {
     var toDoCount: Int { get }
 
     func updateContents(toDoListViewModel viewModel: ToDoListViewModel)
-    func toDoCellView(tableView tableView: NSTableView, row: Int, owner: AnyObject) -> ToDoCellView?
+    func toDoCellView(tableView: NSTableView, row: Int, owner: AnyObject) -> ToDoCellView?
 }
 
 extension ToDoTableDataSourceType where Self: NSTableViewDataSource {
@@ -55,7 +55,7 @@ class ToDoListWindowController: NSWindowController {
     var dataSource: ToDoTableDataSourceType = ToDoTableDataSource() {
 
         didSet {
-            tableView.setDataSource(dataSource.tableDataSource)
+            tableView.dataSource = dataSource.tableDataSource
             keyboardEventHandler?.dataSource = dataSource
         }
     }
@@ -69,10 +69,10 @@ class ToDoListWindowController: NSWindowController {
 
     convenience init() {
 
-        self.init(windowNibName: String(ToDoListWindowController))
+        self.init(windowNibName: "ToDoListWindowController")
     }
 
-    private var didLoad = false {
+    fileprivate var didLoad = false {
         didSet {
             delegate?.toDoListWindowControllerDidLoad(self)
         }
@@ -82,10 +82,10 @@ class ToDoListWindowController: NSWindowController {
 
         super.awakeFromNib()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(windowWillClose(_:)), name: NSWindowWillCloseNotification, object: self.window)
+        NotificationCenter.default.addObserver(self, selector: #selector(windowWillClose(_:)), name: NSNotification.Name.NSWindowWillClose, object: self.window)
 
-        tableView.setDataSource(self.dataSource.tableDataSource)
-        tableView.setDelegate(self)
+        tableView.dataSource = self.dataSource.tableDataSource
+        tableView.delegate = self
 
         keyboardEventHandler?.dataSource = self.dataSource
         keyboardEventHandler?.store = self.store
@@ -98,7 +98,7 @@ class ToDoListWindowController: NSWindowController {
         didLoad = true
     }
 
-    @IBAction func changeTitle(sender: AnyObject) {
+    @IBAction func changeTitle(_ sender: AnyObject) {
 
         guard let textField = sender as? NSTextField else { return }
 
@@ -107,15 +107,15 @@ class ToDoListWindowController: NSWindowController {
         dispatchAction(RenameToDoListAction(renameTo: newName))
     }
 
-    private func dispatchAction(action: Action) {
+    fileprivate func dispatchAction(_ action: Action) {
 
         store?.dispatch(action)
     }
 
-    func windowWillClose(notification: NSNotification) {
+    func windowWillClose(_ notification: Notification) {
 
         guard let sendingWindow = notification.object as? NSWindow
-            where sendingWindow == self.window
+            , sendingWindow == self.window
             else { return }
 
         delegate?.toDoListWindowControllerWillClose(self)
@@ -140,28 +140,28 @@ extension ToDoListWindowController: DisplaysToDoList {
         focusTableView()
     }
 
-    private func displayToDoTitle(viewModel viewModel: ToDoListViewModel) {
+    fileprivate func displayToDoTitle(viewModel: ToDoListViewModel) {
 
         titleTextField.stringValue = viewModel.title
     }
 
-    private func updateTableDataSource(viewModel viewModel: ToDoListViewModel) {
+    fileprivate func updateTableDataSource(viewModel: ToDoListViewModel) {
 
         dataSource.updateContents(toDoListViewModel: viewModel)
         tableView.reloadData()
     }
 
-    private func displaySelection(viewModel viewModel: ToDoListViewModel) {
+    fileprivate func displaySelection(viewModel: ToDoListViewModel) {
 
         guard let selectedRow = viewModel.selectedRow else {
-            tableView.selectRowIndexes(NSIndexSet(), byExtendingSelection: false)
+            tableView.selectRowIndexes(IndexSet(), byExtendingSelection: false)
             return
         }
 
-        tableView.selectRowIndexes(NSIndexSet(index: selectedRow), byExtendingSelection: false)
+        tableView.selectRowIndexes(IndexSet(integer: selectedRow), byExtendingSelection: false)
     }
 
-    private func focusTableView() {
+    fileprivate func focusTableView() {
 
         self.window?.makeFirstResponder(tableView)
     }
@@ -172,7 +172,7 @@ extension ToDoListWindowController: DisplaysToDoList {
 
 extension ToDoListWindowController: NSTableViewDelegate {
 
-    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 
         guard let cellView = dataSource.toDoCellView(tableView: tableView, row: row, owner: self)
             else { return nil }
@@ -182,7 +182,7 @@ extension ToDoListWindowController: NSTableViewDelegate {
         return cellView
     }
 
-    func tableViewSelectionDidChange(notification: NSNotification) {
+    func tableViewSelectionDidChange(_ notification: Notification) {
 
         let action: SelectionAction = {
             // "None" equals -1
@@ -197,7 +197,7 @@ extension ToDoListWindowController: NSTableViewDelegate {
 
 extension ToDoListWindowController: ToDoItemChangeDelegate {
 
-    func toDoItem(identifier identifier: String, didChangeChecked checked: Bool) {
+    func toDoItem(identifier: String, didChangeChecked checked: Bool) {
 
         guard let toDoID = ToDoID(identifier: identifier)
             else { preconditionFailure("Invalid To-Do item identifier \(identifier).") }
@@ -212,7 +212,7 @@ extension ToDoListWindowController: ToDoItemChangeDelegate {
         dispatchAction(action)
     }
 
-    func toDoItem(identifier identifier: String, didChangeTitle title: String) {
+    func toDoItem(identifier: String, didChangeTitle title: String) {
 
         guard let toDoID = ToDoID(identifier: identifier)
             else { preconditionFailure("Invalid To-Do item identifier \(identifier).") }
@@ -223,16 +223,16 @@ extension ToDoListWindowController: ToDoItemChangeDelegate {
 
 extension ToDoListWindowController: ToDoItemEditDelegate {
 
-    func editItem(row row: Int, insertText text: String?) {
+    func editItem(row: Int, insertText text: String?) {
 
-        guard let cellView = self.tableView.viewAtColumn(0, row: row, makeIfNecessary: true) as? ToDoCellView,
-            textField = cellView.textField
+        guard let cellView = self.tableView.view(atColumn: 0, row: row, makeIfNecessary: true) as? ToDoCellView,
+            let textField = cellView.textField
             else { return }
 
         textField.selectText(self)
 
         guard let editor = textField.currentEditor(),
-            text = text
+            let text = text
             else { return }
 
         editor.insertText(text)

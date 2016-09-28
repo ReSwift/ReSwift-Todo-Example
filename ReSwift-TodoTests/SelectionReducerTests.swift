@@ -39,7 +39,7 @@ class SelectionReducerTests: XCTestCase {
 
     func testHandleAction_WithDeselectAndNil_ReturnsNil() {
 
-        let state = SelectionState.None
+        let state = SelectionState.none
 
         let result = reducer.handleAction(SelectionAction.deselect, state: state)
 
@@ -57,7 +57,7 @@ class SelectionReducerTests: XCTestCase {
 
     func testHandleAction_WithSelectionChangeAndNil_ReturnsNewState() {
 
-        let state = SelectionState.None
+        let state = SelectionState.none
         let newValue = 9812
 
         let result = reducer.handleAction(SelectionAction.select(row: newValue), state: state)
@@ -67,7 +67,7 @@ class SelectionReducerTests: XCTestCase {
 
     func testHandleAction_WithSelectionStateAndState_ReturnsNewState() {
 
-        let state = SelectionState.None
+        let state = SelectionState.none
         let newValue = 4466
 
         let result = reducer.handleAction(SelectionAction.select(row: newValue), state: state)

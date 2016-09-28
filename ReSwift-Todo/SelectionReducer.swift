@@ -13,7 +13,7 @@ class SelectionReducer {
 
     init() { }
 
-    func handleAction(action: Action, state: SelectionState) -> SelectionState {
+    func handleAction(_ action: Action, state: SelectionState) -> SelectionState {
 
         guard let action = action as? SelectionAction else { return state }
 

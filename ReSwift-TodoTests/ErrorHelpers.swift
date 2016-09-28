@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 
-func expectNoError(@noescape block: () throws -> Void) {
+func expectNoError(_ block: () throws -> Void) {
 
     do {
         try block()
@@ -18,7 +18,7 @@ func expectNoError(@noescape block: () throws -> Void) {
     }
 }
 
-func ignoreError(@noescape block: () throws -> Void) {
+func ignoreError(_ block: () throws -> Void) {
 
     do {
         try block()
@@ -27,8 +27,8 @@ func ignoreError(@noescape block: () throws -> Void) {
     }
 }
 
-enum TestError: ErrorType {
-    case IrrelevantError
+enum TestError: Error {
+    case irrelevantError
 }
 
-let irrelevantError = TestError.IrrelevantError
+let irrelevantError = TestError.irrelevantError

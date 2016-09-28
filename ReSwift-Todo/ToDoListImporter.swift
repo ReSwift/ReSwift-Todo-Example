@@ -8,39 +8,40 @@
 
 import Foundation
 
-enum ImportError: ErrorType {
+enum ImportError: Error {
 
-    case cannotPrepareStream
+    case cannotUseDelimiter(String)
+    case cannotPrepareStream(URL)
 }
 
 class ToDoListImporter {
 
-    func importToDoList(URL: NSURL) throws -> ToDoList {
+    func importToDoList(url: URL) throws -> ToDoList {
 
-        let reader = try StreamReader(URL: URL, encoding: NSUTF8StringEncoding)
+        let reader = try StreamReader(url: url, encoding: .utf8)
 
         defer { reader.close() }
 
-        return try parse(stream: reader)
+        return parse(stream: reader)
     }
 
     func importToDoList(text: String) throws -> ToDoList {
 
         let lines = text.characters
-            .split(allowEmptySlices: true) { $0 == Character(String.newline) }
+            .split(omittingEmptySubsequences: false) { $0 == Character(String.newline) }
             .map(String.init)
 
-        return try parse(stream: lines)
+        return parse(stream: lines)
     }
 
     lazy var tokenizer: ToDoLineTokenizer = ToDoLineTokenizer()
 
-    func parse<T: SequenceType where T.Generator.Element == String>(stream stream: T) throws -> ToDoList {
+    func parse<T: Sequence>(stream: T) -> ToDoList where T.Iterator.Element == String {
 
         var tokens = stream.flatMap(tokenizer.token(text:))
 
-        if let projectTitleIndex = tokens.indexOf(tokenIsProjectTitle)
-            where projectTitleIndex > 0 {
+        if let projectTitleIndex = tokens.index(where: tokenIsProjectTitle),
+            projectTitleIndex > 0 {
 
             tokens = Array(tokens.dropFirst(projectTitleIndex - 1))
         }
@@ -78,7 +79,7 @@ class ToDoListImporter {
     }
 }
 
-private func tokenIsProjectTitle(token: Token) -> Bool {
+private func tokenIsProjectTitle(_ token: Token) -> Bool {
 
     guard case .projectTitle = token else { return false }
 
@@ -87,9 +88,9 @@ private func tokenIsProjectTitle(token: Token) -> Bool {
 
 extension Array {
 
-    @warn_unused_result
+    
     func split(take n: Index) -> (ArraySlice<Element>, ArraySlice<Element>) {
 
-        return (prefixUpTo(n), dropFirst(n))
+        return (prefix(upTo: n), dropFirst(n))
     }
 }

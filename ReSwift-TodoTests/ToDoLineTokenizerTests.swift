@@ -100,8 +100,8 @@ class ToDoLineTokenizerTests: XCTestCase {
 
         guard case .finished(when: let date) = toDo.completion else { return }
 
-        let expectedDate = NSCalendar.autoupdatingCurrentCalendar().dateFromISOComponents(year: 2016, month: 9, day: 11)!
-        XCTAssert(date?.isEqualToDate(expectedDate) ?? false)
+        let expectedDate = Calendar.autoupdatingCurrent.dateFromISOComponents(year: 2016, month: 9, day: 11)!
+        XCTAssertEqual(date, expectedDate)
     }
 
     func testParse_TextWithColon_ReturnsProjectTitle() {

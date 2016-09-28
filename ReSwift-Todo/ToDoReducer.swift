@@ -13,15 +13,15 @@ class ToDoReducer {
 
     init() { }
 
-    func handleAction(action: Action, state: ToDo?, clock: Clock = Clock()) -> ToDo? {
+    func handleAction(_ action: Action, state: ToDo?, clock: Clock = Clock()) -> ToDo? {
 
-        guard let action = action as? ToDoAction, toDo = state
+        guard let action = action as? ToDoAction, let toDo = state
             else { return state }
 
         return handleToDoAction(action, toDo: toDo, clock: clock)
     }
 
-    func handleToDoAction(action: ToDoAction, toDo: ToDo, clock: Clock) -> ToDo {
+    func handleToDoAction(_ action: ToDoAction, toDo: ToDo, clock: Clock) -> ToDo {
 
         var toDo = toDo
 

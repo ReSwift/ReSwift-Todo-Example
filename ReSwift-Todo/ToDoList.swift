@@ -19,7 +19,7 @@ struct ToDoList {
         return (title?.isEmpty ?? true) && items.isEmpty
     }
 
-    mutating func appendItem(toDo: ToDo) {
+    mutating func appendItem(_ toDo: ToDo) {
 
         items.append(toDo)
     }
@@ -30,23 +30,23 @@ struct ToDoList {
     ///   it will be appended or prepended;
     /// - if `index` falls inside these bounds, it will be
     ///   inserted between existing elements.
-    mutating func insertItem(toDo: ToDo, atIndex index: Int) {
+    mutating func insertItem(_ toDo: ToDo, atIndex index: Int) {
 
         if index < 1 {
-            items.insert(toDo, atIndex: 0)
+            items.insert(toDo, at: 0)
         } else if index < items.count {
-            items.insert(toDo, atIndex: index)
+            items.insert(toDo, at: index)
         } else {
             items.append(toDo)
         }
     }
 
-    func indexOf(toDoID toDoID: ToDoID) -> Int? {
+    func indexOf(toDoID: ToDoID) -> Int? {
 
-        return items.indexOf({ $0.toDoID == toDoID })
+        return items.index(where: { $0.toDoID == toDoID })
     }
 
-    func toDo(toDoID toDoID: ToDoID) -> ToDo? {
+    func toDo(toDoID: ToDoID) -> ToDo? {
 
         guard let index = indexOf(toDoID: toDoID)
             else { return nil }
@@ -54,12 +54,12 @@ struct ToDoList {
         return items[index]
     }
 
-    mutating func removeItem(toDoID toDoID: ToDoID) {
+    mutating func removeItem(toDoID: ToDoID) {
 
         guard let index = indexOf(toDoID: toDoID)
             else { return }
 
-        items.removeAtIndex(index)
+        items.remove(at: index)
     }
 }
 
@@ -86,21 +86,21 @@ extension ToDoList {
 extension ToDoList: Equatable {
 
     /// Equality check ignoring the `items`'s `ToDoID`s.
-    func hasEqualContent(other: ToDoList) -> Bool {
+    func hasEqualContent(_ other: ToDoList) -> Bool {
 
         guard title == other.title else { return false }
         guard items.count == other.items.count else { return false }
 
         for toDo in items {
 
-            guard other.items.contains({ $0.hasEqualContent(toDo) }) else {
+            guard other.items.contains(where: { $0.hasEqualContent(toDo) }) else {
                 return false
             }
         }
 
         for toDo in other.items {
 
-            guard items.contains({ $0.hasEqualContent(toDo) }) else {
+            guard items.contains(where: { $0.hasEqualContent(toDo) }) else {
                 return false
             }
         }

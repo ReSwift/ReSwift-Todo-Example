@@ -21,12 +21,12 @@ let removeIdempotentActionsMiddleware: Middleware = { dispatch, getState in
             guard let state = getState() as? ToDoListState
                 else { return next(action) }
 
-            if let action = action as? RenameToDoListAction where action.newName == state.toDoList.title {
+            if let action = action as? RenameToDoListAction , action.newName == state.toDoList.title {
 
                 print("Ignoring \(action)")
 
                 return state
-            } else if let action = action as? SelectionAction where action.selectionState == state.selection {
+            } else if let action = action as? SelectionAction , action.selectionState == state.selection {
 
                 print("Ignoring \(action)")
 

@@ -19,7 +19,7 @@ class ToDoCellViewTests: XCTestCase {
 
         let windowController = ToDoListWindowController()
         forceLoadWindowController(windowController)
-        view = windowController.tableView.makeViewWithIdentifier(ToDoCellView.reuseIdentifier, owner: nil) as! ToDoCellView
+        view = windowController.tableView.make(withIdentifier: ToDoCellView.reuseIdentifier, owner: nil) as! ToDoCellView
     }
 
     func testCheckbox_IsConnected() {
@@ -36,8 +36,8 @@ class ToDoCellViewTests: XCTestCase {
 
         class TestTableView: NSTableView {
 
-            var didMakeWith: (identifier: String, owner: AnyObject?)?
-            private override func makeViewWithIdentifier(identifier: String, owner: AnyObject?) -> NSView? {
+            var didMakeWith: (identifier: String, owner: Any?)?
+            fileprivate override func make(withIdentifier identifier: String, owner: Any?) -> NSView? {
 
                 didMakeWith = (identifier, owner)
                 return nil
@@ -52,7 +52,7 @@ class ToDoCellViewTests: XCTestCase {
         XCTAssertNotNil(tableViewDouble.didMakeWith)
         if let values = tableViewDouble.didMakeWith {
             XCTAssertEqual(values.identifier, ToDoCellView.reuseIdentifier)
-            XCTAssert(values.owner === ownerDouble)
+            XCTAssert(values.owner as? NSObject === ownerDouble)
         }
     }
 }

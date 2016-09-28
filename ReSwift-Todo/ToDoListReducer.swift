@@ -34,14 +34,14 @@ class ToDoListReducer: ReSwift.Reducer {
         return state
     }
 
-    func passActionToList(action: Action, toDoList: ToDoList) -> ToDoList {
+    func passActionToList(_ action: Action, toDoList: ToDoList) -> ToDoList {
 
         guard let action = action as? ToDoListAction else { return toDoList }
 
         return action.apply(oldToDoList: toDoList)
     }
 
-    func passActionToItems(action: Action, toDoList: ToDoList) -> ToDoList {
+    func passActionToItems(_ action: Action, toDoList: ToDoList) -> ToDoList {
 
         var toDoList = toDoList
         
@@ -50,7 +50,7 @@ class ToDoListReducer: ReSwift.Reducer {
         return toDoList
     }
 
-    func passActionToSelection(action: Action, selectionState: SelectionState) -> SelectionState {
+    func passActionToSelection(_ action: Action, selectionState: SelectionState) -> SelectionState {
 
         return selectionReducer.handleAction(action, state: selectionState)
     }

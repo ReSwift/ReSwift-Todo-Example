@@ -73,7 +73,7 @@ class ToDoListSerializerTests: XCTestCase {
 
     func testSerialize_FinishedItemWithDate_AppendsDoneTagWithDate() {
 
-        let date = NSCalendar.autoupdatingCurrentCalendar().dateFromISOComponents(year: 2012, month: 11, day: 10)
+        let date = Calendar.autoupdatingCurrent.dateFromISOComponents(year: 2012, month: 11, day: 10)
         let items = [ToDo(title: "an item", completion: .finished(when: date))]
         let list = ToDoList(title: nil, items: items)
 
@@ -94,7 +94,7 @@ class ToDoListSerializerTests: XCTestCase {
 
     func testSerialize_FinishedItemWithTags_AppendsTagsSortedAlphabeticallyBeforeDoneTag() {
 
-        let items = [ToDo(title: "ze item", completion: .finished(when: nil), tags: Set(arrayLiteral: "zar", "kar"))]
+        let items = [ToDo(title: "ze item", tags: Set(arrayLiteral: "zar", "kar"), completion: .finished(when: nil))]
         let list = ToDoList(title: nil, items: items)
 
         let result = serializer.string(toDoList: list)

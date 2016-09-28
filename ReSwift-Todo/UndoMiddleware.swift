@@ -20,38 +20,37 @@ class UndoableStateAdapter: UndoActionContext {
 
     var toDoListTitle: String? { return state.toDoList.title }
 
-    func toDoTitle(toDoID toDoID: ToDoID) -> String? {
+    func toDoTitle(toDoID: ToDoID) -> String? {
 
         return state.toDoList.toDo(toDoID: toDoID)?.title
     }
 
-    func toDoInList(toDoID toDoID: ToDoID) -> ToDoInList? {
+    func toDoInList(toDoID: ToDoID) -> ToDoInList? {
 
         guard let index = state.toDoList.indexOf(toDoID: toDoID),
-            toDo = state.toDoList.toDo(toDoID: toDoID)
+            let toDo = state.toDoList.toDo(toDoID: toDoID)
             else { return nil }
 
         return (toDo, index)
     }
 }
 
-
 extension UndoCommand {
 
-    convenience init?(appAction: UndoableAction, context: UndoActionContext, dispatch: DispatchFunction) {
+    convenience init?(appAction: UndoableAction, context: UndoActionContext, dispatch: @escaping DispatchFunction) {
 
         guard let inverseAction = appAction.inverse(context: context)
             else { return nil }
 
-        self.init(undoBlock: { dispatch(inverseAction.notUndoable) },
+        self.init(undoBlock: { _ = dispatch(inverseAction.notUndoable) },
                   undoName: appAction.name,
-                  redoBlock: { dispatch(appAction.notUndoable) })
+                  redoBlock: { _ = dispatch(appAction.notUndoable) })
     }
 }
 
-func undoMiddleware(undoManager undoManager: NSUndoManager) -> Middleware {
+func undoMiddleware(undoManager: UndoManager) -> Middleware {
 
-    func undoAction(action action: UndoableAction, state: ToDoListState, dispatch: DispatchFunction) -> UndoCommand? {
+    func undoAction(action: UndoableAction, state: ToDoListState, dispatch: @escaping DispatchFunction) -> UndoCommand? {
 
         let context = UndoableStateAdapter(toDoListState: state)
 
@@ -67,10 +66,10 @@ func undoMiddleware(undoManager undoManager: NSUndoManager) -> Middleware {
                     return next(undoneAction.action)
                 }
 
-                if let undoableAction = action as? UndoableAction where undoableAction.isUndoable,
+                if let undoableAction = action as? UndoableAction , undoableAction.isUndoable,
                     let state = getState() as? ToDoListState,
-                    dispatch = dispatch,
-                    undo = undoAction(action: undoableAction, state: state, dispatch: dispatch) {
+                    let dispatch = dispatch,
+                    let undo = undoAction(action: undoableAction, state: state, dispatch: dispatch) {
 
                     undo.register(undoManager: undoManager)
                 }

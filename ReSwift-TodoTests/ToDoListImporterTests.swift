@@ -27,7 +27,7 @@ class ToDoListImporterTests: XCTestCase {
         var maybeResult: ToDoList?
 
         expectNoError { 
-            maybeResult = try importer.importToDoList("")
+            maybeResult = try importer.importToDoList(text: "")
         }
 
         guard let result = maybeResult
@@ -41,7 +41,7 @@ class ToDoListImporterTests: XCTestCase {
         var maybeResult: ToDoList?
 
         expectNoError {
-            maybeResult = try importer.importToDoList("something something")
+            maybeResult = try importer.importToDoList(text: "something something")
         }
 
         guard let result = maybeResult
@@ -55,7 +55,7 @@ class ToDoListImporterTests: XCTestCase {
         var maybeResult: ToDoList?
 
         expectNoError {
-            maybeResult = try importer.importToDoList("The Project:")
+            maybeResult = try importer.importToDoList(text: "The Project:")
         }
 
         guard let result = maybeResult
@@ -69,11 +69,11 @@ class ToDoListImporterTests: XCTestCase {
         var maybeResult: ToDoList?
 
         expectNoError {
-            maybeResult = try importer.importToDoList([
+            maybeResult = try importer.importToDoList(text: [
                 "The Project:",
                 "text",
                 "- item"
-                ].joinWithSeparator("\n")
+                ].joined(separator: "\n")
             )
         }
 
@@ -89,11 +89,11 @@ class ToDoListImporterTests: XCTestCase {
         var maybeResult: ToDoList?
 
         expectNoError {
-            maybeResult = try importer.importToDoList([
+            maybeResult = try importer.importToDoList(text: [
                 "The Project:",
                 "",
                 "- item"
-                ].joinWithSeparator("\n")
+                ].joined(separator: "\n")
             )
         }
 
@@ -109,12 +109,12 @@ class ToDoListImporterTests: XCTestCase {
         var maybeResult: ToDoList?
 
         expectNoError {
-            maybeResult = try importer.importToDoList([
+            maybeResult = try importer.importToDoList(text: [
                 "Le Title:",
                 "- fum",
                 "",
                 "- fam"
-                ].joinWithSeparator("\n")
+                ].joined(separator: "\n")
             )
         }
 
@@ -130,11 +130,11 @@ class ToDoListImporterTests: XCTestCase {
         var maybeResult: ToDoList?
 
         expectNoError {
-            maybeResult = try importer.importToDoList([
+            maybeResult = try importer.importToDoList(text: [
                 "The Project:",
                 "- foo",
                 "- bar"
-                ].joinWithSeparator("\n")
+                ].joined(separator: "\n")
             )
         }
 
@@ -150,10 +150,10 @@ class ToDoListImporterTests: XCTestCase {
         var maybeResult: ToDoList?
 
         expectNoError {
-            maybeResult = try importer.importToDoList([
+            maybeResult = try importer.importToDoList(text: [
                 "- boo",
                 "- huu"
-                ].joinWithSeparator("\n")
+                ].joined(separator: "\n")
             )
         }
 
@@ -169,9 +169,9 @@ class ToDoListImporterTests: XCTestCase {
         var maybeResult: ToDoList?
 
         expectNoError {
-            maybeResult = try importer.importToDoList([
+            maybeResult = try importer.importToDoList(text: [
                 "- foo @bar @baz"
-                ].joinWithSeparator("\n")
+                ].joined(separator: "\n")
             )
         }
 
@@ -184,14 +184,14 @@ class ToDoListImporterTests: XCTestCase {
 
     // MARK: Import short.txt
 
-    let shortFixtureURL: NSURL! = NSBundle(forClass: ToDoListImporterTests.self).URLForResource("short", withExtension: "txt")
+    let shortFixtureURL: URL! = Bundle(for: ToDoListImporterTests.self).url(forResource: "short", withExtension: "txt")
 
     func testImportShort_ReturnsList() {
 
         var maybeResult: ToDoList?
 
         expectNoError {
-            maybeResult = try importer.importToDoList(shortFixtureURL)
+            maybeResult = try importer.importToDoList(url: shortFixtureURL)
         }
 
         guard let result = maybeResult
@@ -203,14 +203,14 @@ class ToDoListImporterTests: XCTestCase {
 
     // MARK: Import complex.txt
 
-    let complexFixtureURL: NSURL! = NSBundle(forClass: ToDoListImporterTests.self).URLForResource("complex", withExtension: "txt")
+    let complexFixtureURL: URL! = Bundle(for: ToDoListImporterTests.self).url(forResource: "complex", withExtension: "txt")
 
     func testImportComplex_ReturnsList() {
 
         var maybeResult: ToDoList?
 
         expectNoError {
-            maybeResult = try importer.importToDoList(complexFixtureURL)
+            maybeResult = try importer.importToDoList(url: complexFixtureURL)
         }
 
         guard let result = maybeResult
@@ -221,7 +221,7 @@ class ToDoListImporterTests: XCTestCase {
             items: [
                 ToDo(title: "buy 2l milk", tags: Set(arrayLiteral: "storeA")),
                 ToDo(title: "buy 400g cheese", tags: Set(arrayLiteral: "storeA")),
-                ToDo(title: "buy matches", tags: Set(arrayLiteral: "storeB"), completion: .finished(when: NSCalendar.autoupdatingCurrentCalendar().dateFromISOComponents(year: 2016, month: 9, day: 10)))
+                ToDo(title: "buy matches", tags: Set(arrayLiteral: "storeB"), completion: .finished(when: Calendar.autoupdatingCurrent.dateFromISOComponents(year: 2016, month: 9, day: 10)))
             ])
         XCTAssert(result.hasEqualContent(expectedList))
     }

@@ -27,7 +27,7 @@ enum ToDoAction: UndoableAction {
         }
     }
 
-    func inverse(context context: UndoActionContext) -> UndoableAction? {
+    func inverse(context: UndoActionContext) -> UndoableAction? {
 
         switch self {
         case .check(let toDoID):

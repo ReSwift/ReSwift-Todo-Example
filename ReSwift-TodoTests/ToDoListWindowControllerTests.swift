@@ -48,7 +48,7 @@ class ToDoListWindowControllerTests: XCTestCase {
         let column = NSTableColumn(identifier: "irrelevant")
         let row = 123
 
-        controller.tableView(tableView, viewForTableColumn: column, row: row)
+        controller.tableView(tableView, viewFor: column, row: row)
 
         XCTAssertNotNil(dataSourceDouble.didRequestCellViewWith)
         if let values = dataSourceDouble.didRequestCellViewWith {
@@ -93,7 +93,7 @@ class ToDoListWindowControllerTests: XCTestCase {
         class TestTableView: NSTableView {
 
             var didReloadData = false
-            private override func reloadData() {
+            fileprivate override func reloadData() {
 
                 didReloadData = true
             }
@@ -121,7 +121,7 @@ class ToDoListWindowControllerTests: XCTestCase {
 
         var testToDoCellView: ToDoCellView?
         var didRequestCellViewWith: (tableView: NSTableView, row: Int, owner: AnyObject)?
-        override func toDoCellView(tableView tableView: NSTableView, row: Int, owner: AnyObject) -> ToDoCellView? {
+        override func toDoCellView(tableView: NSTableView, row: Int, owner: AnyObject) -> ToDoCellView? {
 
             didRequestCellViewWith = (tableView, row, owner)
 

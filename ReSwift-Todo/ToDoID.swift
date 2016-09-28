@@ -14,21 +14,21 @@ struct ToDoID {
 
     init() {
 
-        self.identifier = NSUUID().UUIDString
+        self.identifier = UUID().uuidString
     }
 
-    init(UUID: NSUUID) {
+    init(UUID: Foundation.UUID) {
 
-        self.identifier = UUID.UUIDString
+        self.identifier = UUID.uuidString
     }
 
     init?(identifier: String) {
 
-        guard let UUID = NSUUID(UUIDString: identifier) else {
+        guard let UUID = UUID(uuidString: identifier) else {
             return nil
         }
 
-        self.identifier = UUID.UUIDString
+        self.identifier = UUID.uuidString
     }
 }
 

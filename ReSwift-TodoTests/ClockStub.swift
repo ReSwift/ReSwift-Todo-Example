@@ -11,14 +11,14 @@ import Foundation
 
 class ClockStub: Clock {
 
-    let date: NSDate
+    let date: Date
 
-    init(date: NSDate) {
+    init(date: Date) {
 
         self.date = date
     }
 
-    override func now() -> NSDate {
+    override func now() -> Date {
 
         return date
     }

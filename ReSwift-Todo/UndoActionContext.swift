@@ -17,8 +17,8 @@ protocol UndoActionContext {
 
     var toDoListTitle: String? { get }
 
-    func toDoTitle(toDoID toDoID: ToDoID) -> String?
-    func toDoInList(toDoID toDoID: ToDoID) -> ToDoInList?
+    func toDoTitle(toDoID: ToDoID) -> String?
+    func toDoInList(toDoID: ToDoID) -> ToDoInList?
 }
 
 typealias ToDoInList = (toDo: ToDo, index: Int)

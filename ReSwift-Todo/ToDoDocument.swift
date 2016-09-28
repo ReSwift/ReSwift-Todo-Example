@@ -37,7 +37,7 @@ class ToDoDocument: NSDocument {
     lazy var importer: ToDoListImporter = ToDoListImporter()
     lazy var serializer: ToDoListSerializer = ToDoListSerializer()
 
-    override func dataOfType(typeName: String) throws -> NSData {
+    override func data(ofType typeName: String) throws -> Data {
 
         let list = store.state.toDoList
 
@@ -49,12 +49,12 @@ class ToDoDocument: NSDocument {
         return data
     }
 
-    override func readFromURL(url: NSURL, ofType typeName: String) throws {
+    override func read(from url: URL, ofType typeName: String) throws {
 
         let contents: ToDoList
 
         do {
-            contents = try importer.importToDoList(url)
+            contents = try importer.importToDoList(url: url)
         } catch {
             // TODO: show error alert
             reportError(error)
@@ -68,12 +68,12 @@ class ToDoDocument: NSDocument {
 
 extension ToDoDocument: ToDoListWindowControllerDelegate {
 
-    func toDoListWindowControllerDidLoad(controller: ToDoListWindowController) {
+    func toDoListWindowControllerDidLoad(_ controller: ToDoListWindowController) {
 
         store.subscribe(presenter)
     }
 
-    func toDoListWindowControllerWillClose(controller: ToDoListWindowController) {
+    func toDoListWindowControllerWillClose(_ controller: ToDoListWindowController) {
 
         store.unsubscribe(presenter)
     }

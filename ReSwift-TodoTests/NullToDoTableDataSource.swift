@@ -21,7 +21,7 @@ class NullToDoTableDataSource: ToDoTableDataSourceType {
         // no op
     }
 
-    func toDoCellView(tableView tableView: NSTableView, row: Int, owner: AnyObject) -> ToDoCellView? {
+    func toDoCellView(tableView: NSTableView, row: Int, owner: AnyObject) -> ToDoCellView? {
 
         return nil
     }

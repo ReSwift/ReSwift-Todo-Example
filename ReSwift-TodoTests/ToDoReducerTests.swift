@@ -42,7 +42,7 @@ class ToDoReducerTests: XCTestCase {
 
     func testHandleAction_WithCheckAction_UncheckedToDoWithSameID_ReturnsCheckedToDo() {
 
-        let newDate = NSDate(timeIntervalSince1970: 12345)
+        let newDate = Date(timeIntervalSince1970: 12345)
         let clockDouble = ClockStub(date: newDate)
         let toDoID = ToDoID()
         let state = ToDo(toDoID: toDoID, title: "irrelevant", completion: .unfinished)
@@ -54,17 +54,17 @@ class ToDoReducerTests: XCTestCase {
             XCTAssertEqual(result.toDoID, toDoID)
             XCTAssertEqual(result.title, state.title)
             XCTAssert(result.isFinished)
-            XCTAssert(result.finishedAt?.isEqualToDate(newDate) ?? false)
+            XCTAssertEqual(result.finishedAt, newDate)
         }
     }
 
     func testHandleAction_WithCheckAction_CheckedToDoWithSameID_ReturnsCheckedToDoWithNewDate() {
 
-        let newDate = NSDate(timeIntervalSince1970: 12345)
+        let newDate = Date(timeIntervalSince1970: 12345)
         let clockDouble = ClockStub(date: newDate)
 
         let toDoID = ToDoID()
-        let oldDate = NSDate(timeIntervalSinceNow: 9876)
+        let oldDate = Date(timeIntervalSinceNow: 9876)
         let state = ToDo(toDoID: toDoID, title: "irrelevant", completion: .finished(when: oldDate))
 
         let result = reducer.handleAction(ToDoAction.check(toDoID), state: state, clock: clockDouble)
@@ -74,7 +74,7 @@ class ToDoReducerTests: XCTestCase {
             XCTAssertEqual(result.toDoID, toDoID)
             XCTAssertEqual(result.title, state.title)
             XCTAssert(result.isFinished)
-            XCTAssert(result.finishedAt?.isEqualToDate(newDate) ?? false)
+            XCTAssertEqual(result.finishedAt, newDate)
         }
     }
     
