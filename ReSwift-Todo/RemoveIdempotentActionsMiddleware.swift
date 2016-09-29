@@ -14,6 +14,9 @@ import ReSwift
 /// Admitted, this is not the most scalable and useful middleware
 /// I could've come up with, but it serves to demonstrate
 /// how you can interrupt the action handling chain.
+///
+/// In reality, I'd suggest you stop firing events when the
+/// view knows nothing has changed.
 let removeIdempotentActionsMiddleware: Middleware = { dispatch, getState in
     return { next in
         return { action in
@@ -21,12 +24,21 @@ let removeIdempotentActionsMiddleware: Middleware = { dispatch, getState in
             guard let state = getState() as? ToDoListState
                 else { return next(action) }
 
-            if let action = action as? RenameToDoListAction , action.newName == state.toDoList.title {
+            if let action = action as? RenameToDoListAction,
+                action.newName == state.toDoList.title {
 
                 print("Ignoring \(action)")
 
                 return state
-            } else if let action = action as? SelectionAction , action.selectionState == state.selection {
+            } else if case let ToDoAction.rename(toDoID, title: title) = action,
+                let toDo = state.toDoList.toDo(toDoID: toDoID),
+                toDo.title == title {
+
+                print("Ignoring \(action)")
+
+                return state
+            } else if let action = action as? SelectionAction,
+                action.selectionState == state.selection {
 
                 print("Ignoring \(action)")
 
