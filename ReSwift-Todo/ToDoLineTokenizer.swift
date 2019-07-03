@@ -26,11 +26,11 @@ class ToDoLineTokenizer {
 
         guard !text.isEmpty else { return nil }
 
-        if text.characters.first == "-" {
+        if text.first == "-" {
             return toDo(text: text)
         }
 
-        if text.characters.last == ":" {
+        if text.last == ":" {
             return projectTitle(text: text)
         }
 
@@ -39,9 +39,8 @@ class ToDoLineTokenizer {
 
     fileprivate func toDo(text: String) -> Token? {
 
-        let cleanedLine = text
-            // strip dash
-            .substring(from: text.characters.index(after: text.startIndex))
+        // strip dash
+        let cleanedLine = String(text[text.index(after: text.startIndex)...])
             .stringByTrimmingWhitespaceAndNewline()
 
         let words = cleanedLine.components(separatedBy: CharacterSet.whitespacesAndNewlines)
@@ -52,7 +51,7 @@ class ToDoLineTokenizer {
 
         let title = components.0.joined(separator: " ")
         let tagWords = components.1.filter(wordIsTag)
-            .map { $0.characters.dropFirst() } // Drop "@"
+            .map { $0.dropFirst() } // Drop "@"
             .map(String.init)
         let result: (completion: Completion, tags: Set<String>) = separateTagsFromCompletion(tagWords)
 
@@ -83,13 +82,12 @@ class ToDoLineTokenizer {
     fileprivate func projectTitle(text: String) -> Token? {
 
         // Drop trailing colon
-        let title = text.substring(to: text.characters.index(before: text.endIndex))
+        let title = String(text[..<text.index(before: text.endIndex)])
 
         return .projectTitle(title)
     }
 }
 
 private func wordIsTag(_ word: String) -> Bool {
-
-    return word.characters.first == "@"
+    return word.first == "@"
 }

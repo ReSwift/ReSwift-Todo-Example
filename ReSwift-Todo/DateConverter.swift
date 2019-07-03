@@ -34,9 +34,9 @@ class DateConverter {
     /// (YYYY-MM-DD) and extracts these values.
     func date(isoDateString string: String, calendar: Calendar = Calendar.autoupdatingCurrent) -> Date? {
 
-        let parts = string.characters.split(separator: "-")
+        let parts = string.split(separator: "-")
             .map(String.init)
-            .flatMap { Int($0) }
+            .compactMap { Int($0) }
 
         guard parts.count >= 3 else { return nil }
 

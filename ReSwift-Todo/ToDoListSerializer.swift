@@ -73,7 +73,7 @@ class ToDoListSerializer {
 
         return [body]
             .appendedContentsOf(tags)
-            .appendedContentsOf([done].flatMap(identity)) // remove nil
+            .appendedContentsOf([done].compactMap(identity)) // remove nil
             .joined(separator: " ")
     }
 }
