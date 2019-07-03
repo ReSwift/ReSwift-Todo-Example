@@ -6,8 +6,6 @@
 //  Copyright © 2016 ReSwift. All rights reserved.
 //
 
-import Foundation
-
 struct ToDoList {
 
     static var empty: ToDoList { return ToDoList(title: nil, items: []) }

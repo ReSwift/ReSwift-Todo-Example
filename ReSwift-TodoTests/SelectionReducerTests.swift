@@ -11,20 +11,11 @@ import XCTest
 
 class SelectionReducerTests: XCTestCase {
 
-    var reducer: SelectionReducer!
-
-    override func setUp() {
-
-        super.setUp()
-
-        reducer = SelectionReducer()
-    }
-
     func testHandleAction_WithUnsupportedActionAndNil_ReturnsNil() {
 
         struct SomeAction: Action { }
 
-        XCTAssertNil(reducer.handleAction(SomeAction(), state: nil))
+        XCTAssertNil(selectionReducer(SomeAction(), state: nil))
     }
 
     func testHandleAction_WithUnsupportedActionAndState_ReturnsState() {
@@ -32,7 +23,7 @@ class SelectionReducerTests: XCTestCase {
         struct SomeAction: Action { }
         let state = SelectionState(123)
 
-        let result = reducer.handleAction(SomeAction(), state: SelectionState(123))
+        let result = selectionReducer(SomeAction(), state: SelectionState(123))
 
         XCTAssertEqual(result, state)
     }
@@ -41,7 +32,7 @@ class SelectionReducerTests: XCTestCase {
 
         let state = SelectionState.none
 
-        let result = reducer.handleAction(SelectionAction.deselect, state: state)
+        let result = selectionReducer(SelectionAction.deselect, state: state)
 
         XCTAssertNil(result)
     }
@@ -50,7 +41,7 @@ class SelectionReducerTests: XCTestCase {
 
         let state = SelectionState(456)
 
-        let result = reducer.handleAction(SelectionAction.deselect, state: state)
+        let result = selectionReducer(SelectionAction.deselect, state: state)
 
         XCTAssertNil(result)
     }
@@ -60,7 +51,7 @@ class SelectionReducerTests: XCTestCase {
         let state = SelectionState.none
         let newValue = 9812
 
-        let result = reducer.handleAction(SelectionAction.select(row: newValue), state: state)
+        let result = selectionReducer(SelectionAction.select(row: newValue), state: state)
 
         XCTAssertEqual(result, SelectionState(newValue))
     }
@@ -70,7 +61,7 @@ class SelectionReducerTests: XCTestCase {
         let state = SelectionState.none
         let newValue = 4466
 
-        let result = reducer.handleAction(SelectionAction.select(row: newValue), state: state)
+        let result = selectionReducer(SelectionAction.select(row: newValue), state: state)
 
         XCTAssertEqual(result, SelectionState(newValue))
     }

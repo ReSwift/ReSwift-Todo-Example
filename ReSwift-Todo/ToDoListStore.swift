@@ -21,7 +21,7 @@ protocol UndoableAction: Action, Undoable { }
 func toDoListStore(undoManager: UndoManager) -> ToDoListStore {
 
     return ToDoListStore(
-        reducer: ToDoListReducer(),
+        reducer: toDoListReducer,
         state: nil,
         middleware: [
             removeIdempotentActionsMiddleware,
