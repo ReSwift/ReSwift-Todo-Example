@@ -45,7 +45,7 @@ class ToDoLineTokenizer {
 
         let words = cleanedLine.components(separatedBy: CharacterSet.whitespacesAndNewlines)
 
-        let firstTag: Int? = words.index(where: wordIsTag)
+        let firstTag: Int? = words.firstIndex(where: wordIsTag)
         let lastTitleWordIndex = (firstTag ?? words.endIndex)
         let components = words.split(take: lastTitleWordIndex)
 

@@ -41,7 +41,7 @@ struct ToDoList {
 
     func indexOf(toDoID: ToDoID) -> Int? {
 
-        return items.index(where: { $0.toDoID == toDoID })
+        return items.firstIndex(where: { $0.toDoID == toDoID })
     }
 
     func toDo(toDoID: ToDoID) -> ToDo? {
