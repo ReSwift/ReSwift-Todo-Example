@@ -17,32 +17,34 @@ import ReSwift
 ///
 /// In reality, I'd suggest you stop firing events when the
 /// view knows nothing has changed.
-let removeIdempotentActionsMiddleware: Middleware = { dispatch, getState in
+let removeIdempotentActionsMiddleware: Middleware<ToDoListState> = { dispatch, getState in
     return { next in
         return { action in
 
-            guard let state = getState() as? ToDoListState
-                else { return next(action) }
+            guard let state = getState() else {
+                next(action)
+                return
+            }
 
             if let action = action as? RenameToDoListAction,
                 action.newName == state.toDoList.title {
 
                 print("Ignoring \(action)")
 
-                return state
+                return
             } else if case let ToDoAction.rename(toDoID, title: title) = action,
                 let toDo = state.toDoList.toDo(toDoID: toDoID),
                 toDo.title == title {
 
                 print("Ignoring \(action)")
 
-                return state
+                return
             } else if let action = action as? SelectionAction,
                 action.selectionState == state.selection {
 
                 print("Ignoring \(action)")
 
-                return state
+                return
             }
             
             return next(action)

@@ -6,10 +6,9 @@
 //  Copyright © 2016 ReSwift. All rights reserved.
 //
 
-import Foundation
 import ReSwift
 
-let loggingMiddleware: Middleware = { dispatch, getState in
+let loggingMiddleware: Middleware<ToDoListState> = { dispatch, getState in
     return { next in
         return { action in
             print("> \(action)")

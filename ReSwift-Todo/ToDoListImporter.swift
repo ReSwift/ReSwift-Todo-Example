@@ -40,7 +40,7 @@ class ToDoListImporter {
 
         var tokens = stream.compactMap(tokenizer.token(text:))
 
-        if let projectTitleIndex = tokens.index(where: tokenIsProjectTitle),
+        if let projectTitleIndex = tokens.firstIndex(where: tokenIsProjectTitle),
             projectTitleIndex > 0 {
 
             tokens = Array(tokens.dropFirst(projectTitleIndex - 1))

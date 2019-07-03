@@ -12,13 +12,11 @@ import ReSwift
 
 class ToDoReducerTests: XCTestCase {
 
-    let reducer = ToDoReducer()
-
     func testHandleAction_WithUnsupportedActionAndNil_ReturnsNil() {
 
         struct SomeAction: Action { }
 
-        XCTAssertNil(reducer.handleAction(SomeAction(), state: nil))
+        XCTAssertNil(toDoReducer(SomeAction(), state: nil))
     }
 
     func testHandleAction_WithUnsupportedActionAndState_ReturnsState() {
@@ -26,7 +24,7 @@ class ToDoReducerTests: XCTestCase {
         struct SomeAction: Action { }
         let state = ToDo(title: "an item", completion: .finished(when: nil))
 
-        let result = reducer.handleAction(SomeAction(), state: state)
+        let result = toDoReducer(SomeAction(), state: state)
 
         XCTAssertEqual(result, state)
     }
@@ -35,7 +33,7 @@ class ToDoReducerTests: XCTestCase {
 
         let state = ToDo(title: "irrelevant", completion: .finished(when: nil))
 
-        let result = reducer.handleAction(ToDoAction.check(ToDoID()), state: state)
+        let result = toDoReducer(ToDoAction.check(ToDoID()), state: state)
 
         XCTAssertEqual(result, state)
     }
@@ -47,7 +45,7 @@ class ToDoReducerTests: XCTestCase {
         let toDoID = ToDoID()
         let state = ToDo(toDoID: toDoID, title: "irrelevant", completion: .unfinished)
 
-        let result = reducer.handleAction(ToDoAction.check(toDoID), state: state, clock: clockDouble)
+        let result = toDoReducer(ToDoAction.check(toDoID), state: state, clock: clockDouble)
 
         XCTAssertNotNil(result)
         if let result = result {
@@ -67,7 +65,7 @@ class ToDoReducerTests: XCTestCase {
         let oldDate = Date(timeIntervalSinceNow: 9876)
         let state = ToDo(toDoID: toDoID, title: "irrelevant", completion: .finished(when: oldDate))
 
-        let result = reducer.handleAction(ToDoAction.check(toDoID), state: state, clock: clockDouble)
+        let result = toDoReducer(ToDoAction.check(toDoID), state: state, clock: clockDouble)
 
         XCTAssertNotNil(result)
         if let result = result {
@@ -82,7 +80,7 @@ class ToDoReducerTests: XCTestCase {
 
         let state = ToDo(title: "irrelevant", completion: .unfinished)
 
-        let result = reducer.handleAction(ToDoAction.uncheck(ToDoID()), state: state)
+        let result = toDoReducer(ToDoAction.uncheck(ToDoID()), state: state)
 
         XCTAssertEqual(result, state)
     }
@@ -92,7 +90,7 @@ class ToDoReducerTests: XCTestCase {
         let toDoID = ToDoID()
         let state = ToDo(toDoID: toDoID, title: "irrelevant", completion: .finished(when: nil))
 
-        let result = reducer.handleAction(ToDoAction.uncheck(toDoID), state: state)
+        let result = toDoReducer(ToDoAction.uncheck(toDoID), state: state)
 
         XCTAssertNotNil(result)
         if let result = result {
@@ -107,7 +105,7 @@ class ToDoReducerTests: XCTestCase {
         let toDoID = ToDoID()
         let state = ToDo(toDoID: toDoID, title: "irrelevant", completion: .unfinished)
 
-        let result = reducer.handleAction(ToDoAction.uncheck(toDoID), state: state)
+        let result = toDoReducer(ToDoAction.uncheck(toDoID), state: state)
 
         XCTAssertNotNil(result)
         if let result = result {
@@ -122,7 +120,7 @@ class ToDoReducerTests: XCTestCase {
         let originalTitle = "old title"
         let item = ToDo(toDoID: ToDoID(), title: originalTitle)
 
-        let result = reducer.handleAction(ToDoAction.rename(ToDoID(), title: "new title!!1"), state: item)
+        let result = toDoReducer(ToDoAction.rename(ToDoID(), title: "new title!!1"), state: item)
 
         XCTAssertNotNil(result)
         if let result = result {
@@ -137,7 +135,7 @@ class ToDoReducerTests: XCTestCase {
         let item = ToDo(toDoID: toDoID, title: originalTitle)
         let newTitle = "new title!!1"
 
-        let result = reducer.handleAction(ToDoAction.rename(toDoID, title: newTitle), state: item)
+        let result = toDoReducer(ToDoAction.rename(toDoID, title: newTitle), state: item)
 
         XCTAssertNotNil(result)
         if let result = result {

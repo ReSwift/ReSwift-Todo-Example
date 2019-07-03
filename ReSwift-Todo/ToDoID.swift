@@ -39,10 +39,7 @@ func ==(lhs: ToDoID, rhs: ToDoID) -> Bool {
     return lhs.identifier == rhs.identifier
 }
 
-extension ToDoID: Hashable {
-
-    var hashValue: Int { return 189 &* identifier.hashValue }
-}
+extension ToDoID: Hashable { }
 
 extension ToDoID: CustomStringConvertible {
 
