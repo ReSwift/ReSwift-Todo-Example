@@ -82,7 +82,7 @@ class ToDoListWindowController: NSWindowController {
 
         super.awakeFromNib()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(windowWillClose(_:)), name: NSNotification.Name.NSWindowWillClose, object: self.window)
+        NotificationCenter.default.addObserver(self, selector: #selector(windowWillClose(_:)), name: NSWindow.willCloseNotification, object: self.window)
 
         tableView.dataSource = self.dataSource.tableDataSource
         tableView.delegate = self
@@ -112,7 +112,7 @@ class ToDoListWindowController: NSWindowController {
         store?.dispatch(action)
     }
 
-    func windowWillClose(_ notification: Notification) {
+    @objc func windowWillClose(_ notification: Notification) {
 
         guard let sendingWindow = notification.object as? NSWindow
             , sendingWindow == self.window

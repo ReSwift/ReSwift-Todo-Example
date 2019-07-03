@@ -30,7 +30,7 @@ class ToDoDocument: NSDocument {
     
     // MARK: - Saving/Loading Data
 
-    override class func autosavesInPlace() -> Bool {
+    override class var autosavesInPlace: Bool {
         return true
     }
 

@@ -37,7 +37,7 @@ class ToDoCellView: NSTableCellView {
 
     static func make(tableView: NSTableView, owner: AnyObject? = nil) -> ToDoCellView? {
 
-        return tableView.make(withIdentifier: ToDoCellView.reuseIdentifier, owner: owner) as? ToDoCellView
+        return tableView.makeView(withIdentifier: convertToNSUserInterfaceItemIdentifier(ToDoCellView.reuseIdentifier), owner: owner) as? ToDoCellView
     }
 
     @IBAction func checkboxChanged(_ sender: AnyObject) {
@@ -61,4 +61,9 @@ extension ToDoCellView: DisplaysToDo {
 
         self.viewModel = viewModel
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSUserInterfaceItemIdentifier(_ input: String) -> NSUserInterfaceItemIdentifier {
+	return NSUserInterfaceItemIdentifier(rawValue: input)
 }

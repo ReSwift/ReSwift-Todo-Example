@@ -27,7 +27,7 @@ class ToDoListImporter {
 
     func importToDoList(text: String) throws -> ToDoList {
 
-        let lines = text.characters
+        let lines = text
             .split(omittingEmptySubsequences: false) { $0 == Character(String.newline) }
             .map(String.init)
 
@@ -38,7 +38,7 @@ class ToDoListImporter {
 
     func parse<T: Sequence>(stream: T) -> ToDoList where T.Iterator.Element == String {
 
-        var tokens = stream.flatMap(tokenizer.token(text:))
+        var tokens = stream.compactMap(tokenizer.token(text:))
 
         if let projectTitleIndex = tokens.index(where: tokenIsProjectTitle),
             projectTitleIndex > 0 {
@@ -88,7 +88,6 @@ private func tokenIsProjectTitle(_ token: Token) -> Bool {
 
 extension Array {
 
-    
     func split(take n: Index) -> (ArraySlice<Element>, ArraySlice<Element>) {
 
         return (prefix(upTo: n), dropFirst(n))

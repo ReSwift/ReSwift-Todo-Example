@@ -45,10 +45,10 @@ class ToDoListWindowControllerTests: XCTestCase {
         controller.dataSource = dataSourceDouble
 
         let tableView = NSTableView()
-        let column = NSTableColumn(identifier: "irrelevant")
+        let column = NSTableColumn(identifier: convertToNSUserInterfaceItemIdentifier("irrelevant"))
         let row = 123
 
-        controller.tableView(tableView, viewFor: column, row: row)
+        _ = controller.tableView(tableView, viewFor: column, row: row)
 
         XCTAssertNotNil(dataSourceDouble.didRequestCellViewWith)
         if let values = dataSourceDouble.didRequestCellViewWith {
@@ -128,4 +128,9 @@ class ToDoListWindowControllerTests: XCTestCase {
             return testToDoCellView
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSUserInterfaceItemIdentifier(_ input: String) -> NSUserInterfaceItemIdentifier {
+	return NSUserInterfaceItemIdentifier(rawValue: input)
 }

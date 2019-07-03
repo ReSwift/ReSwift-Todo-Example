@@ -45,7 +45,7 @@ class ToDoListReducer: ReSwift.Reducer {
 
         var toDoList = toDoList
         
-        toDoList.items = toDoList.items.flatMap { toDoReducer.handleAction(action, state: $0) }
+        toDoList.items = toDoList.items.compactMap { toDoReducer.handleAction(action, state: $0) }
         
         return toDoList
     }

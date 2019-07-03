@@ -10,7 +10,7 @@ import Cocoa
 
 class CheckBox: NSButton {
     var checked: Bool {
-        get { return state == NSOnState }
-        set { state = newValue ? NSOnState : NSOffState }
+        get { return state == .on }
+        set { state = newValue ? .on : .off }
     }
 }

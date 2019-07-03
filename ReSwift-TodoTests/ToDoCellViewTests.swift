@@ -19,7 +19,7 @@ class ToDoCellViewTests: XCTestCase {
 
         let windowController = ToDoListWindowController()
         forceLoadWindowController(windowController)
-        view = windowController.tableView.make(withIdentifier: ToDoCellView.reuseIdentifier, owner: nil) as! ToDoCellView
+        view = windowController.tableView.makeView(withIdentifier: convertToNSUserInterfaceItemIdentifier(ToDoCellView.reuseIdentifier), owner: nil) as? ToDoCellView
     }
 
     func testCheckbox_IsConnected() {
@@ -37,7 +37,10 @@ class ToDoCellViewTests: XCTestCase {
         class TestTableView: NSTableView {
 
             var didMakeWith: (identifier: String, owner: Any?)?
-            fileprivate override func make(withIdentifier identifier: String, owner: Any?) -> NSView? {
+            fileprivate override func makeView(withIdentifier identifier: NSUserInterfaceItemIdentifier, owner: Any?) -> NSView? {
+// Local variable inserted by Swift 4.2 migrator.
+let identifier = convertFromNSUserInterfaceItemIdentifier(identifier)
+
 
                 didMakeWith = (identifier, owner)
                 return nil
@@ -55,4 +58,14 @@ class ToDoCellViewTests: XCTestCase {
             XCTAssert(values.owner as? NSObject === ownerDouble)
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSUserInterfaceItemIdentifier(_ input: NSUserInterfaceItemIdentifier) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSUserInterfaceItemIdentifier(_ input: String) -> NSUserInterfaceItemIdentifier {
+	return NSUserInterfaceItemIdentifier(rawValue: input)
 }
